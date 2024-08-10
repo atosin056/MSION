@@ -126,7 +126,7 @@
 						
 						<h4 style="font-size: 50px;font-weight: 700;line-height: 70px;">Where talents meet opportunities.</h4>
 
-						<p style="color: #433E3F;line-height: 30px;">Find jobs that suits your interest & skills, find remote jobs you love, research the fastest-growing remote companies Looking for a career change? We got you covered</p>
+						<p style="color: #433E3F;line-height: 30px;">Find jobs that suits your interest & skills, find remote jobs you love, research the fastest-growing remote companies Looking for a career change? We got you covetransparent</p>
 
 					</div>
 
@@ -264,9 +264,9 @@
 
 </div>
 
-<div style="background: #FAFAFA;width: 100% !important;height: 100% !important;" class="section-2">
+<div style="background: #FAFAFA;width: 100% !important;height: auto !important;" class="section-2">
 	
-	<div>
+	<div style="display: flex;flex-direction: column;">
 		
 		<div class="col-lg-9 col-sm-9 col-md-9">
 			
@@ -276,7 +276,7 @@
 
 		</div>
 
-		<div class="row" style="justify-content: space-between;">
+		<div class="row" style="justify-content: space-between;height: 65px; !important;">
 			
 			<div class="col-lg-6 col-md-6 col-sm-6">
 				
@@ -312,7 +312,7 @@
 
 			</div>
 
-			<div class="col-lg-6 col-md-6 col-sm-6" style="background: transparent;">
+			<div class="col-lg-6 col-md-6 col-sm-6" style="background: transparent;height: 64px;">
 				
 				<div style="display: flex;margin-left: 20px;gap: 20px;" class="row">
 					
@@ -378,7 +378,7 @@
 
 		<div style="margin-top: 20px;padding-bottom: 100px;">
 			
-			<div class="row" style="gap: 16px;width: 100% !important;">
+			<div class="row" style="gap: 16px;width: 100% !important;background: transparent;">
 				
 				<div class="first-post">
 					
@@ -627,6 +627,702 @@
 	</div>
 
 </div>
+
+<div style="width: 100% !important;height: auto;padding: 64px 100px;background: white;display: flex;flex-direction: column;gap: 64px;">
+	
+	<div style="display: flex;justify-content: center;">
+		
+		<div class="col-lg-5 col-md-5 col-sm-5 how" style="text-align: center;">
+			
+			<h4>How MSION Works</h4>
+
+			<p>Step-by-step guide on how job seekers and recruiters can use MSION</p>
+
+		</div>
+
+	</div>
+
+	<div>
+		
+		<div class="row" style="gap: 16px;">
+			
+			<div class="second-post">
+					
+				<div>
+						
+					<img src="images/b1.png">
+
+				</div>
+
+				<div style="display: flex;flex-direction: column;gap: 6px;">
+						
+					<font class="manager">Create an account</font>
+
+					<font class="roles" style="line-height: 26px;">Start your journey by signing up with MSION.</font>
+
+				</div>
+
+			</div>
+
+			<div class="second-post">
+					
+				<div>
+						
+					<img src="images/b1.png">
+
+				</div>
+
+				<div style="display: flex;flex-direction: column;gap: 6px;">
+						
+					<font class="manager">Create an account</font>
+
+					<font class="roles" style="line-height: 26px;">Start your journey by signing up with MSION.</font>
+
+				</div>
+
+			</div>
+
+			<div class="second-post">
+					
+				<div>
+						
+					<img src="images/b1.png">
+
+				</div>
+
+				<div style="display: flex;flex-direction: column;gap: 6px;">
+						
+					<font class="manager" style="line-height: 25px;font-size: 16px;">Update your profile and upload your CV</font>
+
+					<font class="roles" style="line-height: 26px;">This profile will be your professional identity on the platform.</font>
+
+				</div>
+
+			</div>
+
+			<div class="second-post">
+					
+				<div>
+						
+					<img src="images/b1.png">
+
+				</div>
+
+				<div style="display: flex;flex-direction: column;gap: 6px;">
+						
+					<font class="manager" style="font-size: 16px;line-height: 30px;">Explore job listings or candidates</font>
+
+					<font class="roles" style="line-height: 22px;font-size: 12px;">For job seekers, dive into a vast array of job listings tailored to your preferences.</font>
+
+				</div>
+
+			</div>
+
+			<div class="second-post">
+					
+				<div>
+						
+					<img src="images/b1.png">
+
+				</div>
+
+				<div style="display: flex;flex-direction: column;gap: 6px;">
+						
+					<font class="manager" style="font-size: 16px;line-height: 30px;">Access Courses and Career Resources</font>
+
+					<font class="roles" style="line-height: 22px;font-size: 12px;">Take advantage of MSION's extensive library of courses, webinars, and expert insights.</font>
+
+				</div>
+
+			</div>
+
+		</div>
+
+	</div>
+
+</div>
+
+<div style="background: #FAFAFA;width: 100% !important;height: auto !important;padding-left: 100px;">
+	
+	<div>
+		
+		<div class="row" style="justify-content: space-between;width: 100% !important;padding: 0 !!important;margin: 0 !important;">
+			
+			<div class="col-lg-5 col-sm-5 col-md-5" style="background: transparent;display: flex;align-items: center;">
+			
+				<div>
+					
+					<div class="helper">
+
+						<p>How MSION helps with</p>
+						
+						<h4>Resume Buliding</h4>
+
+						<p class="craft">Craft an impressive resume that highlights your skills and experiences with our built-in resume builder. With MSION, you'll have access to easy-to-use templates and tools to create a professional resume that stands out to potential employers.</p>
+
+					</div>
+
+				</div>
+
+			</div>
+
+			<div class="col-lg-6 col-sm-6 col-md-6">
+				
+
+				<img src="images/help.png" style="width: 100% !important;">
+
+			</div>
+
+		</div>
+
+	</div>
+
+</div>
+
+<div style="background: #FFF;width: 100% !important;height: auto !important;" class="section-2">
+	
+	<div style="display: flex;">
+
+		<div class="col-lg-6 col-sm-6 col-md-6">
+			
+			<h4 style="font-size: 40px;font-weight: 700;">Hire talented job seekers</h4>
+
+			<p style="color: #433E3F;font-weight: 400;line-height: 30px;">MSION has a suite of tools to help you hire the best  talent all over the world. Find talent, post jobs, and promote your brand to thousands of motivated job seekers. It only takes a few minutes to create your company profile.</p>
+
+		</div>
+
+		<div class="col-lg-6 col-sm-6 col-md-6" style="display: flex;justify-content: flex-end;">
+			
+			<a href="#" style="width: 292px !important;display: block;">
+				
+				<div class="company-profile">
+					
+					<div class="row" style="background: transparent;width: 100% !important;gap: 10px;">
+						
+						<div style="width: 24px;height: 24px;background: transparent;">
+							
+							<img src="images/Plus.png">
+
+						</div>
+
+						<div style="background: transparent;width: auto;padding-top: 2.5px;">
+							
+							<font style="font-size: 12px;">Create company profile</font>
+
+						</div>
+
+					</div>
+
+				</div>
+
+			</a>
+
+		</div>
+
+	</div>
+
+	<div>
+		
+		<div class="row" style="justify-content: space-between;width: 100% !important;flex-wrap: wrap;gap: 16px;">
+			
+			<div class="col-lg-4 col-md-4 col-sm-4 seekers">
+				
+				<div style="display: flex;flex-direction: column;gap: 20px;">
+					
+					<div style="width: 100% !important;height: 224px;">
+						
+						<img src="images/s1.png" style="width: 100% !important;height: 100% !important;">
+
+					</div>
+
+					<div class="seek-text"> 
+						
+						<p>Create a free company profile</p>
+
+						<font>MSION has a suite of tools to help you hire the best  talent all over the world. Find talent, post jobs, and promote your brand to thousands of motivated job seekers. It only </font>
+
+					</div>
+
+					<div>
+						
+						<a href="#">
+							
+							<div class="create-profile">
+								
+								Create company profile
+
+							</div>
+
+						</a>
+
+					</div>
+
+				</div>
+
+			</div>
+
+			<div class="col-lg-4 col-md-4 col-sm-4 seekers">
+				
+				<div style="display: flex;flex-direction: column;gap: 20px;">
+					
+					<div style="width: 100% !important;height: 224px;">
+						
+						<img src="images/s2.png" style="width: 100% !important;height: 100% !important;">
+
+					</div>
+
+					<div class="seek-text"> 
+						
+						<p>Job posting</p>
+
+						<font>MSION has a suite of tools to help you hire the best  talent all over the world. Find talent, post jobs, and promote your brand to thousands of motivated job seekers. It only </font>
+
+					</div>
+
+					<div>
+						
+						<a href="#">
+							
+							<div class="create-profile">
+								
+								Post a job
+
+							</div>
+
+						</a>
+
+					</div>
+
+				</div>
+
+			</div>
+
+			<div class="col-lg-4 col-md-4 col-sm-4 seekers">
+				
+				<div style="display: flex;flex-direction: column;gap: 20px;">
+					
+					<div style="width: 100% !important;height: 224px;">
+						
+						<img src="images/s3.png" style="width: 100% !important;height: 100% !important;">
+
+					</div>
+
+					<div class="seek-text"> 
+						
+						<p>Finding talents</p>
+
+						<font>MSION has a suite of tools to help you hire the best  talent all over the world. Find talent, post jobs, and promote your brand to thousands of motivated job seekers. It only </font>
+
+					</div>
+
+					<div>
+						
+						<a href="#">
+							
+							<div class="create-profile">
+								
+								Showcase brand
+
+							</div>
+
+						</a>
+
+					</div>
+
+				</div>
+
+			</div>
+
+		</div>
+
+	</div>
+
+</div>
+
+<div class="section-2" style="background: #FAFAFA;height: auto !important;">
+	
+	<div>
+		
+		<div style="background: #FAFAFA;">
+			
+			<div style="width: 100% !important;height: auto !important;background: white;border-top-left-radius: 24px;padding-top: 50px;padding-bottom: 64px;border-top-right-radius: 24px;">
+
+				<div style="display: flex;gap: 20px;width: 100% !important;">
+
+					<div class="col-lg-6 col-sm-6 col-md-6" style="background: transparent;flex: 1 1 100px;display: flex;align-items: center;justify-content: center; /* Grow, shrink, and base width */">
+
+						<div class="sec">
+						
+							<h4>Find your dream job</h4>
+
+							<ul>
+								
+								<li>Advanced Search Filters</li>
+
+								<li>Personalized Job Alerts</li>
+
+								<li>Resume Management</li>
+
+								<li>Interview Scheduling</li>
+
+							</ul>
+
+						</div>
+
+					</div>
+
+					<div class="col-lg-6 col-sm-6 col-md-6" style="background: transparent;flex: 1 1 100px;height: 360px;">
+						
+						<img src="images/dream.png" style="width: 100% !important;height: 100% !important;">
+
+					</div>
+ 				
+ 				</div>
+
+			</div>
+
+		</div>
+
+		<div style="background: white;padding-left: 100px !important;margin-left: -100px !important;margin-right: -100px !important;padding-right: 100px;">
+
+			<div style="width: 100% !important;height: auto !important;background: #FAFAFA;border-bottom-left-radius: 24px;border-bottom-right-radius: 24px;padding-top: 50px;padding-bottom: 64px;">
+
+				<div style="display: flex;gap: 20px;width: 100% !important;justify-content: space-between;background: transparent;">
+
+					<div class="col-lg-6 col-sm-6 col-md-6" style="background: transparent;flex: 1 1 100px;height: 360px;">
+						
+						<img src="images/sec2.png" style="width: 100% !important;height: 100% !important;">
+
+					</div>
+
+					<div class="col-lg-5 col-sm-5 col-md-5" style="background: transparent;flex: 1 1 100px;display: flex;align-items: center;justify-content: center;padding-left: 30px; /* Grow, shrink, and base width */">
+
+						<div class="sec" style="background: transparent;">
+						
+							<h4 style="font-size: 30px;font-weight: 600;">Streamlining Recruitment for Success</h4>
+
+							<ul>
+								
+								<li>Advanced Search Filters</li>
+
+								<li>Personalized Job Alerts</li>
+
+								<li>Resume Management</li>
+
+								<li>Interview Scheduling</li>
+
+							</ul>
+
+						</div>
+
+					</div>
+
+				</div>
+
+			</div>
+
+		</div>
+
+	</div>
+
+</div>
+
+<div class="section-2" style="background: url('images/bg.png') !important;width: 100% !important;height: auto;padding: 64px 100px;">
+	
+	<div>
+		
+		<div class="row" style="gap: 10px;">
+			
+			<div class="col-lg-4 col-sm-4 col-md-4 testimonial">
+				
+				<div>
+					
+					<div>
+						
+						<img src="images/].png">
+
+					</div>
+
+					<div class="testi">
+						
+						<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p>
+
+					</div>
+
+					<div style="width: 100% !important;justify-content: flex-end;display: flex;">
+						
+						<div>
+							
+							<img src="images/[.png">
+
+						</div>
+
+					</div>
+
+					<div style="display: flex;justify-content: center;">
+
+						<div>
+
+							<div style="display: flex;justify-content: center;">
+						
+								<div style="width: 40px;height: 40px;border-radius: 50px;border: 1.386px solid var(--Radial, #FFA800); lightgray 50% / cover no-repeat;">
+									
+									<img src="images/tes.png" style="width: 100% !important;height: 100% !important;border-radius: inherit !important;">
+
+								</div>
+
+							</div>
+
+							<div style="display: flex;flex-direction: column;text-align: center;">
+								
+								<font style="font-weight: 600;">John Smith</font>
+
+								<font style="color: var(--Neutrals-Neutrals600, #726C6C);text-align: center;font-family: Montserrat;font-size: 8px;font-style: normal;font-weight: 400;line-height: 120%; /* 9.6px */">Founder of Awesomeux Technology</font>
+
+							</div>
+
+						</div>
+
+					</div>
+
+				</div>
+
+			</div>
+
+			<div class="col-lg-4 col-sm-4 col-md-4 testimonial">
+				
+				<div>
+					
+					<div>
+						
+						<img src="images/].png">
+
+					</div>
+
+					<div class="testi">
+						
+						<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p>
+
+					</div>
+
+					<div style="width: 100% !important;justify-content: flex-end;display: flex;">
+						
+						<div>
+							
+							<img src="images/[.png">
+
+						</div>
+
+					</div>
+
+					<div style="display: flex;justify-content: center;">
+
+						<div>
+
+							<div style="display: flex;justify-content: center;">
+						
+								<div style="width: 40px;height: 40px;border-radius: 50px;border: 1.386px solid var(--Radial, #FFA800); lightgray 50% / cover no-repeat;">
+									
+									<img src="images/tes.png" style="width: 100% !important;height: 100% !important;border-radius: inherit !important;">
+
+								</div>
+
+							</div>
+
+							<div style="display: flex;flex-direction: column;text-align: center;">
+								
+								<font style="font-weight: 600;">John Smith</font>
+
+								<font style="color: var(--Neutrals-Neutrals600, #726C6C);text-align: center;font-family: Montserrat;font-size: 8px;font-style: normal;font-weight: 400;line-height: 120%; /* 9.6px */">Founder of Awesomeux Technology</font>
+
+							</div>
+
+						</div>
+
+					</div>
+
+				</div>
+
+			</div>
+
+			<div class="col-lg-4 col-sm-4 col-md-4 testimonial">
+				
+				<div>
+					
+					<div>
+						
+						<img src="images/].png">
+
+					</div>
+
+					<div class="testi">
+						
+						<p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s.</p>
+
+					</div>
+
+					<div style="width: 100% !important;justify-content: flex-end;display: flex;">
+						
+						<div>
+							
+							<img src="images/[.png">
+
+						</div>
+
+					</div>
+
+					<div style="display: flex;justify-content: center;">
+
+						<div>
+
+							<div style="display: flex;justify-content: center;">
+						
+								<div style="width: 40px;height: 40px;border-radius: 50px;border: 1.386px solid var(--Radial, #FFA800); lightgray 50% / cover no-repeat;">
+									
+									<img src="images/tes.png" style="width: 100% !important;height: 100% !important;border-radius: inherit !important;">
+
+								</div>
+
+							</div>
+
+							<div style="display: flex;flex-direction: column;text-align: center;">
+								
+								<font style="font-weight: 600;">John Smith</font>
+
+								<font style="color: var(--Neutrals-Neutrals600, #726C6C);text-align: center;font-family: Montserrat;font-size: 8px;font-style: normal;font-weight: 400;line-height: 120%; /* 9.6px */">Founder of Awesomeux Technology</font>
+
+							</div>
+
+						</div>
+
+					</div>
+
+				</div>
+
+			</div>
+
+		</div>
+
+	</div>
+
+</div>
+
+
+<footer class="footer">
+ 
+ 	<div style="padding-top: 50px;display: flex;justify-content: space-between;border-bottom: 1px solid white;padding-bottom: 30px;" class="foo-p">
+ 		
+ 		<div>
+ 			
+ 			<div>
+
+ 				<font style="font-size: 20px;font-weight: 600;">MSION</font>
+
+ 				<ul style="list-style-type: none;padding: 0;">
+ 					
+ 					<li class="footer-item"><a href="about.php" class="footer-link">About Us</a></li>
+
+ 					<li class="footer-item"><a href="partners.php" class="footer-link">Work at eFinancialCareers</a></li>
+
+ 					<li class="footer-item"><a href="resources.php#news" class="footer-link">Terms of Business</a></li>
+
+ 					<li class="footer-item"><a href="resources.php#blog" class="footer-link">Acceptable Use Policy</a></li>
+
+ 				</ul>
+
+ 			</div>
+
+ 		</div>
+
+ 		<!-- Products -->
+
+ 		<div>
+ 			
+ 			<div>
+
+ 				<font style="font-size: 20px;font-weight: 600;">Candidates</font>
+
+ 				<ul style="list-style-type: none;padding: 0;">
+ 					
+ 					<li class="footer-item"><a href="about.php" class="footer-link">Add your Resume</a></li>
+
+ 					<li class="footer-item"><a href="partners.php" class="footer-link">Create a Job Alert</a></li>
+
+ 					<li class="footer-item"><a href="resources.php#news" class="footer-link">Search Jobs</a></li>
+
+ 					<li class="footer-item"><a href="faq.php" class="footer-link">Browse Companies</a></li>
+
+ 					<li class="footer-item"><a href="resources.php#blog" class="footer-link">Careers in Tech</a></li>
+
+ 					<li class="footer-item"><a href="resources.php#blog" class="footer-link">Virtual Career Events</a></li>
+
+ 					<li class="footer-item"><a href="resources.php#blog" class="footer-link">Contact Us</a></li>
+
+ 				</ul>
+
+ 			</div>
+
+ 		</div>
+
+ 		<!-- Categories -->
+
+ 		<div>
+ 			
+ 			<div>
+
+ 				<font style="font-size: 20px;font-weight: 600;">News & Advice</font>
+
+ 				<ul style="list-style-type: none;padding: 0;">
+ 					
+ 					<li class="footer-item"><a href="about.php" class="footer-link">News</a></li>
+
+ 					<li class="footer-item"><a href="partners.php" class="footer-link">Students & Graduates</a></li>
+
+ 					<li class="footer-item"><a href="resources.php#news" class="footer-link">Search Jobs</a></li>
+
+ 					<li class="footer-item"><a href="faq.php" class="footer-link">Graduate careers guide</a></li>
+
+ 					<li class="footer-item"><a href="resources.php#blog" class="footer-link">Newsletter Subscription</a></li>
+
+ 					<!-- <li class="footer-item"><a href="resources.php#blog" class="footer-link">Virtual Career Events</a></li>
+
+ 					<li class="footer-item"><a href="resources.php#blog" class="footer-link">Contact Us</a></li> -->
+
+ 				</ul>
+
+ 			</div>
+
+ 		</div>
+
+ 		<!-- Resources -->
+
+ 		<div>
+ 			
+ 			<div>
+
+ 				<p style="font-size: 15px;font-weight: 600;">Resources</p>
+
+ 				<ul style="list-style-type: none;padding: 0;">
+ 					
+ 					<li class="footer-item"><a href="#" class="footer-link">Help Centre</a></li>
+
+ 					<li class="footer-item"><a href="#" class="footer-link">Learning Centre</a></li>
+
+ 				</ul>
+
+ 			</div>
+
+ 		</div>
+
+ 	</div>
+
+ 	<div style="margin-top: 20px;">
+
+ 		<font>AFCF</font>
+
+ 	</div>
+
+</footer>
 
 </body>
 
