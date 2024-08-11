@@ -134,15 +134,188 @@ line-height: 30px; /* 150% */
 	backdrop-filter: blur(34.97631072998047px);
 	padding: 31px 57px;
 }
-footer{
+.get-in-touch{
+	color: #1B1818;
+
+/* MSION - 1/Desktop/Headings/Heading 3 */
+font-family: Montserrat;
+font-size: 30px;
+font-style: normal;
+font-weight: 700;
+line-height: 150%; /* 60px */
+}
+.ap-p{
+	color: var(--Neutrals-Neutrals800, #433E3F);
+
+	/* MSION - 1/Desktop/Body/Content Regular */
+	font-family: Montserrat;
+	font-size: 16px;
+	font-style: normal;
+	font-weight: 400;
+	line-height: 30px; /* 24px */
+}
+footer {
     background: var(--Primary-Primary, #016B98);
-    width: 100% !important;
-    height: auto !important;
-    color: white !important;
+    width: 100%;
+    height: auto;
+    color: white;
     font-family: montserrat;
     padding-right: 140px;
     padding-left: 140px;
     padding-bottom: 50px;
+    
+}
+.sections{
+	width: 100% !important;
+	height: auto !important;
+	padding-left: 100px;
+	padding-right: 100px;
+	padding-top: 64px;
+	padding-bottom: 64px;
+	background: inherit;
+}
+.log-text h4{
+	color: #1B1818;
+
+/* MSION - 1/Desktop/Headings/Heading 3 */
+font-family: Montserrat;
+font-size: 35px;
+font-style: normal;
+font-weight: 700;
+line-height: 150%; /* 60px */
+}
+.google{
+	display: flex;
+padding: 22px 16px;
+color: black;
+font-weight: 600;
+justify-content: center;
+align-items: center;
+gap: 10px;
+align-self: stretch;
+border-radius: 24px;
+border: 1px solid var(--Neutrals-Neutrals200, #CCCBCB);
+background: var(--Shade-White, #FFF);
+}
+.our-story{
+	color: var(--Neutrals-Neutrals900, #2B2829);
+	/* MSION - 1/Desktop/Headings/Heading 2 */
+	font-family: Montserrat;
+	font-size: 36px;
+	font-style: normal;
+	font-weight: 700;
+	line-height: 150%; /* 72px */
+}
+.ab{
+	background: transparent;
+}
+.tets h4{
+	color: #FFF;
+	/* MSION - 1/Desktop/Headings/Heading 2 */
+	font-family: Montserrat;
+	font-size: 48px;
+	font-style: normal;
+	font-weight: 700;
+	line-height: 150%; /* 72px */
+}
+.person::placeholder{
+	font-size: 14px;
+}
+.login-bg{
+	display: inline-flex;
+	padding: 32px;
+	flex-direction: column;
+	align-items: center;
+	gap: 32px;
+	border-radius: 24px;
+	background: var(--Primary-Primary1000, #013E59);
+
+	/* Shadow/Shadow__Large */
+	box-shadow: 0px 20px 24px -4px rgba(0, 0, 0, 0.10), 0px 8px 8px -4px rgba(0, 0, 0, 0.04);
+	color: white;
+	width: 355px;
+}
+.form-control:focus {
+   border-radius: 50px;
+border: 1px solid var(--Primary-Primary600, #13B7FD);
+background: var(--Shade-White, #FFF);
+box-shadow: 0px 0px 0px 4px #D8F3FF;
+}
+.submit{
+	display: flex;
+padding: 20px 40px;
+justify-content: center;
+align-items: center;
+gap: 8px;
+align-self: stretch;
+border-radius: 24px;
+background: var(--Primary-Primary, #016B98);
+border: none;
+width: 100% !important;
+color: white;
+}
+.tets p{
+	color: #FFF;
+	/* MSION - 1/Desktop/Body/Content Regular */
+	font-family: Montserrat;
+	font-size: 16px;
+	font-style: normal;
+	font-weight: 400;
+	line-height: 150%; /* 24px */
+}
+.wing-text{
+	background: transparent;
+	display: flex;
+	align-items: center;
+	padding-left: 74px;
+}
+.contact{
+	display: flex;
+	height: 56px;
+	padding: 16px 24px;
+	align-items: center;
+	gap: 12px;
+	align-self: stretch;
+	border-radius: 40px;
+}
+.frame1{
+	height: 300px;
+	align-self: stretch;
+	border-radius: 24px;
+	background: var(--Primary-Primary800, #0187BF);
+}
+.third-post{
+	display: flex;
+	width: 298px;
+	height: 252px;
+	padding: 40px 16px;
+	flex-direction: column;
+	align-items: center;
+	gap: 24px;
+	border-radius: 20px;
+	border: 1px solid var(--Neutrals-Neutrals100, #E3E3E3);
+	background: #FFF;
+	text-align: center;
+	flex: 1 1 100px;
+}
+.long-story{
+	color: var(--Neutrals-Neutrals800, #433E3F);
+	/* MSION - 1/Desktop/Body/Content Regular */
+	font-family: Montserrat;
+	font-size: 16px;
+	font-style: normal;
+	font-weight: 400;
+	line-height: 30px; /* 24px */
+}
+.ab h4{
+	color: var(--Neutrals-Neutrals900, #2B2829);
+
+	/* MSION - 1/Desktop/Headings/Heading 2 */
+	font-family: Montserrat;
+	font-size: 40px;
+	font-style: normal;
+	font-weight: 700;
+	line-height: 150%; /* 72px */
 }
 .footer input[type="email"]::placeholder {
   color: #fff; /* White placeholder text color */
@@ -303,7 +476,7 @@ line-height: 35px; /* 21px */
 }
 .header{
 	width: 100% !important;
-	height: 100%;
+	height: auto !important;
 	padding-left: 100px;
 	padding-right: 100px;
 	padding-top: 140px;

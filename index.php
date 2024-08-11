@@ -22,95 +22,11 @@
 
 <body>
 
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-  
-   <div class="container-fluid">
-   
-    	<a class="navbar-brand" href="index.php">
-      	
-	      	<div>
-	      		
-	      		<img src="images/logo.png">
+<?php
 
-	    	</div>
+include 'navbar.php';
 
-    	</a>
-   
-	    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-	   
-	    	<span class="navbar-toggler-icon"></span>
-	   
-	    </button>
-	   
-	    <div class="collapse navbar-collapse" id="navbarNav">
-
-	      	<ul class="navbar-nav mx-auto">
-	       
-	        	<li class="nav-item link">
-
-	          		<a href="index.php" class="nav-link" data-page="index">Home</a>
-
-	         	</li>
-
-	         	<li class="nav-item link">
-
-	          		<a href="#" class="nav-link" data-page="job">Job Search</a>
-
-	         	</li>
-
-	         	<li class="nav-item link">
-
-	          		<a href="#" class="nav-link" data-page="resources">Resources</a>
-
-	         	</li>
-
-	         	<li class="nav-item link">
-
-	          		<a href="#" class="nav-link" data-page="about">About us</a>
-
-	         	</li>
-
-	         	<li class="nav-item link">
-
-	          		<a href="#" class="nav-link" data-page="contact">Contact</a>
-
-	         	</li>
-
-	    	</ul>
-
-	    	<div class="navbar-nav-end">
-	         		
-	         	<div style="display: flex;">
-	         		
-	         		<a href="#">
-
-		         		<div class="login">
-		         			
-		         			<font>Login</font>
-
-		         		</div>
-
-	         		</a>
-
-	         		<a href="#">
-	         			
-	         			<div class="get-started">
-	         				
-	         				Get started
-
-	         			</div>
-
-	         		</a>
-
-	         	</div>
-
-	        </div>
-
-	    </div>
-
-  	</div>
-
-</nav>
+?>
 
 <div class="header">
 
@@ -1207,122 +1123,11 @@
 
 </div>
 
+<?php
 
-<footer class="footer">
- 
- 	<div style="padding-top: 50px;display: flex;justify-content: space-between;border-bottom: 1px solid white;padding-bottom: 30px;" class="foo-p">
- 		
- 		<div>
- 			
- 			<div>
+include 'footer.php';
 
- 				<font style="font-size: 20px;font-weight: 600;">MSION</font>
-
- 				<ul style="list-style-type: none;padding: 0;">
- 					
- 					<li class="footer-item"><a href="about.php" class="footer-link">About Us</a></li>
-
- 					<li class="footer-item"><a href="partners.php" class="footer-link">Work at eFinancialCareers</a></li>
-
- 					<li class="footer-item"><a href="resources.php#news" class="footer-link">Terms of Business</a></li>
-
- 					<li class="footer-item"><a href="resources.php#blog" class="footer-link">Acceptable Use Policy</a></li>
-
- 				</ul>
-
- 			</div>
-
- 		</div>
-
- 		<!-- Products -->
-
- 		<div>
- 			
- 			<div>
-
- 				<font style="font-size: 20px;font-weight: 600;">Candidates</font>
-
- 				<ul style="list-style-type: none;padding: 0;">
- 					
- 					<li class="footer-item"><a href="about.php" class="footer-link">Add your Resume</a></li>
-
- 					<li class="footer-item"><a href="partners.php" class="footer-link">Create a Job Alert</a></li>
-
- 					<li class="footer-item"><a href="resources.php#news" class="footer-link">Search Jobs</a></li>
-
- 					<li class="footer-item"><a href="faq.php" class="footer-link">Browse Companies</a></li>
-
- 					<li class="footer-item"><a href="resources.php#blog" class="footer-link">Careers in Tech</a></li>
-
- 					<li class="footer-item"><a href="resources.php#blog" class="footer-link">Virtual Career Events</a></li>
-
- 					<li class="footer-item"><a href="resources.php#blog" class="footer-link">Contact Us</a></li>
-
- 				</ul>
-
- 			</div>
-
- 		</div>
-
- 		<!-- Categories -->
-
- 		<div>
- 			
- 			<div>
-
- 				<font style="font-size: 20px;font-weight: 600;">News & Advice</font>
-
- 				<ul style="list-style-type: none;padding: 0;">
- 					
- 					<li class="footer-item"><a href="about.php" class="footer-link">News</a></li>
-
- 					<li class="footer-item"><a href="partners.php" class="footer-link">Students & Graduates</a></li>
-
- 					<li class="footer-item"><a href="resources.php#news" class="footer-link">Search Jobs</a></li>
-
- 					<li class="footer-item"><a href="faq.php" class="footer-link">Graduate careers guide</a></li>
-
- 					<li class="footer-item"><a href="resources.php#blog" class="footer-link">Newsletter Subscription</a></li>
-
- 					<!-- <li class="footer-item"><a href="resources.php#blog" class="footer-link">Virtual Career Events</a></li>
-
- 					<li class="footer-item"><a href="resources.php#blog" class="footer-link">Contact Us</a></li> -->
-
- 				</ul>
-
- 			</div>
-
- 		</div>
-
- 		<!-- Resources -->
-
- 		<div>
- 			
- 			<div>
-
- 				<p style="font-size: 15px;font-weight: 600;">Resources</p>
-
- 				<ul style="list-style-type: none;padding: 0;">
- 					
- 					<li class="footer-item"><a href="#" class="footer-link">Help Centre</a></li>
-
- 					<li class="footer-item"><a href="#" class="footer-link">Learning Centre</a></li>
-
- 				</ul>
-
- 			</div>
-
- 		</div>
-
- 	</div>
-
- 	<div style="margin-top: 20px;">
-
- 		<font>AFCF</font>
-
- 	</div>
-
-</footer>
+?>
 
 </body>
 
