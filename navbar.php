@@ -68,7 +68,7 @@
 
 	         		</a>
 
-	         		<a href="#">
+	         		<a href="register.php">
 	         			
 	         			<div class="get-started">
 	         				

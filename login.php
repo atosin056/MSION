@@ -186,7 +186,7 @@
 
 							<div style="margin-top: 20px;">
 								
-								<font>Are you new Here? <a href="#">Create Account</a></font>
+								<font>Are you new Here? <a href="register.php">Create Account</a></font>
 
 							</div>
 
