@@ -22,7 +22,7 @@
 
 <body>
 
-<div style="width: 100% !important;height: 100% !important;background: yellow;">
+<div style="width: 100% !important;height: 100% !important;background: transparent;">
 	
 	<div style="height: 100% !important;width: 100% !important;margin: 0;padding: 0;" class="row">
 		
