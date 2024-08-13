@@ -1,0 +1,12 @@
+{
+    "require": {
+        "google/apiclient": "^2.15",
+        "phpmailer/phpmailer": "^6.9",
+        "mailgun/mailgun-php": "^4.3"
+    },
+    "config": {
+        "allow-plugins": {
+            "php-http/discovery": true
+        }
+    }
+}

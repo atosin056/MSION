@@ -15,3 +15,11 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     
 });
+
+var error = document.getElementById('error-msg');
+
+setTimeout(function() {
+
+    error.style.display = 'none';
+
+}, 1300);
