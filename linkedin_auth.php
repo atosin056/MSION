@@ -1,65 +1,155 @@
 <?php
 
+session_start();
+
 require_once 'vendor/autoload.php'; // Include LinkedIn API Client Library
 
-use Happyr\LinkedIn\LinkedIn;
+// LinkedIn API credentials
+
+$clientID = '776d6sag7ov48j';
+
+$clientSecret = 'fI4mrSCMZhBgIvxv';
+
+$redirectUrl = 'https://localhost/MSION/linkedin_auth.php';
+
+
 
 // Initialize the LinkedIn client
-$clientID = 'YOUR_LINKEDIN_CLIENT_ID';
-$clientSecret = 'YOUR_LINKEDIN_CLIENT_SECRET';
-$redirectUrl = 'http://localhost/Qwizzy/linkedin_auth.php';
 
-// Creating LinkedIn client
-$linkedin = new LinkedIn($clientID, $clientSecret);
+$client = new \League\OAuth2\Client\Provider\GenericProvider([
 
-$linkedin->setRedirectUrl($redirectUrl);
+    'clientId'                => $clientID,    // The client ID assigned to you by LinkedIn
 
-if (isset($_GET["code"])) {
+    'clientSecret'            => $clientSecret, // The client password assigned to you by LinkedIn
+
+    'redirectUri'             => $redirectUrl,
+
+    'urlAuthorize'            => 'https://www.linkedin.com/oauth/v2/authorization',
+
+    'urlAccessToken'          => 'https://www.linkedin.com/oauth/v2/accessToken',
+
+    'urlResourceOwnerDetails' => 'https://api.linkedin.com/v2/me',
+
+]);
+
+// Request authorization
+
+$authorizationUrl = $client->getAuthorizationUrl([
+
+    'scope' => ['profile', 'email']
+
+]);
+
+
+if (isset($_GET['code'])) {
     
-    // Fetch the access token using the authorization code
-    $accessToken = $linkedin->getAccessToken($_GET['code']);
+    // Retrieve the access token
+    
+    $accessToken = $client->getAccessToken('authorization_code', [
+    
+        'code' => $_GET['code']
+    
+    ]);
 
-    // Set the access token to the LinkedIn client
-    $linkedin->setAccessToken($accessToken);
+    // Fetch the user's profile information
+    
+    $resourceOwner = $client->getResourceOwner($accessToken);
 
-    // Get user information from LinkedIn
-    $linkedin_info = $linkedin->get('v2/me');
-    $email_info = $linkedin->get('v2/emailAddress?q=members&projection=(elements*(handle~))');
+    // Get profile details
+    
+    $profileResponse = file_get_contents('https://api.linkedin.com/v2/emailAddress?q=members&projection=(elements*(handle~))', false, stream_context_create([
+    
+        'http' => [
+    
+            'header' => 'Authorization: Bearer ' . $accessToken->getToken()
+    
+        ]
+    
+    ]));
 
-    $email = $email_info['elements'][0]['handle~']['emailAddress'];
-    $firstName = $linkedin_info['localizedFirstName']; // First name
-    $lastName = $linkedin_info['localizedLastName'];  // Last name
+    $profileData = json_decode($profileResponse, true);
+    
+    $email = $profileData['elements'][0]['handle~']['emailAddress'];
 
-    // My Insert Query
-    session_start();
+    // Handle the email address
+    $_SESSION['linkedin_email'] = $email;
 
-    $_SESSION["email"] = $email;
-    $_SESSION["firstname"] = $firstName;
-    $_SESSION["lastname"] = $lastName;
-
+    // Your existing code for user handling
     include 'connect.php';
 
-    $select = "SELECT * FROM `users` WHERE `email`='" . $_SESSION["email"] . "'";
+    // Check if the user is logging in or signing up
+    
+    $select = "SELECT * FROM `users` WHERE `email`='" . $_SESSION['linkedin_email'] . "'";
+    
     $select_query = mysqli_query($conn, $select);
 
     if (mysqli_num_rows($select_query) > 0) {
-        header('location: dashboard.php');
-    } else {
-        $otp = random_int(0, 5) . random_int(0, 5) . random_int(0, 5) . random_int(0, 5) . random_int(0, 5) . random_int(0, 5);
+    
+        while ($row = mysqli_fetch_assoc($select_query)) {
+    
+            $email = $row['email'];
+    
+            $_SESSION['logged_email'] = $email;
+    
+        }
 
-        $insert = "INSERT INTO `users` (`id`,`firstname`,`lastname`,`email`,`password`,`phone`,`address`,`otp`) VALUES (NULL,'" . $_SESSION["firstname"] . "','" . $_SESSION["lastname"] . "','" . $_SESSION["email"] . "',' ',' ',' ','" . $otp . "')";
+        if (isset($_SESSION['logged_email'])) {
+    
+            // Perform other stuff here
+    
+            header('Location: dashboard.php');
+    
+        }
+
+    }
+
+    else {
+
+        // Register the user
+
+        $insert = "INSERT INTO `users` (`id`, `email`, `unique_id`) VALUES (NULL, '" . $email . "','" . $unique_id . "')";
 
         $insert_query = mysqli_query($conn, $insert);
 
         if ($insert_query) {
-            header('location: proceed.php?passkey=yes');
+
+            $_SESSION['linkedin_email_send'] = $email;
+
+            if (isset($_SESSION['linkedin_email_send'])) {
+
+                header('Location: otp_send_mail.php');
+
+            }
+
         }
+
     }
 
-} else {
-    // Redirect to LinkedIn authentication page
-    $loginUrl = $linkedin->getLoginUrl(['scope' => 'r_liteprofile r_emailaddress']);
-    header('Location: ' . $loginUrl);
+}
+
+else {
+ 
+    // Redirect to LinkedIn for authorization
+ 
+    $authorizationUrl = $client->getAuthorizationUrl();
+ 
+    $_SESSION['oauth2state'] = $client->getState();
+ 
+    header('Location: ' . $authorizationUrl);
+}
+
+if (isset($_GET['error'])) {
+    
+    // Log the error for debugging
+    
+    error_log('LinkedIn OAuth Error: ' . $_GET['error_description']);
+    
+    // Redirect to a custom error page
+    
+    header('Location: register.php?error=' . urlencode($_GET['error_description']));
+    
+    exit;
+
 }
 
 ?>

@@ -3,85 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Icon Links Demo</title>
-    <style>
-        .link-field {
-            display: none; /* Initially hide all link fields */
-            margin: 10px 0;
-        }
-        .handles {
-            cursor: pointer;
-        }
-        .handles img {
-            width: 50px;
-            height: 50px;
-        }
-    </style>
+    <title>Styled Numbers</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div style="display: flex; width: 100%; gap: 16px;">
-        <div class="handles" data-target="behanceField">
-            <img src="images/behance.png" alt="Behance">
-        </div>
-        <div class="handles" data-target="githubField">
-            <img src="images/github.png" alt="GitHub">
-        </div>
-        <div class="handles" data-target="youtubeField">
-            <img src="images/youtube.png" alt="YouTube">
-        </div>
-        <div class="handles" data-target="instagramField">
-            <img src="images/instagram.png" alt="Instagram">
-        </div>
+    <div>
+        <p class="number-style">3589</p>
     </div>
-
-    <div style="width: 100%; background: white; padding: 24px; border-radius: 20px;">
-        <div>
-            <h4>Enter links</h4>
-        </div>
-        <div>
-            <div id="behanceField" class="link-field">
-                <h5>Behance Link</h5>
-                <input type="text" class="form-control" placeholder="Enter Behance Link">
-            </div>
-            <div id="githubField" class="link-field">
-                <h5>GitHub Link</h5>
-                <input type="text" class="form-control" placeholder="Enter GitHub Link">
-            </div>
-            <div id="youtubeField" class="link-field">
-                <h5>YouTube Link</h5>
-                <input type="text" class="form-control" placeholder="Enter YouTube Link">
-            </div>
-            <div id="instagramField" class="link-field">
-                <h5>Instagram Link</h5>
-                <input type="text" class="form-control" placeholder="Enter Instagram Link">
-            </div>
-        </div>
-    </div>
-
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-    function handleIconClick(event) {
-        const targetId = event.currentTarget.getAttribute('data-target');
-        const targetField = document.getElementById(targetId);
-
-        if (targetField) {
-            // Toggle the visibility of the selected link field
-            if (targetField.style.display === 'block') {
-                targetField.style.display = 'none';
-            } else {
-                targetField.style.display = 'block';
-            }
-        } else {
-            console.error(`No element found with id: ${targetId}`);
-        }
-    }
-
-    // Add event listeners to all icons
-    document.querySelectorAll('.handles').forEach(icon => {
-        icon.addEventListener('click', handleIconClick);
-    });
-});
-
-    </script>
+    <script src="script.js"></script>
 </body>
 </html>
+<style>
+    .number-style {
+    display: flex;
+    gap: 16px;
+}
+
+.number-style span {
+    display: inline-block;
+    width: 76px;
+    height: 76px;
+    border: 1px solid black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+</style>
+
+<script type="text/javascript">
+    document.querySelectorAll('.number-style').forEach(paragraph => {
+    paragraph.innerHTML = paragraph.textContent.split('').map(num => `<span>${num}</span>`).join('');
+});
+
+</script>

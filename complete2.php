@@ -1,3 +1,73 @@
+<?php
+
+session_start();
+
+include 'connect.php';
+
+if (!isset($_GET["distro"])) {
+
+	header('location: complete.php');
+
+}
+
+if (isset($_POST["submit"])) {
+	
+	$bio = $_POST["biography"];
+
+	$looking = $_POST["looking"];
+
+
+	//Update the DB
+
+	$update = "UPDATE `users` SET `biography`='".$bio."',`looking`='".$looking."' WHERE `email`='".$_SESSION["otp_email_send"]."'";
+
+	$update_query = mysqli_query($conn, $update);
+
+	if ($update_query) {
+
+	    $skillsJson = $_POST['skillsArray'] ?? '[]';
+	   
+	    $skills = json_decode($skillsJson, true);
+
+
+	    foreach ($skills as $skill) {
+        	
+        	$email = $_SESSION["otp_email_send"];
+
+        	$insert = "INSERT INTO `skills` (`id`, `skill`, `email`) VALUES (NULL, '".$skill."', '".$email."')";
+
+        	$insert_query = mysqli_query($conn, $insert);
+
+        
+        }	
+        
+        $stacksJson = $_POST['stackArray'] ?? '[]';
+	   
+		$stacks = json_decode($stacksJson, true);
+
+
+		foreach ($stacks as $stack) {
+
+		   	$email = $_SESSION["otp_email_send"];
+
+		   	$stack_insert = "INSERT INTO `stack` (`id`, `stack`, `email`) VALUES (NULL, '".$stack."', '".$email."')";
+
+		   	$stack_query = mysqli_query($conn, $stack_insert);
+
+		   	if ($stack_query) {
+			    		
+		   		header('location: complete3.php?msitos='.$_GET["distro"]);
+
+		   	}
+
+		}
+
+	}
+
+}
+
+?>
+
 <html>
 
 <head>
@@ -112,7 +182,7 @@
 									
 									<div class="form-group">
 										
-										<input type="text" required name="skills" class="form-control" style="border-radius: 20px;height: 56px;padding-left: 20px;" id="skillInput" placeholder="Enter Skills">
+										<input type="text" name="skills" class="form-control" style="border-radius: 20px;height: 56px;padding-left: 20px;" id="skillInput" placeholder="Enter Skills">
 
 									</div>
 
@@ -120,7 +190,7 @@
 
 									<div id="skillsContainer"></div>
 
-									<input type="hidden" name="skillsArray" id="skillsArray">
+									<input type="hidden" required name="skillsArray" id="skillsArray">
 
 								</div>
 
@@ -138,7 +208,7 @@
 									
 									<div class="form-group">
 										
-										<input type="text" name="stack" required class="form-control" style="border-radius: 20px;height: 56px;padding-left: 20px;" id="stackInput" placeholder="Search Tools">
+										<input type="text" name="stack" class="form-control" style="border-radius: 20px;height: 56px;padding-left: 20px;" id="stackInput" placeholder="Search Tools">
 
 									</div>
 
@@ -146,7 +216,7 @@
 
 									<div id="stack-container"></div>
 
-									<input type="hidden" name="stackArray" id="stackArray">
+									<input type="hidden" required name="stackArray" id="stackArray">
 
 								</div>
 

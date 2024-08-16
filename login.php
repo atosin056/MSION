@@ -162,7 +162,7 @@
 
 								</a>
 
-								<a href="linkedin_auth.php?action=login">
+								<!-- <a href="linkedin_auth.php?action=login">
 								
 									<div class="google">
 										
@@ -180,7 +180,7 @@
 
 									</div>
 
-								</a>
+								</a> -->
 
 							</div>
 

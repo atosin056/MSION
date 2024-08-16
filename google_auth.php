@@ -1,5 +1,7 @@
 <?php
 
+session_start();
+
 require_once 'vendor/autoload.php'; // Include Google API Client Library
 
 // Initialize the Google client
@@ -41,7 +43,6 @@ if (isset($_GET["code"])) {
 
 	$unique_id = $_SESSION["unique_id"];
 
-    session_start();
 
 	$_SESSION["otp_send_email"] = $email;
 

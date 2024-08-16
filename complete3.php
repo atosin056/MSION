@@ -1,3 +1,65 @@
+<?php
+
+if (!isset($_GET["msitos"])) {
+
+	header('location: complete2.php');
+
+}
+
+session_start();
+
+include 'connect.php';
+
+if (isset($_POST["submit"])) {
+	
+	$facebook = $_POST['facebook'];
+
+	$youtube = $_POST["youtube"];
+
+	$x = $_POST["x"];
+
+	$linkedin = $_POST["linkedin"];
+
+
+	$socials = [
+    'facebook' => !empty($facebook) ? $facebook : null,
+    'linkedin' => !empty($linkedin) ? $linkedin : null,
+    'youtube' => !empty($youtube) ? $youtube : null,
+    'x' => !empty($x) ? $x : null,
+    'email' => !empty($email) ? $email : $_SESSION["otp_email_send"] // Ensure email is not null
+];
+
+// Prepare the base SQL query
+$insert_query = "INSERT INTO `socials` (`id`, `facebook`, `linkedin`, `youtube`, `x`, `email`) VALUES (NULL, ";
+$values = [];
+
+// Build the values part of the query dynamically
+foreach ($socials as $handle_name => $link) {
+    if ($link !== null) {
+        $values[] = "'" . mysqli_real_escape_string($conn, $link) . "'";
+    } else {
+        // Ensure we include NULL for fields with no value
+        $values[] = "NULL";
+    }
+}
+
+// Append the values to the query
+$insert_query .= implode(', ', $values) . ")";
+
+// Execute the query
+if (mysqli_query($conn, $insert_query)) {
+    // Redirect to dashboard
+    header("Location: dashboard.php");
+    exit();
+} else {
+    // Handle error
+    echo "Error: " . mysqli_error($conn);
+}
+
+}
+
+?>
+
 <html>
 
 <head>
@@ -62,17 +124,17 @@
 								
 								<div style="display: flex;width: 100% !important;gap: 16px;">
 									
-									<div class="handles" data-target="behanceField">
+									<div class="handles" data-target="linkedinField">
 										
-										<img src="images/behance.png" style="border-radius: inherit;width: 100% !important;height: 100% !important;">
+										<img src="images/linkedIn.png" style="border-radius: inherit;width: 100% !important;height: 100% !important;">
 
 									</div>
 
-									<div class="handles" data-target="githubField">
+									<!-- <div class="handles" data-target="githubField">
 										
 										<img src="images/github.png" style="border-radius: inherit;width: 100% !important;height: 100% !important;">
 
-									</div>
+									</div> -->
 
 									<div class="handles" data-target="youtubeField">
 										
@@ -86,19 +148,19 @@
 
 									</div>
 
-									<div class="handles" data-target="amazonField">
+									<div class="handles" data-target="FaceBookField">
 										
-										<img src="images/amazon.png" style="border-radius: inherit;width: 100% !important;height: 100% !important;">
+										<img src="images/facebook.png" style="border-radius: inherit;width: 100% !important;height: 100% !important;">
 
 									</div>
 
-									<div class="handles" data-target="instagramField">
+									<!-- <div class="handles" data-target="instagramField">
 										
 										<img src="images/ig.png" style="border-radius: inherit;width: 100% !important;height: 100% !important;">
 
-									</div>
+									</div> -->
 
-									<div class="handles" data-target="tictocField">
+									<!-- <div class="handles" data-target="tictocField">
 										
 										<img src="images/tictoc.png" style="border-radius: inherit;width: 100% !important;height: 100% !important;">
 
@@ -108,7 +170,7 @@
 										
 										<img src="images/www.png" style="border-radius: inherit;width: 100% !important;height: 100% !important;">
 
-									</div>
+									</div> -->
 
 								</div>
 
@@ -130,65 +192,17 @@
 						
 							<div style="display: flex;flex-direction: column;gap: 24px;">
 								
-								<div style="gap: 16px;" id="behanceField" class="link-field">
+								<div style="gap: 16px;" id="linkedinField" class="link-field">
 									
 									<div class="handless">
 										
-										<img src="images/behance.png" style="width: 100% !important;border-radius: inherit;height: 100% !important;">
+										<img src="images/linkedIn.png" style="width: 100% !important;border-radius: inherit;height: 100% !important;">
 
 									</div>
 
 									<div style="flex: 1 1 100px;">
 										
-										<input type="text" name="behance" class="form-control" style="padding-left: 20px;border-radius: 20px;height: 100% !important;width: 100% !important;" placeholder="Behance Link">
-
-									</div>
-
-								</div>
-
-								<div style="gap: 16px;" id="instagramField" class="link-field">
-									
-									<div class="handless">
-										
-										<img src="images/ig.png" style="width: 100% !important;border-radius: inherit;height: 100% !important;">
-
-									</div>
-
-									<div style="flex: 1 1 100px;">
-										
-										<input type="text" name="instagram" class="form-control" style="padding-left: 20px;border-radius: 20px;height: 100% !important;width: 100% !important;" placeholder="Instagram Link">
-
-									</div>
-
-								</div>
-
-								<div style="gap: 16px;" id="githubField" class="link-field">
-									
-									<div class="handless">
-										
-										<img src="images/github.png" style="width: 100% !important;border-radius: inherit;height: 100% !important;">
-
-									</div>
-
-									<div style="flex: 1 1 100px;">
-										
-										<input type="text" name="github" class="form-control" style="padding-left: 20px;border-radius: 20px;height: 100% !important;width: 100% !important;" placeholder="Github Link">
-
-									</div>
-
-								</div>
-
-								<div style="gap: 16px;" id="tictocField" class="link-field">
-									
-									<div class="handless">
-										
-										<img src="images/tictoc.png" style="width: 100% !important;border-radius: inherit;height: 100% !important;">
-
-									</div>
-
-									<div style="flex: 1 1 100px;">
-										
-										<input type="text" name="tictoc" class="form-control" style="padding-left: 20px;border-radius: 20px;height: 100% !important;width: 100% !important;" placeholder="TikTok Link">
+										<input type="text" name="linkedin" class="form-control" style="padding-left: 20px;border-radius: 20px;height: 100% !important;width: 100% !important;" placeholder="LinkedIn Link">
 
 									</div>
 
@@ -226,33 +240,17 @@
 
 								</div>
 
-								<div style="gap: 16px;" id="amazonField" class="link-field">
+								<div style="gap: 16px;" id="FaceBookField" class="link-field">
 									
 									<div class="handless">
 										
-										<img src="images/amazon.png" style="width: 100% !important;border-radius: inherit;height: 100% !important;">
+										<img src="images/facebook.png" style="width: 100% !important;border-radius: inherit;height: 100% !important;">
 
 									</div>
 
 									<div style="flex: 1 1 100px;">
 										
-										<input type="text" name="amazon" class="form-control" style="padding-left: 20px;border-radius: 20px;height: 100% !important;width: 100% !important;" placeholder="Amazon Link">
-
-									</div>
-
-								</div>
-
-								<div style="gap: 16px;" id="tictocField" class="link-field">
-									
-									<div class="handless">
-										
-										<img src="images/tictoc.png" style="width: 100% !important;border-radius: inherit;height: 100% !important;">
-
-									</div>
-
-									<div style="flex: 1 1 100px;">
-										
-										<input type="text" name="tictoc" class="form-control" style="padding-left: 20px;border-radius: 20px;height: 100% !important;width: 100% !important;" placeholder="TikTok Link">
+										<input type="text" name="facebook" class="form-control" style="padding-left: 20px;border-radius: 20px;height: 100% !important;width: 100% !important;" placeholder="FaceBook Link">
 
 									</div>
 

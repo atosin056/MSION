@@ -1,0 +1,20 @@
+<body style="padding: 0;margin: 0;">
+
+<div style="padding-left: 100px;padding-right: 100px;background: #303030;height: 100% !important;padding-top: 100px;padding-bottom: 100px;">
+	
+	<div style="width: 100% !important;background: white;height: 100%;">
+		
+		<img src="images/about.png" style="width: 100% !important;height: 60%;">
+
+	</div>
+
+</div>
+
+<form method="POST">
+	
+	<input type="submit" name="submit">
+
+</form>
+
+
+</body>

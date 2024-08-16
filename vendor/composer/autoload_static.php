@@ -9,12 +9,14 @@ class ComposerStaticInit2624fb338757c23e67c31c02b98b9e2e
     public static $files = array (
         '7b11c4dc42b3b3023073cb14e519683c' => __DIR__ . '/..' . '/ralouphie/getallheaders/src/getallheaders.php',
         '6e3fae29631ef280660b3cdad06f25a8' => __DIR__ . '/..' . '/symfony/deprecation-contracts/function.php',
-        '9c67151ae59aff4788964ce8eb2a0f43' => __DIR__ . '/..' . '/clue/stream-filter/src/functions_include.php',
         '37a3dc5111fe8f707ab4c132ef1dbc62' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/functions_include.php',
+        'e39a8b23c42d4e1452234d762b03835a' => __DIR__ . '/..' . '/ramsey/uuid/src/functions.php',
+        '9c67151ae59aff4788964ce8eb2a0f43' => __DIR__ . '/..' . '/clue/stream-filter/src/functions_include.php',
         '8cff32064859f4559445b89279f3199c' => __DIR__ . '/..' . '/php-http/message/src/filters.php',
         'a4a119a56e50fbb293281d9a48007e0e' => __DIR__ . '/..' . '/symfony/polyfill-php80/bootstrap.php',
         '1f87db08236948d07391152dccb70f04' => __DIR__ . '/..' . '/google/apiclient-services/autoload.php',
         'decc78cc4436b1292c6c0d151b19445c' => __DIR__ . '/..' . '/phpseclib/phpseclib/phpseclib/bootstrap.php',
+        '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
         'a8d3953fd9959404dd22d3dfcd0a79f0' => __DIR__ . '/..' . '/google/apiclient/src/aliases.php',
     );
 
@@ -27,10 +29,21 @@ class ComposerStaticInit2624fb338757c23e67c31c02b98b9e2e
         array (
             'Webmozart\\Assert\\' => 17,
         ),
+        'T' => 
+        array (
+            'Tests\\PhpOffice\\Math\\' => 21,
+        ),
         'S' => 
         array (
             'Symfony\\Polyfill\\Php80\\' => 23,
+            'Symfony\\Polyfill\\Mbstring\\' => 26,
             'Symfony\\Component\\OptionsResolver\\' => 34,
+        ),
+        'R' => 
+        array (
+            'Rize\\' => 5,
+            'Ramsey\\Uuid\\' => 12,
+            'Ramsey\\Collection\\' => 18,
         ),
         'P' => 
         array (
@@ -38,6 +51,8 @@ class ComposerStaticInit2624fb338757c23e67c31c02b98b9e2e
             'Psr\\Http\\Message\\' => 17,
             'Psr\\Http\\Client\\' => 16,
             'Psr\\Cache\\' => 10,
+            'PhpOffice\\PhpWord\\' => 18,
+            'PhpOffice\\Math\\' => 15,
             'ParagonIE\\ConstantTime\\' => 23,
             'PHPMailer\\PHPMailer\\' => 20,
         ),
@@ -45,6 +60,10 @@ class ComposerStaticInit2624fb338757c23e67c31c02b98b9e2e
         array (
             'Monolog\\' => 8,
             'Mailgun\\' => 8,
+        ),
+        'L' => 
+        array (
+            'League\\OAuth2\\Client\\' => 21,
         ),
         'H' => 
         array (
@@ -60,9 +79,32 @@ class ComposerStaticInit2624fb338757c23e67c31c02b98b9e2e
             'GuzzleHttp\\Psr7\\' => 16,
             'GuzzleHttp\\Promise\\' => 19,
             'GuzzleHttp\\' => 11,
+            'Grpc\\Gcp\\' => 9,
+            'Grpc\\' => 5,
+            'Google\\Type\\' => 12,
             'Google\\Service\\' => 15,
+            'Google\\Rpc\\' => 11,
+            'Google\\Protobuf\\' => 16,
+            'Google\\LongRunning\\' => 19,
+            'Google\\Iam\\' => 11,
+            'Google\\Cloud\\Language\\' => 22,
+            'Google\\Cloud\\Core\\' => 18,
+            'Google\\Cloud\\' => 13,
             'Google\\Auth\\' => 12,
+            'Google\\Api\\' => 11,
+            'Google\\ApiCore\\LongRunning\\' => 27,
+            'Google\\ApiCore\\' => 15,
             'Google\\' => 7,
+            'GPBMetadata\\Google\\Type\\' => 24,
+            'GPBMetadata\\Google\\Rpc\\' => 23,
+            'GPBMetadata\\Google\\Protobuf\\' => 28,
+            'GPBMetadata\\Google\\Longrunning\\' => 31,
+            'GPBMetadata\\Google\\Logging\\' => 27,
+            'GPBMetadata\\Google\\Iam\\' => 23,
+            'GPBMetadata\\Google\\Cloud\\Language\\' => 34,
+            'GPBMetadata\\Google\\Cloud\\' => 25,
+            'GPBMetadata\\Google\\Api\\' => 23,
+            'GPBMetadata\\ApiCore\\' => 20,
         ),
         'F' => 
         array (
@@ -71,6 +113,10 @@ class ComposerStaticInit2624fb338757c23e67c31c02b98b9e2e
         'C' => 
         array (
             'Clue\\StreamFilter\\' => 18,
+        ),
+        'B' => 
+        array (
+            'Brick\\Math\\' => 11,
         ),
     );
 
@@ -83,13 +129,33 @@ class ComposerStaticInit2624fb338757c23e67c31c02b98b9e2e
         array (
             0 => __DIR__ . '/..' . '/webmozart/assert/src',
         ),
+        'Tests\\PhpOffice\\Math\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/phpoffice/math/tests/Math',
+        ),
         'Symfony\\Polyfill\\Php80\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/polyfill-php80',
         ),
+        'Symfony\\Polyfill\\Mbstring\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/symfony/polyfill-mbstring',
+        ),
         'Symfony\\Component\\OptionsResolver\\' => 
         array (
             0 => __DIR__ . '/..' . '/symfony/options-resolver',
+        ),
+        'Rize\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/rize/uri-template/src/Rize',
+        ),
+        'Ramsey\\Uuid\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/ramsey/uuid/src',
+        ),
+        'Ramsey\\Collection\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/ramsey/collection/src',
         ),
         'Psr\\Log\\' => 
         array (
@@ -108,6 +174,14 @@ class ComposerStaticInit2624fb338757c23e67c31c02b98b9e2e
         array (
             0 => __DIR__ . '/..' . '/psr/cache/src',
         ),
+        'PhpOffice\\PhpWord\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/phpoffice/phpword/src/PhpWord',
+        ),
+        'PhpOffice\\Math\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/phpoffice/math/src/Math',
+        ),
         'ParagonIE\\ConstantTime\\' => 
         array (
             0 => __DIR__ . '/..' . '/paragonie/constant_time_encoding/src',
@@ -123,6 +197,10 @@ class ComposerStaticInit2624fb338757c23e67c31c02b98b9e2e
         'Mailgun\\' => 
         array (
             0 => __DIR__ . '/..' . '/mailgun/mailgun-php/src',
+        ),
+        'League\\OAuth2\\Client\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/league/oauth2-client/src',
         ),
         'Http\\Promise\\' => 
         array (
@@ -160,17 +238,109 @@ class ComposerStaticInit2624fb338757c23e67c31c02b98b9e2e
         array (
             0 => __DIR__ . '/..' . '/guzzlehttp/guzzle/src',
         ),
+        'Grpc\\Gcp\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/google/grpc-gcp/src',
+        ),
+        'Grpc\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/grpc/grpc/src/lib',
+        ),
+        'Google\\Type\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/google/common-protos/src/Type',
+        ),
         'Google\\Service\\' => 
         array (
             0 => __DIR__ . '/..' . '/google/apiclient-services/src',
+        ),
+        'Google\\Rpc\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/google/common-protos/src/Rpc',
+        ),
+        'Google\\Protobuf\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/google/protobuf/src/Google/Protobuf',
+        ),
+        'Google\\LongRunning\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/google/longrunning/src/LongRunning',
+        ),
+        'Google\\Iam\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/google/common-protos/src/Iam',
+        ),
+        'Google\\Cloud\\Language\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/google/cloud-language/src',
+        ),
+        'Google\\Cloud\\Core\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/google/cloud-core/src',
+        ),
+        'Google\\Cloud\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/google/common-protos/src/Cloud',
         ),
         'Google\\Auth\\' => 
         array (
             0 => __DIR__ . '/..' . '/google/auth/src',
         ),
+        'Google\\Api\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/google/common-protos/src/Api',
+        ),
+        'Google\\ApiCore\\LongRunning\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/google/longrunning/src/ApiCore/LongRunning',
+        ),
+        'Google\\ApiCore\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/google/gax/src',
+        ),
         'Google\\' => 
         array (
             0 => __DIR__ . '/..' . '/google/apiclient/src',
+        ),
+        'GPBMetadata\\Google\\Type\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/google/common-protos/metadata/Type',
+        ),
+        'GPBMetadata\\Google\\Rpc\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/google/common-protos/metadata/Rpc',
+        ),
+        'GPBMetadata\\Google\\Protobuf\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/google/protobuf/src/GPBMetadata/Google/Protobuf',
+        ),
+        'GPBMetadata\\Google\\Longrunning\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/google/longrunning/metadata/Longrunning',
+        ),
+        'GPBMetadata\\Google\\Logging\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/google/common-protos/metadata/Logging',
+        ),
+        'GPBMetadata\\Google\\Iam\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/google/common-protos/metadata/Iam',
+        ),
+        'GPBMetadata\\Google\\Cloud\\Language\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/google/cloud-language/metadata',
+        ),
+        'GPBMetadata\\Google\\Cloud\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/google/common-protos/metadata/Cloud',
+        ),
+        'GPBMetadata\\Google\\Api\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/google/common-protos/metadata/Api',
+        ),
+        'GPBMetadata\\ApiCore\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/google/gax/metadata/ApiCore',
         ),
         'Firebase\\JWT\\' => 
         array (
@@ -180,11 +350,26 @@ class ComposerStaticInit2624fb338757c23e67c31c02b98b9e2e
         array (
             0 => __DIR__ . '/..' . '/clue/stream-filter/src',
         ),
+        'Brick\\Math\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/brick/math/src',
+        ),
+    );
+
+    public static $prefixesPsr0 = array (
+        'S' => 
+        array (
+            'Smalot\\PdfParser\\' => 
+            array (
+                0 => __DIR__ . '/..' . '/smalot/pdfparser/src',
+            ),
+        ),
     );
 
     public static $classMap = array (
         'Attribute' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/Attribute.php',
         'Composer\\InstalledVersions' => __DIR__ . '/..' . '/composer/InstalledVersions.php',
+        'GPBMetadata\\GrpcGcp' => __DIR__ . '/..' . '/google/grpc-gcp/src/generated/GPBMetadata/GrpcGcp.php',
         'Google_AccessToken_Revoke' => __DIR__ . '/..' . '/google/apiclient/src/aliases.php',
         'Google_AccessToken_Verify' => __DIR__ . '/..' . '/google/apiclient/src/aliases.php',
         'Google_AuthHandler_AuthHandlerFactory' => __DIR__ . '/..' . '/google/apiclient/src/aliases.php',
@@ -205,6 +390,11 @@ class ComposerStaticInit2624fb338757c23e67c31c02b98b9e2e
         'Google_Task_Retryable' => __DIR__ . '/..' . '/google/apiclient/src/aliases.php',
         'Google_Task_Runner' => __DIR__ . '/..' . '/google/apiclient/src/aliases.php',
         'Google_Utils_UriTemplate' => __DIR__ . '/..' . '/google/apiclient/src/aliases.php',
+        'Grpc\\Gcp\\AffinityConfig' => __DIR__ . '/..' . '/google/grpc-gcp/src/generated/Grpc/Gcp/AffinityConfig.php',
+        'Grpc\\Gcp\\AffinityConfig_Command' => __DIR__ . '/..' . '/google/grpc-gcp/src/generated/Grpc/Gcp/AffinityConfig_Command.php',
+        'Grpc\\Gcp\\ApiConfig' => __DIR__ . '/..' . '/google/grpc-gcp/src/generated/Grpc/Gcp/ApiConfig.php',
+        'Grpc\\Gcp\\ChannelPoolConfig' => __DIR__ . '/..' . '/google/grpc-gcp/src/generated/Grpc/Gcp/ChannelPoolConfig.php',
+        'Grpc\\Gcp\\MethodConfig' => __DIR__ . '/..' . '/google/grpc-gcp/src/generated/Grpc/Gcp/MethodConfig.php',
         'PhpToken' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/PhpToken.php',
         'Stringable' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/Stringable.php',
         'UnhandledMatchError' => __DIR__ . '/..' . '/symfony/polyfill-php80/Resources/stubs/UnhandledMatchError.php',
@@ -216,6 +406,7 @@ class ComposerStaticInit2624fb338757c23e67c31c02b98b9e2e
         return \Closure::bind(function () use ($loader) {
             $loader->prefixLengthsPsr4 = ComposerStaticInit2624fb338757c23e67c31c02b98b9e2e::$prefixLengthsPsr4;
             $loader->prefixDirsPsr4 = ComposerStaticInit2624fb338757c23e67c31c02b98b9e2e::$prefixDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInit2624fb338757c23e67c31c02b98b9e2e::$prefixesPsr0;
             $loader->classMap = ComposerStaticInit2624fb338757c23e67c31c02b98b9e2e::$classMap;
 
         }, null, ClassLoader::class);

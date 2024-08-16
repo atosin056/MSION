@@ -5,111 +5,111 @@ session_start();
 include 'connect.php';
 
 if (!isset($_GET["fuid"])) {
-	
-	header('location: verify_otp.php');
+
+    header('location: verify_otp.php');
+
+    exit();
 
 }
 
-if (isset($_POST["submit"])) {
-	
-	$fullname = $_POST['fullname'];
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+       
+    $fullname = $_POST['fullname'];
+    
+    $title = $_POST["title"];
 
-	$title = $_POST["title"];
-
-	if (isset($_FILES["photo"]) && $_FILES["photo"]["error"] <= 0) {
+    if (isset($_FILES["photo"]) && $_FILES["photo"]["error"] <= 0) {
         
         $allowed = array("jpg" => "image/jpg", "jpeg" => "image/jpeg", "png" => "image/png", "PNG" => "image/PNG", "gif" => "image/gif");
 
         $filename = $_FILES["photo"]["name"];
-
+    
         $filetype = $_FILES["photo"]["type"];
-
+    
         $filesize = $_FILES["photo"]["size"];
-
+    
         $ext = pathinfo($filename, PATHINFO_EXTENSION);
 
+    
         if (!array_key_exists($ext, $allowed)) {
-            
+    
             die("Please select a valid file format");
-
+    
         }
         
         $maxsize = 5000000000000 * 1024 * 1024;
 
         if ($filesize > $maxsize) {
-            
+    
             die("Error: Filesize too Massive");
-
+    
         }
 
         if (in_array($filetype, $allowed)) {
-          
+    
             $move = move_uploaded_file($_FILES["photo"]["tmp_name"], "profile/". $filename);
 
             if ($move) {
+    
+                $update = "UPDATE `users` SET `fullname`='".$fullname."',`title`='".$title."',`profile`='".$filename."' WHERE `email`='".$_SESSION["otp_email_send"]."'";
 
-            	$update = "UPDATE `users` SET `fullname`='".$fullname."',`title`='".$title."',`profile`='".$filename."' WHERE `email`='".$_SESSION["otp_email_send"]."'";
+                $update_query = mysqli_query($conn, $update);
 
-            	$update_query = mysqli_query($conn, $update);
+                if ($update_query) {
+    
+                    // Code for further processing if needed
+    
+                }
+    
+            }
+    
+        }
+    
+    }
 
-            	if ($update_query) {
-            		
-            		if (isset($_FILES["file"]) && $_FILES["file"]["error"] <= 0) {
+    if (isset($_FILES["file"]) && $_FILES["file"]["error"] <= 0) {
         
-				        $alloweds = array(
-						    
-						    "docx" => "application/vnd.openxmlformats-officedocument.wordprocessingml.document",
-						    
-						    "pdf"  => "application/pdf",
+        $alloweds = array("docx" => "application/vnd.openxmlformats-officedocument.wordprocessingml.document", "pdf" => "application/pdf");
 
-						);
+        $cvname = $_FILES["file"]["name"];
+        
+        $filetypes = $_FILES["file"]["type"];
+        
+        $filesizes = $_FILES["file"]["size"];
+        
+        $ext = pathinfo($cvname, PATHINFO_EXTENSION);
 
+        if (!array_key_exists($ext, $alloweds)) {
+        
+            die("Please select a valid file format");
+        
+        }
+        
+        $maxsize = 5000000000000 * 1024 * 1024;
 
-				        $cvname = $_FILES["file"]["name"];
+        if ($filesizes > $maxsize) {
+           
+            die("Error: Filesize too Massive");
+        
+        }
 
-				        $filetypes = $_FILES["file"]["type"];
+        if (in_array($filetypes, $alloweds)) {
+            
+            $moves = move_uploaded_file($_FILES["file"]["tmp_name"], "cv/". $cvname);
 
-				        $filesizes = $_FILES["file"]["size"];
+            if ($moves) {
 
-				        $ext = pathinfo($filename, PATHINFO_EXTENSION);
+                $updates = "UPDATE `users` SET `cv`='".$cvname."' WHERE `email`='".$_SESSION["otp_email_send"]."'";
 
-				        if (!array_key_exists($ext, $allowed)) {
-				            
-				            die("Please select a valid file format");
+                $updates_query = mysqli_query($conn, $updates);
 
-				        }
-				        
-				        $maxsize = 5000000000000 * 1024 * 1024;
+                if ($updates_query) {
 
-				        if ($filesizes > $maxsize) {
-				            
-				            die("Error: Filesize too Massive");
+                    header('location: complete2.php?distro='.$_GET['fuid']);
 
-				        }
+                    exit();
 
-				        if (in_array($filetypes, $alloweds)) {
-				          
-				            $move = move_uploaded_file($_FILES["file"]["tmp_name"], "cv/". $cvname);
-
-				            if ($move) {
-
-				            	$updates = "UPDATE `users` SET `cv`='".$cvname."' WHERE `email`='".$_SESSION["otp_email_send"]."'";
-
-				            	$updates_query = mysqli_query($conn, $updates);
-
-				            	if ($update_query){
-
-				            		header('location: complete2.php');
-
-				            	}
-				            	
-				            }
-				            
-				        }	
-
-				    }
-
-            	}
+                }
 
             }
 

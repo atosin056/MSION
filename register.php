@@ -2,6 +2,12 @@
 
 session_start();
 
+require 'vendor/autoload.php';
+
+use Smalot\PdfParser\Parser as PdfParser;
+
+use PhpOffice\PhpWord\IOFactory as WordParser;
+
 include 'connect.php';
 
 $unique_id = md5(random_int(1, 10).random_int(1, 10).random_int(1, 10).random_int(1, 10).random_int(1, 10));
@@ -185,7 +191,7 @@ if (isset($_POST['submit'])) {
 
 							<div style="width: 100% !important;">
 								
-								<input type="text" name="email" class="form-control person" style="background: white;box-shadow: 10px 0px 10px #D8F3FF; border-top: 1px solid #13B7FD;border-bottom: 1px solid #13B7FD;border-right: 1px solid #13B7FD;border-left: none !important;border-radius: 0px;height: 56 !important;border-top-right-radius: 20px;border-bottom-right-radius: 20px;" placeholder="Email Address">
+								<input type="email" required name="email" class="form-control person" style="background: white;box-shadow: 10px 0px 10px #D8F3FF; border-top: 1px solid #13B7FD;border-bottom: 1px solid #13B7FD;border-right: 1px solid #13B7FD;border-left: none !important;border-radius: 0px;height: 56 !important;border-top-right-radius: 20px;border-bottom-right-radius: 20px;" placeholder="Email Address">
 
 							</div>
 
@@ -205,7 +211,7 @@ if (isset($_POST['submit'])) {
 
 							<div style="width: 100% !important;">
 								
-								<input type="password" name="password" class="form-control person" style="background: white;border-top: 1px solid var(--Neutrals-Neutrals200, #CCCBCB);border-bottom: 1px solid var(--Neutrals-Neutrals200, #CCCBCB);border-right: 1px solid var(--Neutrals-Neutrals200, #CCCBCB);border-left: none !important;border-radius: 0px;height: 56 !important;border-top-right-radius: 20px;border-bottom-right-radius: 20px;" placeholder="Password">
+								<input type="password" required name="password" class="form-control person" style="background: white;border-top: 1px solid var(--Neutrals-Neutrals200, #CCCBCB);border-bottom: 1px solid var(--Neutrals-Neutrals200, #CCCBCB);border-right: 1px solid var(--Neutrals-Neutrals200, #CCCBCB);border-left: none !important;border-radius: 0px;height: 56 !important;border-top-right-radius: 20px;border-bottom-right-radius: 20px;" minlength="8" maxlength="20" placeholder="Password">
 
 							</div>
 
@@ -257,7 +263,7 @@ if (isset($_POST['submit'])) {
 
 								</a>
 
-								<a href="linkedin_auth.php?action=register">
+								<!-- <a href="linkedin_auth.php?action=register">
 								
 									<div class="google">
 										
@@ -275,7 +281,7 @@ if (isset($_POST['submit'])) {
 
 									</div>
 
-								</a>
+								</a> -->
 
 							</div>
 
