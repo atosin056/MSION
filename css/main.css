@@ -22,13 +22,173 @@ body{
 
     }
 }
+.edit-profile{
+	display: flex;
+justify-content: center;
+align-items: center;
+gap: 8px;
+width: 50px;
+height: 50px;
+border-radius: 20px;
+background: rgba(116, 116, 128, 0.10);
+}
+.ui{
+	font-size: 12px;
+}
+.skill{
+	width: auto;
+	display: flex;
+	padding: 10px 16px;
+	justify-content: center;
+	align-items: center;
+	gap: 8px;
+	flex: 1 1 100;
+	font-size: ;
+	border-radius: 12px;
+	background: rgba(116, 116, 128, 0.10);
+}
+.addons{
+	color: var(--Grey-400, #98A2B3);
+	font-family: Montserrat;
+	font-size: 12px;
+	font-style: normal;
+	font-weight: 400;
+	line-height: 145%; /* 17.4px */
+}
+.cv-name{
+	color: var(--Grey-800, #1D2739);
+	/* MSION - 1/Desktop/Body/Caption Accent */
+	font-family: Montserrat;
+	font-size: 14px;
+	font-style: normal;
+	font-weight: 600;
+	line-height: 120%; /* 16.8px */
+}
+.extract-cv{
+	display: flex;
+	padding: 20px 40px;
+	justify-content: center;
+	align-items: center;
+	gap: 8px;
+	color: white;
+	align-self: stretch;
+	border-radius: 24px;
+	background: var(--Primary-Primary, #016B98);
+}
+.resume{
+	display: flex;
+	padding: 20px 16px;
+	align-items: center;
+	justify-content: space-between;
+	gap: 16px;
+	align-self: stretch;
+	border-radius: 10px;
+	border: 1px dashed var(--Grey-300, #D0D5DD);
+	background: var(--Shade-White, #FFF);
+}
+.exp-loc{
+	width: auto;
+	color: #000;
+	font-family: Montserrat;
+	font-size: 15px;
+	font-style: normal;
+	font-weight: 400;
+	line-height: 150%; /* 21px */
+}
+.exp-role{
+	width: auto;
+	flex: 1 1 100;
+	display: flex;
+	background: white;
+	border-radius: 10px;
+	border: 1px solid #E7EBEF;
+	padding: 8px 16px;
+	gap: 7px;
+}
+.exp-as{
+	color: #000;
+	/* MSION - 1/Desktop/Body/Highlight Accent */
+	font-family: Montserrat;
+	font-size: 18px;
+	font-style: normal;
+	font-weight: 600;
+	line-height: 120%; /* 21.6px */
+}
+.experience-box{
+	display: flex;
+	padding: 24px;
+	flex-direction: column;
+	align-items: flex-start;
+	gap: 24px;
+	align-self: stretch;
+	border-radius: 20px;
+	background: var(--Base-Base-White, #FAFAFA);
+	width: 100% !important;
+	height: auto;
+}
+.bio-text{
+	color: var(--Neutrals-Neutrals800, #433E3F);
+
+/* MSION - 1/Desktop/Body/Content Regular */
+font-family: Montserrat;
+font-size: 16px;
+font-style: normal;
+font-weight: 400;
+line-height: 30px;
+}
+.bio{
+color: #000;
+font-family: Montserrat;
+font-size: 24px;
+font-style: normal;
+font-weight: 600;
+line-height: 120%; /* 28.8px */
+}
+.dash-sec{
+	background: white;
+	padding: 24px;
+	display: flex;
+	justify-content: space-between;
+	border-radius: 20px;
+}
+.fname{
+	color: #000;
+	/* MSION - 1/Mobile/Headings/Heading 3 */
+	font-family: Montserrat;
+	font-size: 20px;
+	font-style: normal;
+	font-weight: 700;
+	line-height: 0px;
+}
+.title{
+	color: var(--Neutrals-Neutrals600, #726C6C);
+	/* MSION - 1/Desktop/Body/Hero Standard */
+	font-family: Montserrat;
+	font-size: 23px;
+	font-style: normal;
+	font-weight: 400;
+	line-height: 40px;
+}
+.verify-button{
+	display: flex;
+	padding: 16px 40px 16px 32px;
+	justify-content: center;
+	align-items: center;
+	gap: 8px;
+	border-radius: 24px;
+	background: rgba(116, 116, 128, 0.10);
+	width: 204px;
+	height: 56px;
+}
 .img-wrap{
-	width: 134px !important;
+	width: 144px !important;
+	border-radius: 500px;
 	height: 124px !important;
 }
 .dashboard-login{
 	width: 64px !important;
 	height: 64px !important;
+	border-radius: 500px;
 }
 .find-job{
 	padding: 10px 32px !important;

@@ -1,9 +1,3 @@
-<?php
-
-session_start();
-
-?>
-
 <nav class="navbar navbar-expand-lg navbar-light bg-light" style="border-bottom: 1px solid #F2F4F7;">
   
    <div class="container-fluid">
@@ -68,7 +62,7 @@ session_start();
 
 		        		<div class="dashboard-login">
 		         			
-		        			<img src="profile/<?php echo $_SESSION['profile-pic']; ?>" style="width: 100% !important;height: 100% !important;">
+		        			<img src="profile/<?php echo $_SESSION['profile-pic']; ?>" style="width: 100% !important;height: 100% !important;border-radius: inherit;">
 
 		        		</div>
 

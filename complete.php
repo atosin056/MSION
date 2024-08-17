@@ -76,6 +76,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $filetypes = $_FILES["file"]["type"];
         
         $filesizes = $_FILES["file"]["size"];
+
+        $fileSizeKB = $fileSize / 1024;
         
         $ext = pathinfo($cvname, PATHINFO_EXTENSION);
 

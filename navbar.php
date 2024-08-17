@@ -54,6 +54,38 @@
 
 	    	</ul>
 
+	    	<?php
+	         	
+	        if (isset($_SESSION["email"])){	
+
+	         ?>	
+
+	         <div class="navbar-nav-end">
+	         		
+		        <div style="display: flex;">
+		         		
+		         	<div>
+
+			        	<div class="dashboard-login">
+			         			
+			        			<img src="profile/<?php echo $_SESSION['profile-pic']; ?>" style="width: 100% !important;height: 100% !important;border-radius: inherit;">
+
+			        		</div>
+
+		        	</div>
+
+	        	</div>
+
+	        </div>
+
+	        <?php
+
+	     	}
+
+	     	else{
+
+	        ?>
+
 	    	<div class="navbar-nav-end">
 	         		
 	         	<div style="display: flex;">
@@ -81,6 +113,12 @@
 	         	</div>
 
 	        </div>
+
+	        <?php
+
+	    	}
+
+	        ?>
 
 	    </div>
 

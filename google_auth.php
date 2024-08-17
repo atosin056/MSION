@@ -68,8 +68,28 @@ if (isset($_GET["code"])) {
 
 			$password = $row["password"];
 
+			$fullname = $row["fullname"];
+
+			$title = $row["title"];
+
+			$looking = $row["looking"];
+
+			$cv = $row["cv"];
+
+			$status = $row["acct_status"];
+
+
+			$_SESSION["acct_status"] = $status;
+
+			$_SESSION["looking"] = $looking;
+
+			$_SESSION["cv"] = $cv;
 
 			$_SESSION["logged_id"] = $id;
+
+			$_SESSION["fullname"] = $fullname;
+
+			$_SESSION['title'] = $title;
 
 			$_SESSION["profile-pic"] = $profile;
 

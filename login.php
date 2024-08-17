@@ -32,10 +32,30 @@ if (isset($_POST["submit"])) {
 
 			$password = $row["password"];
 
+			$fullname = $row["fullname"];
+
+			$title = $row["title"];
+
+			$looking = $row["looking"];
+
+			$cv = $row["cv"];
+
+			$status = $row["acct_status"];
+
+
+			$_SESSION["acct_status"] = $status;
+
+			$_SESSION["looking"] = $looking;
+
+			$_SESSION["cv"] = $cv;
 
 			$_SESSION["logged_id"] = $id;
 
-			$_SESSION["profile"] = $profile;
+			$_SESSION["fullname"] = $fullname;
+
+			$_SESSION['title'] = $title;
+
+			$_SESSION["profile-pic"] = $profile;
 
 			$_SESSION["biography"] = $biography;
 
