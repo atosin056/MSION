@@ -22,6 +22,14 @@ body{
 
     }
 }
+.img-wrap{
+	width: 134px !important;
+	height: 124px !important;
+}
+.dashboard-login{
+	width: 64px !important;
+	height: 64px !important;
+}
 .find-job{
 	padding: 10px 32px !important;
 	border: none;

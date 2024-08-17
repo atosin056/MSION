@@ -22,39 +22,65 @@ if (isset($_POST["submit"])) {
 
 
 	$socials = [
+    
     'facebook' => !empty($facebook) ? $facebook : null,
+    
     'linkedin' => !empty($linkedin) ? $linkedin : null,
+    
     'youtube' => !empty($youtube) ? $youtube : null,
+    
     'x' => !empty($x) ? $x : null,
+    
     'email' => !empty($email) ? $email : $_SESSION["otp_email_send"] // Ensure email is not null
-];
 
-// Prepare the base SQL query
-$insert_query = "INSERT INTO `socials` (`id`, `facebook`, `linkedin`, `youtube`, `x`, `email`) VALUES (NULL, ";
-$values = [];
+	];
 
-// Build the values part of the query dynamically
-foreach ($socials as $handle_name => $link) {
-    if ($link !== null) {
-        $values[] = "'" . mysqli_real_escape_string($conn, $link) . "'";
-    } else {
-        // Ensure we include NULL for fields with no value
-        $values[] = "NULL";
-    }
-}
+	// Prepare the base SQL query
 
-// Append the values to the query
-$insert_query .= implode(', ', $values) . ")";
+	$insert_query = "INSERT INTO `socials` (`id`, `facebook`, `linkedin`, `youtube`, `x`, `email`) VALUES (NULL, ";
 
-// Execute the query
-if (mysqli_query($conn, $insert_query)) {
-    // Redirect to dashboard
-    header("Location: dashboard.php");
-    exit();
-} else {
-    // Handle error
-    echo "Error: " . mysqli_error($conn);
-}
+	$values = [];
+
+	// Build the values part of the query dynamically
+
+	foreach ($socials as $handle_name => $link) {
+
+	    if ($link !== null) {
+
+	        $values[] = "'" . mysqli_real_escape_string($conn, $link) . "'";
+
+	    } else {
+
+	        // Ensure we include NULL for fields with no value
+
+	        $values[] = "NULL";
+
+	    }
+
+	}
+
+	// Append the values to the query
+
+	$insert_query .= implode(', ', $values) . ")";
+
+	// Execute the query
+
+	if (mysqli_query($conn, $insert_query)) {
+
+	    // Redirect to dashboard
+
+	    header("Location: login.php");
+
+	    exit();
+	}
+
+	else {
+
+	    // Handle error
+
+	    echo "Error: " . mysqli_error($conn);
+
+	}
 
 }
 

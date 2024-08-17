@@ -1,3 +1,58 @@
+<?php
+
+session_start();
+
+include 'connect.php';
+
+
+if (isset($_POST["submit"])) {
+	
+	$email = $_POST["email"];
+
+	$password = md5($_POST["password"]);
+
+
+	//check the DB and find the user and store his data in a session
+
+	$select = "SELECT * FROM `users` WHERE `email`='".$email."' AND `password`='".$password."'";
+
+	$select_query = mysqli_query($conn, $select);
+
+	if(mysqli_num_rows($select_query) > 0){
+
+		while ($row = mysqli_fetch_assoc($select_query)){
+
+			$id = $row["id"];
+
+			$profile = $row["profile"];
+
+			$biography = $row["biography"];
+
+			$email = $row["email"];
+
+			$password = $row["password"];
+
+
+			$_SESSION["logged_id"] = $id;
+
+			$_SESSION["profile"] = $profile;
+
+			$_SESSION["biography"] = $biography;
+
+			$_SESSION["email"] = $email;
+
+			$_SESSION["password"] = $password;
+		
+		}
+
+		header('location: dashboard.php');
+
+	}
+
+}
+
+?>
+
 <html>
 
 <head>
@@ -116,7 +171,7 @@
 
 							<div style="width: 100% !important;">
 								
-								<input type="text" name="email" class="form-control person" style="background: white;border-top: 1px solid var(--Neutrals-Neutrals200, #CCCBCB);border-bottom: 1px solid var(--Neutrals-Neutrals200, #CCCBCB);border-right: 1px solid var(--Neutrals-Neutrals200, #CCCBCB);border-left: none !important;border-radius: 0px;height: 56 !important;border-top-right-radius: 20px;border-bottom-right-radius: 20px;" placeholder="Password">
+								<input type="text" name="password" class="form-control person" style="background: white;border-top: 1px solid var(--Neutrals-Neutrals200, #CCCBCB);border-bottom: 1px solid var(--Neutrals-Neutrals200, #CCCBCB);border-right: 1px solid var(--Neutrals-Neutrals200, #CCCBCB);border-left: none !important;border-radius: 0px;height: 56 !important;border-top-right-radius: 20px;border-bottom-right-radius: 20px;" placeholder="Password">
 
 							</div>
 
@@ -142,7 +197,7 @@
 
 							<div style="display: flex;flex-direction: column;gap: 10px;margin-top: 20px;">
 
-								<a href="google_auth.php?action=login">
+								<a href="google_auth.php">
 								
 									<div class="google">
 										

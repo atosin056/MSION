@@ -263,7 +263,7 @@ if (isset($_POST['submit'])) {
 
 								</a>
 
-								<!-- <a href="linkedin_auth.php?action=register">
+								<a href="linkedin_auth.php?action=register">
 								
 									<div class="google">
 										
@@ -281,7 +281,7 @@ if (isset($_POST['submit'])) {
 
 									</div>
 
-								</a> -->
+								</a>
 
 							</div>
 

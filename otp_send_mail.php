@@ -31,81 +31,40 @@ else {
 
     <title></title>
 
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
-
 </head>
 
-<body>
+<body style="width: 100% !important;display: flex;justify-content: center;">
 
-<style type="text/css">
-    
-    body{
-        margin: 0;
-        padding: 0;
-        font-family: montserrat;
-    }
-    .number-style {
+<div style="padding: 20px;background: #013E59;width: 50% !important;display: flex;justify-content: center;">
+
+    <div style="background: #white;height: 100% !important;width: 100%;display: flex;align-items: center;">
         
-    }
-    .number-style span {
-        
-    }
-    p{
-        line-height: 30px;
-    }
+        <div style="background: #ffffff9c;width: 100% !important;height: auto;padding-left: 20px;padding-right: 20px;padding-bottom: 100px;color: #013E59;">
 
-</style>
+            <div>
 
-<div>
-    
-    <div style="display: flex;flex-direction: column;">
+                <p style="font-family: poppins;text-align: center;font-size: 25px;font-weight: 600;">Hullo User 👋</p>
 
-        <div>
-            
-            <img src="https://i.postimg.cc/pLxStymD/otp.png" style="width: 100% !important;">
+                <p style="font-family: poppins;">Here is your OTP:</p>
 
-        </div>
+                <div style="display: flex;justify-content: center;padding: 5px;">
 
-        <div style="width: 100% !important;background: white;padding-top: 50px;padding-bottom: 50px;">
-            
-            <div style="padding-right: 100px;padding-left: 100px;text-align: center;">
-                
-                <div class="user">
-                    
-                    <font>Hello User</font>
+                    <div style="background: #013E59;width: auto;padding-left: 20px;padding-right: 20px;border-radius: 100px;">
+
+                        <p style="letter-spacing: 10px;color: white;font-weight: 600;font-family: poppins;border-radius: 100px;">' . $otp . '</p>
+
+                    </div>
 
                 </div>
 
-                <div>
-                    
-                    <p style="line-height: 30px;">We are committed to ensuring the highest level of security for your account. As part of this effort, we have generated a One-Time Password (OTP) to help you access your account securely. This code is only valid for the next 10 minutes, so please make sure to use it promptly.</p>
-
-                </div>
-
-                <div style="width: 100% !important;display: flex;justify-content: center;">
-                    
-                    <<div class="number-style">
-                
-                <p style="display: flex;gap: 16px;text-align: center;">' . $otp . '</p>
+                <p style="font-family: poppins;line-height: 30px;">Please use the following One Time Password (OTP) to complete your login process. This code is valid for the next 10 minutes. 
+    If you did not request this OTP, please ignore this email.</p>
            
-           </div>
-                
-                </div>
-
-                <div>
-                    
-                    <p style="line-height: 30px;">An OTP adds an extra layer of security by ensuring that only you can access your account, even if someone else knows your password. It’s a simple yet effective way to protect your personal and sensitive information from unauthorized access.</p>
-
-                </div>
-
             </div>
 
+        
         </div>
-
+    
     </div>
 
 </div>

@@ -10,7 +10,7 @@ $clientID = '776d6sag7ov48j';
 
 $clientSecret = 'fI4mrSCMZhBgIvxv';
 
-$redirectUrl = 'https://localhost/MSION/linkedin_auth.php';
+$redirectUrl = 'https://5e6b-105-112-67-21.ngrok-free.app/MSION/linkedin_auth.php';
 
 
 
@@ -72,9 +72,11 @@ if (isset($_GET['code'])) {
     $email = $profileData['elements'][0]['handle~']['emailAddress'];
 
     // Handle the email address
+    
     $_SESSION['linkedin_email'] = $email;
 
     // Your existing code for user handling
+    
     include 'connect.php';
 
     // Check if the user is logging in or signing up

@@ -1,3 +1,17 @@
+<?php
+
+session_start();
+
+include 'connect.php';
+
+if (!isset($_SESSION["logged-email"])) {
+	
+	header('location: login.php');
+
+}
+
+?>
+
 <html>
 
 <head>
@@ -22,7 +36,41 @@
 
 <body>
 
+<?php
 
+include 'dashboard_nav.php';
+
+?>
+
+<div class="sections" style="background: white;">
+	
+	<div style="">
+		
+		<div style="display: flex;" class="row">
+				
+			<div class="col-lg-7 col-md-7 col-sm-7" style="background: #FAFAFA;padding: 24px;border-radius: 24px;">
+				
+				<div style="background: white;">
+					
+					<div class="row">
+						
+						<div class="img-wrap">
+							
+							<img src="profile/<?php echo $_SESSION['profile-pic']; ?>" style="width: 100% !important;height: 100% !important;">
+
+						</div>
+
+					</div>
+
+				</div>
+
+			</div>
+
+		</div>
+
+	</div>
+
+</div>
 
 </body>
 

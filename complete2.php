@@ -283,13 +283,6 @@ if (isset($_POST["submit"])) {
 <script type="text/javascript">
 
 	 let skillsList = [
-    // Tech Skills
-    "JavaScript", "Python", "Java", "C#", "PHP", "Ruby", "C++", "TypeScript",
-    "Swift", "Kotlin", "Go", "SQL", "HTML", "CSS", "React", "Angular", "Vue.js",
-    "Django", "Flask", "Laravel", "Machine Learning", "Artificial Intelligence",
-    "Data Science", "Cybersecurity", "DevOps", "Blockchain", "Cloud Computing",
-    "Docker", "Kubernetes", "UI/UX Design", "Full-Stack Development","MySql",
-    
     // Business Skills
     "Project Management", "Strategic Planning", "Business Analysis",
     "Marketing Strategy", "Salesforce", "Customer Relationship Management",
@@ -397,6 +390,13 @@ if (isset($_POST["submit"])) {
 });
 
 	let stackList = [
+	// Tech Skills
+    "JavaScript", "Python", "Java", "C#", "PHP", "Ruby", "C++", "TypeScript",
+    "Swift", "Kotlin", "Go", "SQL", "HTML", "CSS", "React", "Angular", "Vue.js",
+    "Django", "Flask", "Laravel", "Machine Learning", "Artificial Intelligence",
+    "Data Science", "Cybersecurity", "DevOps", "Blockchain", "Cloud Computing",
+    "Docker", "Kubernetes", "UI/UX Design", "Full-Stack Development","MySql","Bootstrap",
+    
     // Tools and Technologies
     "Git", "Docker", "Jenkins", "Visual Studio Code", "Sublime Text", "Atom",
     "Eclipse", "IntelliJ IDEA", "PyCharm", "Postman", "Maven", "Gradle",

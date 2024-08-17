@@ -58,21 +58,30 @@ if (isset($_GET["code"])) {
 
 		while ($row = mysqli_fetch_assoc($select_query)){
 		
+			$id = $row["id"];
+
+			$profile = $row["profile"];
+
+			$biography = $row["biography"];
+
 			$email = $row["email"];
 
-			$_SESSION["logged-email"] = $email;
+			$password = $row["password"];
+
+
+			$_SESSION["logged_id"] = $id;
+
+			$_SESSION["profile-pic"] = $profile;
+
+			$_SESSION["biography"] = $biography;
+
+			$_SESSION["email"] = $email;
+
+			$_SESSION["password"] = $password;
 
 		}
 
-		if (isset($_SESSION['logged_email'])) {
-			
-			//Perform Other stuff here 
-
-			//I would need to do this cuz i need the user cv, stack and all
-
-			header('location: dashboard.php');
-
-		}
+		header('location: dashboard.php');
 
 	}
 
