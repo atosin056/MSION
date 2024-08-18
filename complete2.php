@@ -12,9 +12,9 @@ if (!isset($_GET["distro"])) {
 
 if (isset($_POST["submit"])) {
 	
-	$bio = $_POST["biography"];
+	$bio = mysqli_real_escape_string($conn, $_POST["biography"]);
 
-	$looking = $_POST["looking"];
+	$looking = mysqli_real_escape_string($conn, $_POST["looking"]);
 
 
 	//Update the DB
@@ -392,19 +392,83 @@ if (isset($_POST["submit"])) {
 	let stackList = [
 	// Tech Skills
     "JavaScript", "Python", "Java", "C#", "PHP", "Ruby", "C++", "TypeScript",
-    "Swift", "Kotlin", "Go", "SQL", "HTML", "CSS", "React", "Angular", "Vue.js",
+    "Swift", "Kotlin", "GoLang", "SQL", "HTML", "CSS", "React", "Angular", "Vue.js",
     "Django", "Flask", "Laravel", "Machine Learning", "Artificial Intelligence",
     "Data Science", "Cybersecurity", "DevOps", "Blockchain", "Cloud Computing",
-    "Docker", "Kubernetes", "UI/UX Design", "Full-Stack Development","MySql","Bootstrap",
+    "Docker", "Kubernetes", "UI/UX Design", "Full-Stack Development","MySql","Bootstrap","MongoDB",
     
     // Tools and Technologies
     "Git", "Docker", "Jenkins", "Visual Studio Code", "Sublime Text", "Atom",
-    "Eclipse", "IntelliJ IDEA", "PyCharm", "Postman", "Maven", "Gradle",
-    "Webpack", "Babel", "NPM", "Yarn", "Node.js", "Ruby on Rails",
-    "Laravel", "Spring Boot", "Angular", "React", "Vue.js", "Bootstrap",
-    "Tailwind CSS", "Sass", "LESS", "JIRA", "Trello", "Slack",
-    "Microsoft Teams", "Google Analytics", "Tableau", "Power BI", "AWS",
-    "Azure", "GCP", "Kubernetes", "Terraform", "Elasticsearch"
+    "Eclipse", "IntelliJ IDEA", "PyCharm", "Postman","PostgressSQL", "Maven", "Gradle",
+    "Webpack", "Babel", "NPM", "Yarn", "Node.js", "Ruby on Rails","NextJS","ExpressJS",
+    "Laravel", "Spring Boot","Vue.js","Tailwind", "Sass", "LessJS", "JIRA", "Trello", 
+    "Slack","Odoo","Dart","Google Play",
+    "Microsoft Teams", "Google Analytics", "Tableau", "Power BI", "AWS","Webflow","Canva",
+    "Azure", "GCP","Terraform", "Elasticsearch","ExpressJS",
+
+    // Educational tools
+    "Textbooks", "Whiteboard", "Projector", "Lesson Plans", "Grading Software", "Worksheets",
+    "Chalk", "Markers", "Interactive Board", "Online Learning Platforms", "Educational Apps", "Classroom Management Software",
+
+    // Photography tools
+    "Camera", "Lenses", "Tripod", "Lighting Equipment", "Photo Editing Software", "Memory Cards",
+    "Reflectors", "Backdrops", "Gimbals", "Drones", "Camera Bags", "Studio Lights",
+
+    // Culinary tools
+    "Knives", "Cutting Boards", "Pots and Pans", "Oven", "Mixing Bowls", "Spices and Ingredients",
+    "Blender", "Food Processor", "Microwave", "Sous-vide Machine", "Grill", "Measuring Spoons",
+
+    // Medical tools
+    "Stethoscope", "Sphygmomanometer", "Medical Records", "Prescription Pad", "Thermometer", "Diagnostic Software",
+    "Surgical Instruments", "X-Ray Machine", "Ultrasound Machine", "Blood Pressure Monitor", "First Aid Kit", "Medical Imaging Software",
+
+    // Architectural tools
+    "Blueprints", "CAD Software", "Measuring Tools", "Scale Models", "Drafting Table", "3D Rendering Software",
+    "Laser Measure", "Architectural Scale", "T-Square", "Modeling Clay", "Virtual Reality (VR) Tools", "Plotter",
+
+    // Musical tools
+    "Instrument", "Sheet Music", "Music Stand", "Recording Equipment", "Digital Audio Workstation (DAW)", "Amplifiers",
+    "Metronome", "Tuner", "MIDI Controller", "Synthesizer", "Microphones", "Headphones",
+
+    // Writing tools
+    "Laptop", "Word Processor", "Notebook", "Reference Books", "Editing Software", "Coffee",
+    "Typewriter", "Pens", "Dictionary", "Grammar Checker", "Scrivener", "Speech-to-Text Software",
+
+    // Artistic tools
+    "Canvas", "Brushes", "Paints", "Palette", "Easel", "Sketchbook",
+    "Charcoal Pencils", "Pastels", "Acrylics", "Watercolors", "Oil Paints", "Stencil",
+
+    // Construction tools
+    "Hammer", "Drill", "Screwdriver", "Measuring Tape", "Safety Gear", "Blueprints",
+    "Wrench", "Saw", "Level", "Nail Gun", "Sledgehammer", "Tool Belt",
+
+    // Scientific tools
+    "Lab Equipment", "Microscope", "Test Tubes", "Data Analysis Software", "Research Journals", "Safety Goggles",
+    "Centrifuge", "Petri Dishes", "Bunsen Burner", "Lab Coats", "Spectrophotometer", "Pipettes",
+
+    // Office tools
+    "Desktop Computer", "Printer", "Fax Machine", "Office Supplies", "Email Software", "Project Management Tools",
+    "Shredder", "Scanner", "Photocopier", "Teleconferencing Equipment", "Office Chairs", "Desks",
+
+    // Sports tools
+    "Soccer Ball", "Tennis Racket", "Running Shoes", "Water Bottle", "Training Equipment", "Stopwatch",
+    "Gym Equipment", "Fitness Tracker", "Yoga Mat", "Resistance Bands", "Bicycle", "Sportswear",
+
+    // Gardening tools
+    "Shovel", "Rake", "Pruning Shears", "Watering Can", "Garden Gloves", "Soil",
+    "Hoe", "Wheelbarrow", "Compost Bin", "Plant Pots", "Fertilizer", "Seeds",
+
+    // Fashion design tools
+    "Sewing Machine", "Fabric", "Scissors", "Measuring Tape", "Mannequin", "Needle and Thread",
+    "Pattern Paper", "Dress Forms", "Pins", "Tailor’s Chalk", "Zippers", "Buttons",
+
+    // Travel tools
+    "Suitcase", "Passport", "Travel Guide", "Camera", "Maps", "Travel Insurance",
+    "Travel Apps", "Itinerary Planner", "Packing Cubes", "Travel Pillow", "Luggage Tags", "Currency Converter",
+
+    // Event planning tools
+    "Calendar", "Budgeting Software", "Vendor Contracts", "Guest List", "Venue Maps", "Decorations",
+    "Catering Menus", "RSVP Tracking", "Event Timeline", "Seating Chart", "Invitations", "Audio/Visual Equipment"
 ];
 
 const selectedStack = [];

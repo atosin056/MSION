@@ -20,7 +20,7 @@ if (!isset($_SESSION["email"])) {
 
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-	<title>MSION - Where talents meet opportunities. | Complete your profile</title>
+	<title>MSION - Where talents meet opportunities. | Dashboard</title>
 
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	
@@ -38,7 +38,7 @@ if (!isset($_SESSION["email"])) {
 
 <?php
 
-include 'dashboard_nav.php';
+include 'navbar.php';
 
 ?>
 
@@ -566,7 +566,7 @@ include 'dashboard_nav.php';
 
 										<?php
 
-										$stack_select = "SELECT * FROM `stack` WHERE `email`='".$_SESSION["email"]."'";
+										$stack_select = "SELECT * FROM `stack` WHERE `email`='".$_SESSION["email"]."' ORDER BY `id` DESC";
 
 										$stack_select_query = mysqli_query($conn, $stack_select);
 
@@ -597,7 +597,23 @@ include 'dashboard_nav.php';
 
 										<?php
 
-										}}}}
+										}}
+
+										else{
+
+
+
+										?>
+
+										<div class="skill">
+											
+											<font><?php echo $stack; ?></font>
+
+										</div>
+
+										<?php
+
+										}}}
 
 										?>
 
