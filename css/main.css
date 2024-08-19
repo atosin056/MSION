@@ -169,6 +169,15 @@ background: rgba(116, 116, 128, 0.10);
 	width: auto !important;
 
 }
+.closed{
+	display: flex;
+	padding: 5px 10px 5px 8px;
+	justify-content: center;
+	align-items: center;
+	gap: 8px;
+	border-radius: 100px;
+	background: rgba(231, 110, 103, 0.50);
+}
 .job-story-box{
 	display: flex;
 	padding: 24px 16px;

@@ -36,7 +36,7 @@ include 'navbar.php';
 
 ?>
 
-<div class="sections" style="padding-top: 100px;background: #FAFAFA;height: 80% !important;">
+<div class="sections" style="padding-top: 100px;background: #FAFAFA;height: 70% !important;">
 	
 	<div style="display: flex;justify-content: center;align-items: center;height: 100% !important;width: 100% !important;">
 		
@@ -546,17 +546,17 @@ include 'navbar.php';
 									
 									<div style="flex-direction: column;gap: 5px;display: flex;">
 											
-										<div class="active">
+										<div class="closed">
 											
 											<div>
 												
-												<img src="images/active.png">
+												<img src="images/closed.png">
 
 											</div>
 
 											<div>
 												
-												<font class="active-text">Active</font>
+												<font class="active-text">Closed</font>
 
 											</div>
 
@@ -1319,6 +1319,12 @@ include 'navbar.php';
 	</div>
 
 </div>
+
+<?php
+
+include 'footer.php';
+
+?>
 
 </body>
 
