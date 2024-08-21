@@ -10,6 +10,103 @@ if (!isset($_SESSION["email"])) {
 
 }
 
+if (isset($_POST["upload"])) {
+       
+    if (isset($_FILES["profile"]) && $_FILES["profile"]["error"] <= 0) {
+        
+        $allowed = array("jpg" => "image/jpg", "jpeg" => "image/jpeg", "png" => "image/png", "PNG" => "image/PNG", "gif" => "image/gif");
+
+        $filename = $_FILES["profile"]["name"];
+    
+        $filetype = $_FILES["profile"]["type"];
+    
+        $filesize = $_FILES["profile"]["size"];
+    
+        $ext = pathinfo($filename, PATHINFO_EXTENSION);
+
+    
+        if (!array_key_exists($ext, $allowed)) {
+    
+            die("Please select a valid file format");
+    
+        }
+        
+        $maxsize = 5000000000000 * 1024 * 1024;
+
+        if ($filesize > $maxsize) {
+    
+            die("Error: Filesize too Massive");
+    
+        }
+
+        if (in_array($filetype, $allowed)) {
+    
+            $move = move_uploaded_file($_FILES["profile"]["tmp_name"], "profile/". $filename);
+
+            if ($move) {
+
+            	$updatedb = "UPDATE `users` SET `profile`='".$filename."' WHERE `email`='".$_SESSION["email"]."'";
+
+            	$updatedb_query = mysqli_query($conn, $updatedb);
+
+            	if ($updatedb_query) {
+            		
+            		header('location: logout.php');
+
+            	}
+
+            }
+
+        }
+
+    }
+
+}
+
+if (isset($_POST["biography_update"])) {
+	
+	$bio = mysqli_real_escape_string($conn, $_POST["biography"]);
+
+	$update = "UPDATE `users` SET `biography`='".$bio."' WHERE `email`='".$_SESSION["email"]."'";
+
+	$update_query = mysqli_query($conn, $update);
+
+	if ($update_query) {
+		
+		header('location: logout.php');
+
+	}
+
+	// else{
+
+	// 	echo $update;
+
+	// }
+
+}
+
+if (isset($_POST["looking_update"])) {
+	
+	$looking = mysqli_real_escape_string($conn, $_POST["looking"]);
+
+	$update = "UPDATE `users` SET `looking`='".$looking."' WHERE `email`='".$_SESSION["email"]."'";
+
+	$update_query = mysqli_query($conn, $update);
+
+	if ($update_query) {
+		
+		header('location: logout.php');
+
+	}
+
+	// else{
+
+	// 	echo $update;
+
+	// }
+
+}
+
 ?>
 
 <html>
@@ -36,6 +133,157 @@ if (!isset($_SESSION["email"])) {
 
 <body>
 
+
+<!-- First Modal -->
+
+<div class="modal fade" id="modal1" tabindex="-1" role="dialog" aria-labelledby="modal1Title" aria-hidden="true">
+
+	<div class="modal-dialog modal-dialog-centered" role="document">
+
+	    <div class="modal-content">
+
+	      <div class="modal-header">
+
+	        <h5 class="modal-title" id="modal1Title">Profile Image</h5>
+
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+
+	          <span aria-hidden="true">x</span>
+
+	        </button>
+
+	      </div>
+
+	      <div class="modal-body">
+
+	        <div style="display: flex;width: 100% !important;justify-content: center;">
+	        	
+	        	<div id="preview-container">
+	        		
+	        		<img src="profile/<?php echo $_SESSION["profile-pic"]; ?>" style="border-radius: 100%;width: 250px;height: 250px;" id="preview-img">
+
+	        	</div>
+
+	        </div>
+
+	      </div>
+
+	      <div class="modal-footer">
+
+	        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+
+	        <form method="POST" enctype="multipart/form-data" id="profile-form">
+
+	        	<input type="file" name="profile" id="profile-file" style="display: none;">
+
+	        	<button type="button" class="btn btn-primary" id="upload-file">Change Profile Photo</button>
+
+	    	</form>
+
+	      </div>
+	    
+	    </div>
+  
+  </div>
+
+</div>
+
+<!-- Second Biography Modal -->
+
+<div class="modal fade" id="modal2" tabindex="-1" role="dialog" aria-labelledby="modal1Title" aria-hidden="true">
+
+	<div class="modal-dialog modal-dialog-centered" role="document">
+
+	    <div class="modal-content">
+
+	      <div class="modal-header">
+
+	        <h5 class="modal-title" id="modal1Title">Biography</h5>
+
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+
+	          <span aria-hidden="true">x</span>
+
+	        </button>
+
+	      </div>
+
+	      <div class="modal-body">
+
+	      	<form method="POST">
+
+		      	<div class="form-group">
+											
+					<textarea name="biography" required class="form-control" style="border-radius: 20px !important;height: 200px;padding-left: 20px;padding-top: 20px;line-height: 30px !important;" placeholder="Enter Text">
+<?php echo $_SESSION["biography"];?>
+					</textarea>
+
+				</div>
+
+		      </div>
+
+		      <div class="modal-footer">
+
+		        	<button type="submit" class="get-started" style="color: white;" name="biography_update">Update</button>
+
+		      </div>
+
+	  		</form>
+	    
+	    </div>
+  
+  </div>
+
+</div>
+
+<!-- Third Looking Modal -->
+
+<div class="modal fade" id="modal3" tabindex="-1" role="dialog" aria-labelledby="modal1Title" aria-hidden="true">
+
+	<div class="modal-dialog modal-dialog-centered" role="document">
+
+	    <div class="modal-content">
+
+	      <div class="modal-header">
+
+	        <h5 class="modal-title" id="modal1Title">What I'm Looking for</h5>
+
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+
+	          <span aria-hidden="true">x</span>
+
+	        </button>
+
+	      </div>
+
+	      <div class="modal-body">
+
+	      	<form method="POST">
+
+		      	<div class="form-group">
+											
+					<textarea name="looking" required class="form-control" style="border-radius: 20px !important;height: 200px;padding-left: 20px;padding-top: 20px;line-height: 30px !important;" placeholder="Enter Text">
+<?php echo $_SESSION["looking"];?>
+					</textarea>
+
+				</div>
+
+		      </div>
+
+		      <div class="modal-footer">
+
+		        	<button type="submit" class="get-started" style="color: white;" name="looking_update">Update</button>
+
+		      </div>
+
+	  		</form>
+	    
+	    </div>
+  
+  </div>
+
+</div>
+
 <?php
 
 include 'navbar.php';
@@ -54,7 +302,7 @@ include 'navbar.php';
 				
 					<div class="row" style="gap: 8px;display: flex;">
 						
-						<div class="img-wrap">
+						<div class="modal-trigger img-wrap" data-target="#modal1" data-toggle="modal" style="cursor: pointer;">
 							
 							<img src="profile/<?php echo $_SESSION['profile-pic']; ?>" style="width: 100% !important;height: 100% !important;border-radius: inherit;">
 
@@ -82,7 +330,7 @@ include 'navbar.php';
 							
 						?>
 
-						<a href="#">
+						<a href="verify_acct.php?id=<?php echo $_SESSION['unique_id']; ?>">
 
 							<div class="verify-button">
 								
@@ -136,7 +384,7 @@ include 'navbar.php';
 
 						</div>
 
-						<div>
+						<div class="modal-trigger" data-target="#modal2" data-toggle="modal">
 							
 							<img src="images/edit.png">
 
@@ -162,7 +410,7 @@ include 'navbar.php';
 
 						</div>
 
-						<div>
+						<div class="modal-trigger" data-target="#modal3" data-toggle="modal">
 							
 							<img src="images/edit.png">
 
@@ -753,6 +1001,65 @@ include 'footer.php';
 
 <script>
 
+document.addEventListener('DOMContentLoaded', (event) => {
+    
+    const uploadFileButton = document.getElementById('upload-file');
+    
+    const profileFileInput = document.getElementById('profile-file');
+    
+    const submitButton = document.createElement('button');
+
+    // Hide the file input initially
+    profileFileInput.style.display = 'none';
+
+    // Create and style the submit button
+
+    submitButton.type = 'submit';
+
+    submitButton.name = 'upload';
+    
+    submitButton.className = 'btn btn-primary';
+    
+    submitButton.textContent = 'Upload';
+    
+    submitButton.style.display = 'none';  // Initially hidden
+
+
+    // Add the submit button to the form
+
+    const form = document.getElementById('profile-form');
+
+    form.appendChild(submitButton);
+
+    // // Show file input when "Change Profile Photo" button is clicked
+    // uploadFileButton.addEventListener('click', () => {
+    //     profileFileInput.click();
+    // });
+
+    // Show submit button when a file is selected
+    profileFileInput.addEventListener('change', () => {
+        
+        if (profileFileInput.files.length > 0) {
+        
+            submitButton.style.display = 'inline-block';
+        
+            uploadFileButton.style.display = 'none';
+        
+        }
+
+        else {
+        
+            submitButton.style.display = 'none';
+        
+            uploadFileButton.style.display = 'inline-block';
+        
+        }
+    
+    });
+
+});
+
+
 	document.addEventListener('DOMContentLoaded', function() {
     
     var currentPage = '<?php echo basename($_SERVER["PHP_SELF"], ".php"); ?>';
@@ -791,10 +1098,46 @@ else if (fileExtension === 'docx') {
 
 </script>
 
-<script src="bootstrap/js/bootstrap.bundle.min.js"></script>
-
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
+<!-- Popper.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.1/umd/popper.min.js"></script>
+
+<!-- Bootstrap JS -->
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
 <script src="js/main.js"></script>
+
+<script type="text/javascript">
+	
+	
+	// JavaScript to trigger the file input when the button is clicked
+    
+    $('#upload-file').on('click', function() {
+       
+        $('#profile-file').click();
+    
+    });
+
+    // // Function to trigger file input click
+    // document.getElementById('preview-img').addEventListener('click', function() {
+    //     document.getElementById('profile-input').click();
+    // });
+
+    // Function to preview the selected image
+    document.getElementById('profile-file').addEventListener('change', function(event) {
+        var file = event.target.files[0];
+        if (file) {
+            var reader = new FileReader();
+
+            reader.onload = function(e) {
+                document.getElementById('preview-img').src = e.target.result;
+            };
+
+            reader.readAsDataURL(file);
+        }
+    });
+
+</script>
 
 </html>

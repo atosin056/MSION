@@ -136,7 +136,6 @@ function getScore($cvText, $jobTitle, $language) {
 
 }
 
-<?php
 function getCvScore($cvText, $jobTitle) {
     
     // Define the API endpoint
@@ -251,5 +250,7 @@ function extractTextFromWord($filePath) {
     return $text;
 
 }
+
+
 
 ?>

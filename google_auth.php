@@ -78,6 +78,10 @@ if (isset($_GET["code"])) {
 
 			$status = $row["acct_status"];
 
+			$unique_id = $row["unique_id"];
+
+
+			$_SESSION["unique_id"] = $unique_id;
 
 			$_SESSION["acct_status"] = $status;
 

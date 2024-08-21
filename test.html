@@ -3,37 +3,94 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Styled Numbers</title>
+    <title>Photo Preview Popup</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-    <div>
-        <p class="number-style">3589</p>
+    <div class="container">
+        <button id="uploadBtn">Upload Photo</button>
+        <input type="file" id="photoInput" accept="image/*" style="display: none;">
+        <div id="popup" class="popup">
+            <span id="closeBtn" class="close">&times;</span>
+            <img id="previewImage" src="" alt="Photo Preview">
+        </div>
     </div>
+
     <script src="script.js"></script>
 </body>
 </html>
 <style>
-    .number-style {
+    
+    body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
     display: flex;
-    gap: 16px;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
 }
 
-.number-style span {
-    display: inline-block;
-    width: 76px;
-    height: 76px;
-    border: 1px solid black;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+.container {
+    text-align: center;
 }
+
+button {
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.popup {
+    display: none;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 300px;
+    background-color: white;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    padding: 20px;
+    z-index: 1000;
+}
+
+.popup img {
+    width: 100%;
+    height: auto;
+    margin-bottom: 10px;
+}
+
+.close {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    font-size: 20px;
+    cursor: pointer;
+}
+
 
 </style>
-
 <script type="text/javascript">
-    document.querySelectorAll('.number-style').forEach(paragraph => {
-    paragraph.innerHTML = paragraph.textContent.split('').map(num => `<span>${num}</span>`).join('');
+    
+    document.getElementById('uploadBtn').addEventListener('click', function() {
+    document.getElementById('photoInput').click();
 });
+
+document.getElementById('photoInput').addEventListener('change', function(event) {
+    const file = event.target.files[0];
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            document.getElementById('previewImage').src = e.target.result;
+            document.getElementById('popup').style.display = 'block';
+        }
+        reader.readAsDataURL(file);
+    }
+});
+
+document.getElementById('closeBtn').addEventListener('click', function() {
+    document.getElementById('popup').style.display = 'none';
+});
+
 
 </script>
