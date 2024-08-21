@@ -107,19 +107,33 @@ if (isset($_GET["code"])) {
 
 	//Register The User.
 
-	else{	
+	elseif(mysqli_num_rows($select_query) == 0) {
 
-		$insert = "INSERT INTO `users` (`id`,`email`,`unique_id`) VALUES (NULL, '".$email."','".$unique_id."')";
+		$select2 = "SELECT * FROM `company_users` WHERE `email`='".$_SESSION["otp_send_email"]."'";
 
-		$insert_query = mysqli_query($conn, $insert);
+		$select2_query = mysqli_query($conn, $select2);
 
-		if ($insert_query) {
+		if (mysqli_num_rows($select2_query) > 0) {
 			
-			$_SESSION["otp_email_send"] = $email;
+			
 
-			if (isset($_SESSION["otp_email_send"])) {
-	
-				header('location: otp_send_mail.php');
+		}
+
+		else{	
+
+			$insert = "INSERT INTO `users` (`id`,`email`,`unique_id`) VALUES (NULL, '".$email."','".$unique_id."')";
+
+			$insert_query = mysqli_query($conn, $insert);
+
+			if ($insert_query) {
+				
+				$_SESSION["otp_email_send"] = $email;
+
+				if (isset($_SESSION["otp_email_send"])) {
+		
+					header('location: otp_send_mail.php');
+
+				}
 
 			}
 

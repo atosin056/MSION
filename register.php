@@ -127,7 +127,7 @@ if (isset($_POST['submit'])) {
 				
 				<div>
 					
-					<font style="font-weight: 600;color: #016B98;font-size: 20px;">MSION</font>
+					<img src="images/logo.png">
 
 				</div>
 

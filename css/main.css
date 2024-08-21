@@ -22,6 +22,15 @@ body{
 
     }
 }
+.bk-mark{
+	display: flex;
+	padding: 13px;
+	justify-content: center;
+	align-items: center;
+	gap: 8px;
+	border-radius: 20px;
+	background: rgba(116, 116, 128, 0.10);
+}
 .edit-profile{
 	display: flex;
 justify-content: center;
@@ -1109,6 +1118,35 @@ line-height: 35px; /* 21px */
 .navbar-nav .nav-item .nav-link {
     color: #313131;
 }
+.j-name{
+	color: #000;
+	/* MSION - 1/Desktop/Headings/Heading 3 */
+	font-family: Montserrat;
+	font-size: 27px;
+	font-style: normal;
+	font-weight: 400;
+	line-height: 150%; /* 60px */
+}
+.c-profile{
+	display: flex;
+	padding: 13px 32px;
+	justify-content: center;
+	align-items: center;
+	gap: 8px;
+	border-radius: 20px;
+	background: rgba(116, 116, 128, 0.10);
+	color: black;
+}
+.apply{
+	display: inline-flex;
+	padding: 13px 32px;
+	justify-content: center;
+	align-items: center;
+	gap: 8px;
+	color: white;
+	border-radius: 20px;
+	background: var(--Primary-Primary, #016B98);
+}
 .link-active {
   	color: #313131 !important;
   	font-weight: 700 !important;
@@ -1123,6 +1161,116 @@ line-height: 35px; /* 21px */
 	display: flex;
 	gap: 15px;
 }
+.responsibilities{
+	color: var(--Neutrals-Neutrals800, #433E3F);
+	/* MSION - 1/Desktop/Body/Content Regular */
+	font-family: Montserrat;
+	font-size: 16px;
+	font-style: normal;
+	font-weight: 400;
+	line-height: 30px; /* 24px */
+}
 a{
 	text-decoration: none;
+}
+.role-desc{
+	width: 70%;
+	flex-direction: column;
+	border-radius: 24px 24px 0px 0px;
+	background: var(--Base-Base-White, #FAFAFA);
+	padding: 24px;
+	height: 1400px;
+	overflow-y: auto;
+}
+.job-active{
+	border: 1px solid var(--Primary-Primary600, #13B7FD);
+}
+.para{
+	color: #000;
+	font-family: Montserrat;
+	font-size: 18px;
+	font-style: normal;
+	font-weight: 600;
+	line-height: 120%; /* 21.6px */
+}
+.persona{
+	color: #000;
+	font-family: Montserrat;
+	font-size: 24px;
+	font-style: normal;
+	font-weight: 600;
+	line-height: 120%; /* 28.8px */
+}
+.not{
+	color: var(--Grey-600, #475367);
+
+/* MSION - 1/Mobile/Body/Highlight Standard */
+font-family: Montserrat;
+font-size: 16px;
+font-style: normal;
+font-weight: 400;
+line-height: 150%; /* 24px */
+}
+.not-p{
+	color: var(--Neutrals-Neutrals800, #433E3F);
+	/* MSION - 1/Desktop/Body/Content Regular */
+	font-family: Montserrat;
+	font-size: 16px;
+	font-style: normal;
+	font-weight: 400;
+	line-height: 150%; /* 24px */
+}
+.info-set{
+	display: flex;
+	padding: 24px;
+	align-items: center;
+	gap: 10px;
+	align-self: stretch;
+	border-radius: 24px;
+	background: var(--Base-Base-White, #FAFAFA);
+}
+input[type="password"] {
+    -webkit-text-security: asterisk; /* Change this to 'circle', 'square', or 'asterisk' */
+    -webkit-text-security: '*' !important; /* This will make the password characters display as asterisks */
+}
+.info{
+	color: var(--Grey-900, #101928);
+
+/* MSION - 1/Mobile/Body/Feature Accent */
+font-family: Montserrat;
+font-size: 18px;
+font-style: normal;
+font-weight: 600;
+line-height: 120%; /* 21.6px */
+}
+.j-desc{
+	color: var(--Neutrals-Neutrals800, #433E3F);
+
+	/* MSION - 1/Desktop/Body/Content Regular */
+	font-family: Montserrat;
+	font-size: 16px;
+	font-style: normal;
+	font-weight: 400;
+	line-height: 30px; /* 24px */
+}
+.notification{
+	display: flex;
+	padding: 20px;
+	align-items: flex-start;
+	gap: 16px;
+	border-radius: 20px;
+	border: 1px solid var(--Neutrals-Neutrals200, #CCCBCB);
+	background: var(--Shade-White, #FFF);
+	/* Drop shadow/XSmall */
+	box-shadow: 0px 1px 2px 0px rgba(16, 24, 40, 0.05);
+	align-self: stretch;
+}
+.benefits{
+	color: var(--Neutrals-Neutrals800, #433E3F);
+	/* MSION - 1/Desktop/Body/Content Regular */
+	font-family: Montserrat;
+	font-size: 16px;
+	font-style: normal;
+	font-weight: 400;
+	line-height: 150%; /* 24px */
 }

@@ -102,7 +102,7 @@
 
 				    </a>
 
-				    <a href="#">
+				    <a href="jobsearch.php">
 
 				    	<div class="list">
 				    		
@@ -122,7 +122,7 @@
 
 				    </a>
 
-				    <a href="#">
+				    <a href="applied.php">
 
 				    	<div class="list">
 				    		
@@ -142,7 +142,7 @@
 
 				    </a>
 
-				    <a href="#">
+				    <a href="notification.php">
 
 				    	<div class="list">
 				    		
@@ -162,7 +162,7 @@
 
 				    </a>
 
-				    <a href="#">
+				    <a href="saved.php">
 
 				    	<div class="list">
 				    		
@@ -218,7 +218,7 @@
 
 				    </a>
 
-				    <a href="#">
+				    <a href="settings.php">
 
 				    	<div class="list">
 				    		

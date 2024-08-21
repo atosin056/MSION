@@ -107,7 +107,7 @@ if (isset($_POST["submit"])) {
 				
 				<div>
 					
-					<font style="font-weight: 600;color: white;font-size: 20px;">MSION</font>
+					<img src="images/logo.png">
 
 				</div>
 
@@ -191,7 +191,7 @@ if (isset($_POST["submit"])) {
 
 							<div style="width: 100% !important;">
 								
-								<input type="text" name="password" class="form-control person" style="background: white;border-top: 1px solid var(--Neutrals-Neutrals200, #CCCBCB);border-bottom: 1px solid var(--Neutrals-Neutrals200, #CCCBCB);border-right: 1px solid var(--Neutrals-Neutrals200, #CCCBCB);border-left: none !important;border-radius: 0px;height: 56 !important;border-top-right-radius: 20px;border-bottom-right-radius: 20px;" placeholder="Password">
+								<input type="password" name="password" class="form-control person" style="background: white;border-top: 1px solid var(--Neutrals-Neutrals200, #CCCBCB);border-bottom: 1px solid var(--Neutrals-Neutrals200, #CCCBCB);border-right: 1px solid var(--Neutrals-Neutrals200, #CCCBCB);border-left: none !important;border-radius: 0px;height: 56 !important;border-top-right-radius: 20px;border-bottom-right-radius: 20px;" placeholder="Password">
 
 							</div>
 

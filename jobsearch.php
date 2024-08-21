@@ -109,7 +109,7 @@ include 'navbar.php';
 			<div>
 				
 				<div style="background: transparent;gap: 16px;width: auto !important;flex-wrap: wrap;" class="row">
-					 
+			
 					<div class="col-lg-4 col-md-4 col-sm-4 job-story-box">
 						
 						<div style="border-bottom: 1px solid var(--Neutrals-Neutrals200, #CCCBCB);;padding-bottom: 20px;">
@@ -292,7 +292,7 @@ include 'navbar.php';
 
 							<div style="display: flex;justify-content: flex-end;flex-grow: 1;">
 								
-								<a href="#">
+								<a href="job.php">
 									
 									<div class="View">
 										
