@@ -12,7 +12,7 @@ if (!isset($_GET["fuid"])) {
 
 }
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+if (isset($_POST["submit"])) {
        
     $fullname = $_POST['fullname'];
     
@@ -57,7 +57,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
                 if ($update_query) {
     
-                    // Code for further processing if needed
+                    echo $update;
     
                 }
     
@@ -77,7 +77,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         
         $filesizes = $_FILES["file"]["size"];
 
-        $fileSizeKB = $fileSize / 1024;
+        $fileSizeKB = $filesizes / 1024;
         
         $ext = pathinfo($cvname, PATHINFO_EXTENSION);
 
@@ -108,6 +108,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 if ($updates_query) {
 
                     header('location: complete2.php?distro='.$_GET['fuid']);
+
+                    // echo $update;
 
                     exit();
 
@@ -247,7 +249,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 							
 							<div class="form-group">
 								
-								<input type="text" name="fullname" class="form-control" style="border-radius: 100px;height: 56px;padding-left: 20px;" placeholder="Fullname">
+								<input type="text" name="company_name" class="form-control" style="border-radius: 100px;height: 56px;padding-left: 20px;" placeholder="Fullname" >
 
 							</div>
 

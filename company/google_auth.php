@@ -9,7 +9,7 @@ $clientID = '746496280033-si3q1fr5dkhdob0si1tva69liatmr9ut.apps.googleuserconten
 
 $clientSecret = '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';
 
-$redirectUrl = 'http://localhost/MSION/MSION/google_auth.php';
+$redirectUrl = 'http://localhost/MSION/company/google_auth.php';
 
 
 //Creating google client
@@ -46,9 +46,9 @@ if (isset($_GET["code"])) {
 
 	$_SESSION["otp_send_email"] = $email;
 
-	include 'connect.php';
+	include '../connect.php';
 
-	$insert = "INSERT INTO `users` (`id`,`email`,`unique_id`) VALUES (NULL, '".$email."','".$unique_id."')";
+	$insert = "INSERT INTO `company_users` (`id`,`email`,`unique_id`) VALUES (NULL, '".$email."','".$unique_id."')";
 
 	$insert_query = mysqli_query($conn, $insert);
 
@@ -58,7 +58,7 @@ if (isset($_GET["code"])) {
 
 		if (isset($_SESSION["otp_email_send"])) {
 	
-			header('location: otp_send_mail.php');
+			header('location: company_profile.php?fid='.$_SESSION["unique_id"]);
 
 		}
 

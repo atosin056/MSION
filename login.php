@@ -73,6 +73,42 @@ if (isset($_POST["submit"])) {
 
 	}
 
+	//Register The User.
+
+	elseif(mysqli_num_rows($select_query) == 0) {
+
+		$select2 = "SELECT * FROM `company_users` WHERE `email`='".$_SESSION["otp_send_email"]."'";
+
+		$select2_query = mysqli_query($conn, $select2);
+
+		if (mysqli_num_rows($select2_query) > 0) {
+			
+			
+
+		}
+
+		else{	
+
+			$insert = "INSERT INTO `users` (`id`,`email`,`unique_id`) VALUES (NULL, '".$email."','".$unique_id."')";
+
+			$insert_query = mysqli_query($conn, $insert);
+
+			if ($insert_query) {
+				
+				$_SESSION["otp_email_send"] = $email;
+
+				if (isset($_SESSION["otp_email_send"])) {
+		
+					header('location: otp_send_mail.php');
+
+				}
+
+			}
+
+		}
+
+	}
+
 }
 
 ?>
@@ -109,11 +145,15 @@ if (isset($_POST["submit"])) {
 			
 			<div style="background: transparent;width: 100% !important;display: flex;justify-content: flex-start;">
 				
-				<div>
-					
-					<img src="images/logo.png">
+				<a href="index.php">
 
-				</div>
+					<div>
+						
+						<img src="images/logo.png">
+
+					</div>
+
+				</a>
 
 			</div>
 

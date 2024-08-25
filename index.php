@@ -56,7 +56,11 @@ include 'navbar.php';
 						
 						<div class="row" style="gap: 8px;">
 							
-							<a href="#" style="width: auto;padding: 0;">
+							<a href="<?php if (isset($_SESSION["email"])) {
+								
+								echo 'dashboard.php';
+
+							}else{ echo 'register.php';} ?>" style="width: auto;padding: 0;">
 								
 								<div class="get-started">
 									
@@ -66,15 +70,41 @@ include 'navbar.php';
 
 							</a>
 
-							<a href="#" style="width: auto;padding: 0;">
+							<?php
+
+							if (isset($_SESSION["email"])) {
 								
-								<div class="get-started" style="background: #7474801A !important;color: black;">
+							?>
+
+							<a href="company/register.php" style="width: auto;padding: 0;pointer-events: none;cursor: not-allowed !important;">
+								
+								<div class="get-started" style="background: #7474801A !important;color: black !important;">
 									
 									Hire Talents
 
 								</div>
 
 							</a>
+
+							<?php
+
+							}
+
+							else{
+
+							?>
+
+							<a href="company/register.php" style="width: auto;padding: 0;">
+								
+								<div class="get-started" style="background: #7474801A !important;color: black !important;">
+									
+									Hire Talents
+
+								</div>
+
+							</a>
+
+							<?php } ?>
 
 						</div>
 

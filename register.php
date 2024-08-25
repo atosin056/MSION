@@ -125,11 +125,15 @@ if (isset($_POST['submit'])) {
 			
 			<div style="background: transparent;width: 100% !important;display: flex;justify-content: flex-start;">
 				
-				<div>
-					
-					<img src="images/logo.png">
+				<a href="../index.php">
 
-				</div>
+					<div>
+						
+						<img src="images/logo.png">
+
+					</div>
+
+				</a>
 
 			</div>
 

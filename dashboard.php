@@ -51,7 +51,9 @@ if (isset($_POST["upload"])) {
 
             	if ($updatedb_query) {
             		
-            		header('location: logout.php');
+            		$_SESSION["profile-pic"] = $filename;
+
+            		header('location: dashboard.php');
 
             	}
 
@@ -67,13 +69,17 @@ if (isset($_POST["biography_update"])) {
 	
 	$bio = mysqli_real_escape_string($conn, $_POST["biography"]);
 
+	
+
 	$update = "UPDATE `users` SET `biography`='".$bio."' WHERE `email`='".$_SESSION["email"]."'";
 
 	$update_query = mysqli_query($conn, $update);
 
 	if ($update_query) {
 		
-		header('location: logout.php');
+		$_SESSION["biography"] = $bio;
+
+		header('location: dashboard.php');
 
 	}
 
@@ -104,6 +110,60 @@ if (isset($_POST["looking_update"])) {
 	// 	echo $update;
 
 	// }
+
+}
+
+if(isset($_POST["experience_update"])){
+
+	$company_name = mysqli_real_escape_string($conn, $_POST["company_name"]);
+
+	$role = mysqli_real_escape_string($conn, $_POST["role"]);
+
+	$start_date = mysqli_real_escape_string($conn, $_POST["start_date"]);
+
+	if (isset($_POST["end_date"])) {
+		
+		$end_date = mysqli_real_escape_string($conn, $_POST["end_date"]);
+
+	}
+
+	else{
+
+		$end_date = 'Present';
+
+	}
+
+	$location = mysqli_real_escape_string($conn, $_POST["location"]);
+
+	$website = mysqli_real_escape_string($conn, $_POST["website"]);
+
+
+	$skillsJson = $_POST['skillsArray'] ?? '[]';
+	   
+	$skills = json_decode($skillsJson, true);
+
+
+	foreach ($skills as $skill) {
+
+		$ins = "INSERT INTO `user_experience` (`id`, `email`,`company_name`,`company_website`,`location`,`role`,`start_date`,`end_date`) VALUES (NULL, '".$_SESSION["email"]."','".$company_name."','".$website."','".$location."','".$role."','".$start_date."','".$end_date."')";
+
+		$ins_query = mysqli_query($conn, $ins);
+		
+		if ($ins_query) {
+			
+			$inse = "INSERT INTO `experience` (`id`,`skills`,`company_name`,`email`) VALUES (NULL, '".$skill."','".$company_name."','".$_SESSION["email"]."')";
+
+			$inse_query = mysqli_query($conn, $inse);
+			
+			if ($inse_query) {
+				
+				header('location: dashboard.php');
+
+			}	
+		
+		}
+
+	}	
 
 }
 
@@ -284,6 +344,98 @@ if (isset($_POST["looking_update"])) {
 
 </div>
 
+<!-- Fourth Looking Modal -->
+
+<div class="modal fade" id="modal4" tabindex="-1" role="dialog" aria-labelledby="modal1Title" aria-hidden="true">
+
+	<div class="modal-dialog modal-dialog-centered" role="document" style="margin-top: 100px !important;">
+
+	    <div class="modal-content">
+
+	      <div class="modal-header">
+
+	        <h5 class="modal-title" id="modal1Title">Experience</h5>
+
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+
+	          <span aria-hidden="true">x</span>
+
+	        </button>
+
+	      </div>
+
+	      <div class="modal-body">
+
+	      	<form method="POST" style="display: flex;gap: 20px;flex-direction: column;">
+
+		      	<div class="form-group">
+												
+					<input type="text" name="role" placeholder="Job Title" class="form-control input-field" style="border-radius: 20px !important;height: 56px;padding-left: 20px;line-height: 30px !important;">
+
+				</div>
+
+				<div class="form-group">
+												
+					<input type="text" name="company_name" placeholder="Company Name" class="form-control input-field" style="border-radius: 20px !important;height: 56px;padding-left: 20px;line-height: 30px !important;">
+
+				</div>
+
+				<div class="form-group">
+												
+					<input type="text" name="location" placeholder="Company Location: e.g Ilorin" class="form-control input-field" style="border-radius: 20px !important;height: 56px;padding-left: 20px;line-height: 30px !important;">
+
+				</div>
+
+				<div class="form-group">
+												
+					<input type="text" name="start_date" placeholder="Start Date e.g June 2024" class="form-control input-field" style="border-radius: 20px !important;height: 56px;padding-left: 20px;line-height: 30px !important;">
+
+				</div>
+
+				<div class="form-group">
+												
+					<input type="text" name="end_date" placeholder="End Date" class="form-control input-field" style="border-radius: 20px !important;height: 56px;padding-left: 20px;line-height: 30px !important;">
+
+				</div>
+
+				<div class="form-group">
+												
+					<input type="text" name="website" placeholder="Company Website" class="form-control input-field" style="border-radius: 20px !important;height: 56px;padding-left: 20px;line-height: 30px !important;">
+
+				</div>
+
+				<div style="margin-top: 20px;">
+									
+					<div class="form-group">
+										
+						<input type="text" name="skills" class="form-control" style="border-radius: 20px;height: 56px;padding-left: 20px;" id="skillInput" placeholder="Enter Skills">
+
+					</div>
+
+					<div id="suggestions"></div>
+
+					<div id="skillsContainer"></div>
+
+						<input type="hidden" required name="skillsArray" id="skillsArray">
+
+					</div>
+
+		      </div>
+
+		      <div class="modal-footer">
+
+		        	<button type="submit" class="get-started" style="color: white;" name="experience_update">Update</button>
+
+		      </div>
+
+	  		</form>
+	    
+	    </div>
+  
+  </div>
+
+</div>
+
 <?php
 
 include 'navbar.php';
@@ -356,7 +508,7 @@ include 'navbar.php';
 
 						?>
 
-						<a href="#">
+						<a href="settings.php">
 
 							<div class="edit-profile">
 								
@@ -436,7 +588,7 @@ include 'navbar.php';
 
 						</div>
 
-						<div style="width: 24px;height: 24px;">
+						<div class="modal-trigger" data-target="#modal4" data-toggle="modal">
 							
 							<img src="images/edit.png">
 
@@ -445,22 +597,63 @@ include 'navbar.php';
 					</div>
 
 					<div style="display: flex;flex-direction: column;gap: 20px;">
+
+						<?php
+
+						$exp_select = "SELECT DISTINCT `company_name`, `role`, `location`, `start_date`, `end_date`, `company_website` FROM `user_experience` WHERE `email`='" . $_SESSION["email"] . "'";
+
+						$exp_select_query = mysqli_query($conn, $exp_select);
+
+
+						if (mysqli_num_rows($exp_select_query) > 0) {
+							
+							while ($r = mysqli_fetch_assoc($exp_select_query)){
+
+								$role = $r["role"];
+
+								$location = $r["location"];
+
+								$start_date = $r["start_date"];
+
+								$end_date = $r["end_date"];
+
+								$website = $r["company_website"];
+
+								$company_name = $r["company_name"];
+
+							
+
+						?>
 						
 						<div class="experience-box">
 							
 							<div>
 								
-								<p class="exp-as">UI/ UX designer | McGeorgeConsulting LTD</p>
+								<p class="exp-as"><?php echo $role; ?> | <?php echo $company_name; ?></p>
 
-								<p class="exp-loc">Ilorin | June 2024 - Present</p>
+								<p class="exp-loc"><?php echo $location; ?> | <?php echo $start_date ?> - <?php echo $end_date ?></p>
 
-								<p class="exp-loc">https://www.website.com</p>
+								<p class="exp-loc"><?php echo $website; ?></p>
 
 							</div>
 
 							<div>
 								
 								<div style="display: flex;gap: 8px;">
+
+									<?php
+
+									$sel = "SELECT * FROM `experience` WHERE `company_name`='".$company_name."'";
+
+									$sel_query = mysqli_query($conn, $sel);
+
+									if (mysqli_num_rows($sel_query) > 0) {
+										
+										while ($ow = mysqli_fetch_assoc($sel_query)){
+
+											$skill = $ow["skills"];
+
+									?>
 									
 									<div class="exp-role">
 										
@@ -472,67 +665,18 @@ include 'navbar.php';
 
 										<div>
 											
-											<font class="ui">UI/UX Design</font>
+											<font class="ui"><?php echo $skill; ?></font>
 
 										</div>
 
 									</div>
 
-									<!-- End -->
+									<?php
 
-									<div class="exp-role">
-										
-										<div style="display: flex;align-items: center;">
-											
-											<img src="images/point.png">
+									}}
 
-										</div>
+									?>
 
-										<div>
-											
-											<font class="ui">Interaction Design</font>
-
-										</div>
-
-									</div>
-
-									<!-- End -->
-									
-									<div class="exp-role">
-										
-										<div style="display: flex;align-items: center;">
-											
-											<img src="images/point.png">
-
-										</div>
-
-										<div>
-											
-											<font class="ui">Product Design</font>
-
-										</div>
-
-									</div>
-
-									<!-- End -->
-									
-									<div class="exp-role">
-										
-										<div style="display: flex;align-items: center;">
-											
-											<img src="images/point.png">
-
-										</div>
-
-										<div>
-											
-											<font class="ui">Creative Design</font>
-
-										</div>
-
-									</div>
-
-									<!-- End -->
 									
 								</div>
 
@@ -540,99 +684,13 @@ include 'navbar.php';
 
 						</div>
 
-						<!-- End -->
+						<?php
 
-						<div class="experience-box">
+						}}
+
+						?>
+
 						
-							<div>
-								
-								<p class="exp-as">UI/ UX designer | McGeorgeConsulting LTD</p>
-
-								<p class="exp-loc">Ilorin | June 2024 - Present</p>
-
-								<p class="exp-loc">https://www.website.com</p>
-
-							</div>
-
-							<div>
-								
-								<div style="display: flex;gap: 8px;">
-									
-									<div class="exp-role">
-										
-										<div style="display: flex;align-items: center;">
-											
-											<img src="images/point.png">
-
-										</div>
-
-										<div>
-											
-											<font class="ui">UI/UX Design</font>
-
-										</div>
-
-									</div>
-
-									<!-- End -->
-
-									<div class="exp-role">
-										
-										<div style="display: flex;align-items: center;">
-											
-											<img src="images/point.png">
-
-										</div>
-
-										<div>
-											
-											<font class="ui">Interaction Design</font>
-
-										</div>
-
-									</div>
-
-									<!-- End -->
-									
-									<div class="exp-role">
-										
-										<div style="display: flex;align-items: center;">
-											
-											<img src="images/point.png">
-
-										</div>
-
-										<div>
-											
-											<font class="ui">Product Design</font>
-
-										</div>
-
-									</div>
-
-									<!-- End -->
-									
-									<div class="exp-role">
-										
-										<div style="display: flex;align-items: center;">
-											
-											<img src="images/point.png">
-
-										</div>
-
-										<div>
-											
-											<font class="ui">Creative Design</font>
-
-										</div>
-
-									</div>
-
-								</div>
-									
-							</div>
-
-						</div>
 
 						<!-- End -->
 
@@ -917,6 +975,7 @@ include 'navbar.php';
 
 										?>
 
+
 										<div style="width: 40px;background: transparent;height: 40px;">
 											
 											<img src="images/linkedIn.png" style="width: 40px !important;height: 40px !important;">
@@ -1138,6 +1197,94 @@ else if (fileExtension === 'docx') {
         }
     });
 
+     let skillsList = [
+    // Business Skills
+    "Project Management", "Strategic Planning", "Business Analysis",
+    "Marketing Strategy", "Salesforce", "Customer Relationship Management",
+    "Agile Methodology", "Business Development", "Leadership", "Negotiation",
+    "Team Management", "Brand Management", "Market Research",
+    "Business Intelligence", "Supply Chain Management",
+    
+    // Finance Skills
+    "Financial Analysis", "Investment Banking", "Risk Management",
+    "Financial Modeling", "Corporate Finance", "Wealth Management",
+    "Accounting", "Auditing", "Taxation", "Portfolio Management",
+    "Quantitative Analysis", "Economics", "Derivatives", "Asset Management",
+    
+    // Other Skills
+    "Communication", "Public Speaking", "Time Management", "Critical Thinking",
+    "Problem Solving", "Adaptability", "Creativity", "Writing",
+    "Research", "Emotional Intelligence", "Language Proficiency",
+    "Graphic Design", "Photography", "Video Editing", "Music Production",
+    "Cooking", "Gardening", "Sports Coaching", "Teaching"
+];
+ const selectedSkills = [];
+    const skillInput = document.getElementById('skillInput');
+    const suggestions = document.getElementById('suggestions');
+    const skillsContainer = document.getElementById('skillsContainer');
+    const skillsArrayInput = document.getElementById('skillsArray');
+
+    skillInput.addEventListener('input', function() {
+        const query = this.value.toLowerCase();
+        suggestions.innerHTML = '';
+        if (query) {
+            const filteredSkills = skillsList.filter(skill => skill.toLowerCase().startsWith(query));
+            if (filteredSkills.length > 0) {
+                filteredSkills.forEach(skill => {
+                    const suggestionItem = document.createElement('div');
+                    suggestionItem.textContent = skill;
+                    suggestionItem.className = 'suggestion-item';
+                    suggestionItem.addEventListener('click', () => addSkill(skill));
+                    suggestions.appendChild(suggestionItem);
+                });
+            }
+            const addNewSkillItem = document.createElement('div');
+            addNewSkillItem.textContent = `Add "${this.value}"`;
+            addNewSkillItem.className = 'suggestion-item';
+            addNewSkillItem.addEventListener('click', () => addNewSkill(this.value));
+            suggestions.appendChild(addNewSkillItem);
+            suggestions.style.display = 'block';
+            skillInput.style.borderBottomLeftRadius = '0';
+        	skillInput.style.borderBottomRightRadius = '0';
+        	skillInput.style.borderBottom = 'none';
+        } else {
+            suggestions.style.display = 'none';
+
+        }
+    });
+
+    function addSkill(skill) {
+        if (!selectedSkills.includes(skill) && selectedSkills.length < 15) {
+            selectedSkills.push(skill);
+            const skillItem = document.createElement('div');
+            skillItem.className = 'skill-item';
+            skillItem.textContent = skill;
+            skillsContainer.appendChild(skillItem);
+            skillInput.value = '';
+            suggestions.style.display = 'none';
+            skillsArrayInput.value = JSON.stringify(selectedSkills);
+            skillInput.style.borderBottomLeftRadius = '20px';
+       		skillInput.style.borderBottomRightRadius = '20px';
+       		skillInput.style.borderBottom = '1px solid #CCCBCB';
+        }
+    }
+
+    function addNewSkill(newSkill) {
+        if (!selectedSkills.includes(newSkill) && selectedSkills.length < 15) {
+            skillsList.push(newSkill);
+            addSkill(newSkill);
+        }
+    }
+
+   document.addEventListener('click', function(event) {
+    if (!suggestions.contains(event.target) && event.target !== skillInput) {
+        suggestions.style.display = 'none';
+        // Restore border bottom radius
+        skillInput.style.borderBottomLeftRadius = '20px';
+        skillInput.style.borderBottomRightRadius = '20px';
+        skillInput.style.borderBottom = '1px solid #CCCBCB';
+    }
+});
 </script>
 
 </html>

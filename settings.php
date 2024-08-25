@@ -72,7 +72,13 @@ if (isset($_POST["submit"])) {
 
 		            		if ($update_final_query) {
 		            			
-		            			header('location: logout.php');
+		            			$_SESSION["password"] = $new_password;
+
+                                $_SESSION['fullname'] = $name;
+
+                                $_SESSION["title"] = $title;
+
+                                header('location: dashboard.php');
 
 		            		}
 
@@ -80,7 +86,11 @@ if (isset($_POST["submit"])) {
 
 		            	else{
 
-		            		header('location: logout.php');
+                            $_SESSION['fullname'] = $name;
+
+                            $_SESSION["title"] = $title;
+
+		            		header('location: dashboard.php');
 
 		            	}
 

@@ -30,7 +30,7 @@
 
 	         	<li class="nav-item link">
 
-	          		<a href="jobsearch.php" class="nav-link" data-page="job">Job Search</a>
+	          		<a href="jobsearch.php" class="nav-link" data-page="jobsearch">Job Search</a>
 
 	         	</li>
 

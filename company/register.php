@@ -25,7 +25,7 @@ if (isset($_POST['submit'])) {
 
 	//Check if the data is existing
 
-	$check = "SELECT * FROM `users` WHERE `email`='".$email."'";
+	$check = "SELECT * FROM `company_users` WHERE `email`='".$email."'";
 
 	$check_query = mysqli_query($conn, $check);
 
@@ -45,7 +45,7 @@ if (isset($_POST['submit'])) {
 
 	<div class="error-msg" id="error-msg">
 					
-		<p><?php echo $_SESSION["error_msg"]; ?></p>
+		<p><?php echo $error_msg; ?></p>
 
 	</div>
 
@@ -73,7 +73,7 @@ if (isset($_POST['submit'])) {
 
 				if (isset($_SESSION["otp_email_send"])) {
 		
-					header('location: otp_send_mail.php');
+					header('location: company_profile.php?fid='.$_SESSION["unique_id"]);
 
 				}
 
@@ -127,11 +127,15 @@ if (isset($_POST['submit'])) {
 			
 			<div style="background: transparent;width: 100% !important;display: flex;justify-content: flex-start;">
 				
-				<div>
-					
-					<img src="../images/logo.png">
+				<a href="../index.php">
 
-				</div>
+					<div>
+						
+						<img src="../images/logo.png">
+
+					</div>
+
+				</a>
 
 			</div>
 

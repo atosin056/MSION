@@ -16,6 +16,8 @@ document.addEventListener('DOMContentLoaded', function() {
     
 });
 
+
+
 var error = document.getElementById('error-msg');
 
 setTimeout(function() {
