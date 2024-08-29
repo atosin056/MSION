@@ -118,8 +118,16 @@ if (isset($_GET["code"])) {
 		$select2_query = mysqli_query($conn, $select2);
 
 		if (mysqli_num_rows($select2_query) > 0) {
+
+			while ($r = mysqli_fetch_assoc($select2_query)) {
+				
+				$uniqueid = $r["unique_id"];
+
+				$_SESSION["comp_unique"] = $uniqueid;
+
+			}
 			
-			
+			header('location: company/dashboard.php?query='.$_SESSION["comp_unique"]);
 
 		}
 

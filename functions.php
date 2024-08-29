@@ -1,256 +1,329 @@
 <?php
 
-function existing_data ($table_name,$column,$data,$other_lines){
 
-	$error_response = false;
+require 'vendor/autoload.php';
 
-	$select = "SELECT * FROM `$table_name` WHERE `$column`='".$data."'";
+use PhpOffice\PhpWord\IOFactory;
 
-	$select_query = mysqli_query($conn, $select);
+use GuzzleHttp\Client;
 
-	if (mysqli_num_rows($select_query) > 0) {
-		
-		$error_response = true;
+use PhpOffice\PhpWord\PhpWord;
 
-		$error_msg = 'This Data already Exists in the Database';
 
-	}
+// Function to calculate time ago
 
-	else{
-
-		$other_lines;
-
-	}
-
-}
-
-function insert ($table_name, $table_parameters, $values, $action){
-
-	$insert = "INSERT INTO `$table_name` ($table_parameter) VALUES ('$values')";
-
-	$insert_query = mysqli_query($conn, $insert);
-
-	if ($insert_query) {
-		
-		$action;
-
-	}
-
-}
-
-function rankCVWithAPI($cvText, $jobDescription) {
+function timeAgo($timestamp) {
     
-    $apiUrl = "https://api.example.com/rank"; // Replace with the actual API endpoint
+    // Get the current time
     
-    $postData = [
+    $current_time = time();
     
-        'cvText' => $cvText,
+    // Ensure timestamp is in seconds
     
-        'jobDescription' => $jobDescription
+    if ($timestamp > 10000000000) {
     
-    ];
-
-    $ch = curl_init($apiUrl);
-    
-    curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($postData));
-    
-    curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type:application/json'));
-    
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-
-    
-    $response = curl_exec($ch);
-    
-    curl_close($ch);
-
-    $responseData = json_decode($response, true);
-
-    return $responseData['ranking'] ?? 1; // Default to 1 if no ranking is returned
-
-}
-
-function analyzeAndScoreCV($cvText, $jobTitle) {
-    
-    $language = new LanguageClient([
-    
-        'keyFilePath' => 'path/to/your-service-account-file.json'  // Path to your Google Cloud service account key
-    
-    ]);
-
-    
-    // Analyze the CV text
-    
-    $cvAnnotation = $language->analyzeEntities($cvText);
-    
-    $cvEntities = array_map('strtolower', array_column($cvAnnotation->entities(), 'name'));
-
-
-    // Analyze the job title
-
-    $jobAnnotation = $language->analyzeEntities($jobTitle);
-
-    $jobEntities = array_map('strtolower', array_column($jobAnnotation->entities(), 'name'));
-
-
-    // Compare entities and calculate score
-
-    $matchedEntities = array_intersect($cvEntities, $jobEntities);
-
-    $score = count($matchedEntities) / max(count($jobEntities), 1) * 5;  // Scale to 1-5
-
-    return [
-
-        'cvEntities' => $cvEntities,
-
-        'jobEntities' => $jobEntities,
-
-        'matchedEntities' => $matchedEntities,
-
-        'score' => round($score, 2)
-
-    ];
-
-}
-
-function getScore($cvText, $jobTitle, $language) {
-    
-    // Analyze the CV text
-    
-    $cvAnnotation = $language->analyzeEntities($cvText);
-    
-    $cvEntities = array_map('strtolower', array_column($cvAnnotation->entities(), 'name'));
-
-    // Analyze the job title
-    
-    $jobAnnotation = $language->analyzeEntities($jobTitle);
-    
-    $jobEntities = array_map('strtolower', array_column($jobAnnotation->entities(), 'name'));
-
-    // Compare entities and calculate score
-    
-    $matchedEntities = array_intersect($cvEntities, $jobEntities);
-    
-    $score = count($matchedEntities) / max(count($jobEntities), 1) * 5;  // Scale to 1-5
-
-    return round($score, 2);
-
-}
-
-function getCvScore($cvText, $jobTitle) {
-    
-    // Define the API endpoint
-    
-    $apiEndpoint = 'https://generativelanguage.googleapis.com/v1beta2/models/text:predict';
-
-    // Hardcoded API key
-    
-    $apiKey = 'AIzaSyCqlxqpyK9THnLBskfwif__XJl_SoiNZ5g'; // Replace with your actual API key
-
-    // Prepare the API request payload
-    
-    $data = array(
-    
-        'input' => array(
-    
-            'text' => $cvText
-    
-        ),
-    
-        'context' => array(
-    
-            'text' => $jobTitle
-    
-        )
-    
-    );
-
-    // Set up the HTTP request options
-    
-    $options = array(
-    
-        'http' => array(
-    
-            'header' => "Content-type: application/json\r\n" .
-    
-                        "Authorization: Bearer $apiKey\r\n",
-    
-            'method' => 'POST',
-    
-            'content' => json_encode($data),
-    
-        ),
-    
-    );
-
-    // Create the context for the request
-    
-    $context = stream_context_create($options);
-
-    // Send the request and get the response
-    
-    $result = file_get_contents($apiEndpoint, false, $context);
-    
-    if ($result === false) {
-    
-        return "Error calling Generative Language API.";
+        $timestamp /= 1000; // Convert from milliseconds to seconds
     
     }
 
-    // Decode the JSON response
+    // Calculate the time difference
     
-    $response = json_decode($result, true);
+    $time_difference = $current_time - $timestamp;
 
-    // Extract and return the score from the response
+    // Define time units
     
-    if (isset($response['score'])) {
+    $condition = array(
     
-        return $response['score']; // Adjust based on actual API response
+        12 * 30 * 24 * 60 * 60 => 'year',
     
-    } else {
+        30 * 24 * 60 * 60 => 'month',
     
-        return "Unexpected API response.";
+        24 * 60 * 60 => 'day',
     
+        60 * 60 => 'hr',
+    
+        60 => 'min',
+    
+        1 => 'sec'
+    
+    );
+
+
+
+    // Loop through time units and find the largest applicable unit
+
+    foreach ($condition as $secs => $str) {
+
+        $d = $time_difference / $secs;
+
+        if ($d >= 1) {
+
+            $t = round($d);
+
+            return $t . ' ' . $str . ($t > 1 ? 's' : '') . ' ago';
+
+        }
+
     }
 
-}
 
-function extractTextFromPdf($pdfFile) {
 
-    $output = shell_exec("pdftotext " . escapeshellarg($pdfFile) . " -");
-
-    return $output;
+    return 'just now'; // Fallback in case something goes wrong
 
 }
 
-function extractTextFromWord($filePath) {
-   
-    // Load the Word document
-   
+
+function extractTextFromDocx($filePath) {
+
     $phpWord = IOFactory::load($filePath);
 
-    // Initialize an empty string to hold the text
-   
-    $text = '';
+    $extractedText = '';
 
-    // Iterate through sections and extract text
-   
+
+
     foreach ($phpWord->getSections() as $section) {
-   
+
         foreach ($section->getElements() as $element) {
-   
-            if (method_exists($element, 'getText')) {
-   
-                $text .= $element->getText() . PHP_EOL;
-   
+
+            if (method_exists($element, 'getElements')) {
+
+                foreach ($element->getElements() as $childElement) {
+
+                    if (method_exists($childElement, 'getText')) {
+
+                        $extractedText .= $childElement->getText() . "\n";
+
+                    }
+
+                }
+
             }
-   
+
         }
+
     }
 
-    return $text;
+    return $extractedText;
 
 }
 
+function replaceNewLinesWithBr($text) {
+    // First, convert special HTML characters to entities
+    $text = htmlspecialchars($text, ENT_QUOTES, 'UTF-8');
+
+    // Replace all types of line breaks with <br>
+    $text = str_replace(array("\r\n", "\r", "\n"), '<br>', $text);
+    return $text;
+}
+
+
+function sendToOpenAIAPI($text, $profession) {
+
+    $client = new Client();
+
+    $apiKey = 'sk-proj-Qc0SnKLc98Rj2nN5L0QhT3BlbkFJtPCQHJr6Sl34QWV2bENO'; // Replace with your actual OpenAI API key
+
+    $apiEndpoint = 'https://api.openai.com/v1/chat/completions';
+
+    try {
+
+        // Customize the prompt to ask for a rating based on a specific profession
+
+        $prompt = "You are an expert $profession. Please read the following text and rate it based on its relevance, accuracy, and quality from the perspective of a $profession on a scale from 1 to 5. Be very critical in your evaluation—reserve a rating of 5 for text that is truly exceptional in every aspect, demonstrating thorough expertise, exceptional clarity, and relevance. A rating of 4 should be given to text that is professional enough and has the necessary things like name and date of birth. A rating of 3 should be given to text that is very good but may lack a small element of perfection. Average work should receive a rating of 2, while below-average work should be rated 1. Provide detailed feedback to justify your rating.\n\n$text\n\nProvide the rating in the following format:'Rating: X'where X is a number between 1 and 5.Include a brief explanation for your rating.";
+
+        $response = $client->post($apiEndpoint, [
+            
+            'json' => [
+                
+                'model' => 'gpt-4',  // Specify the OpenAI model you want to use
+                
+                'messages' => [
+                   
+                    [
+
+                        'role' => 'user',
+
+                        'content' => $prompt
+
+                    ]
+
+                ],
+
+                'max_tokens' => 100,  // Adjust as needed
+
+            ],
+
+            'headers' => [
+
+                'Content-Type' => 'application/json',
+
+                'Authorization' => 'Bearer ' . $apiKey
+
+            ],
+
+        ]);
+
+
+        $data = json_decode($response->getBody(), true);
+
+        // Extract the rating from the response content
+
+        if (isset($data['choices'][0]['message']['content'])) {
+
+            $content = $data['choices'][0]['message']['content'];
+
+            if (preg_match('/Rating:\s*(\d)/', $content, $matches)) {
+
+                $rating = $matches[1];
+
+                return $rating;
+
+            } else {
+
+                echo "Failed to extract a valid rating from the response.";
+
+            }
+
+        }
+
+        return null;
+
+    } catch (Exception $e) {
+
+        echo 'Error: ' . $e->getMessage();
+
+        return null;
+
+    }
+
+}
+
+// // Example usage
+// $filePath = 'cv/Collaboration Agreement.docx'; // Replace with the path to your .docx file
+// $text = extractTextFromDocx($filePath); // Assume this function extracts text from the docx file
+// $profession = 'doctor'; // Replace with the profession or perspective you want to use
+// $rating = sendToOpenAIAPI($text, $profession);
+
+// if ($rating) {
+//     echo "Rating from the perspective of a $profession: " . $rating;
+// } else {
+//     echo "Failed to get a valid rating from the OpenAI API.";
+// }
+
+
+// Function to send input to OpenAI API and get generated content
+
+function generateCVContent($bio, $title, $desired_position, $skills, $stack) {
+
+    $client = new Client();
+
+    $apiKey = 'sk-proj-Qc0SnKLc98Rj2nN5L0QhT3BlbkFJtPCQHJr6Sl34QWV2bENO'; // Replace with your OpenAI API key
+
+    $apiEndpoint = 'https://api.openai.com/v1/chat/completions';
+
+
+
+    // Construct the prompt for the AI
+
+    $prompt = "Create a professional CV based on the following details:\n\n";
+
+    $prompt .= "Bio: $bio\n";
+
+    $prompt .= "Title: $title\n";
+
+    $prompt .= "Desired Position: $desired_position\n";
+
+    $prompt .= "Skills: $skills\n";
+
+    $prompt .= "Tech Stack: $stack\n";
+
+
+
+    try {
+
+        $response = $client->post($apiEndpoint, [
+
+            'json' => [
+
+                'model' => 'gpt-4', // Specify the OpenAI model you want to use
+
+                'messages' => [
+
+                    [
+
+                        'role' => 'user',
+
+                        'content' => $prompt
+
+                    ]
+
+                ],
+
+                'max_tokens' => 500, // Adjust as needed
+
+            ],
+
+            'headers' => [
+
+                'Content-Type' => 'application/json',
+
+                'Authorization' => 'Bearer ' . $apiKey
+
+            ],
+
+        ]);
+
+
+
+        $data = json_decode($response->getBody(), true);
+
+
+        if (isset($data['choices'][0]['message']['content'])) {
+
+            return $data['choices'][0]['message']['content'];
+
+        } else {
+
+            return "Failed to generate CV content.";
+
+        }
+
+    } catch (Exception $e) {
+
+        return 'Error: ' . $e->getMessage();
+
+    }
+
+}
+
+function createAndDownloadCV($generatedContent) {
+
+    $phpWord = new PhpWord();
+
+    $section = $phpWord->addSection();
+
+    // Add generated content to the document
+    $section->addText($generatedContent);
+
+
+
+    // Send the document to the browser for download
+
+    header('Content-Type: application/octet-stream');
+
+    header('Content-Disposition: attachment;filename="Generated_CV.docx"');
+
+    header('Cache-Control: max-age=0');
+
+
+
+    $objWriter = IOFactory::createWriter($phpWord, 'Word2007');
+
+    $objWriter->save('php://output');
+
+    exit();
+
+}
 
 
 ?>

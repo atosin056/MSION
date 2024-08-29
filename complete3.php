@@ -226,9 +226,9 @@ if (isset($_POST["submit"])) {
 
 									</div>
 
-									<div style="flex: 1 1 100px;">
+									<div style="flex: 1 1 100;">
 										
-										<input type="text" name="linkedin" class="form-control" style="padding-left: 20px;border-radius: 20px;height: 100% !important;width: 100% !important;" placeholder="LinkedIn Link">
+										<input type="text" name="linkedin" class="form-control" style="padding-left: 20px;border-radius: 20px;height: 56px; !important;width: 100% !important;" placeholder="LinkedIn Link">
 
 									</div>
 
@@ -242,9 +242,9 @@ if (isset($_POST["submit"])) {
 
 									</div>
 
-									<div style="flex: 1 1 100px;">
+									<div style="flex: 1 1 100;">
 										
-										<input type="text" name="youtube" class="form-control" style="padding-left: 20px;border-radius: 20px;height: 100% !important;width: 100% !important;" placeholder="Youtube Link">
+										<input type="text" name="youtube" class="form-control" style="padding-left: 20px;border-radius: 20px;height: 56px !important;width: 100% !important;" placeholder="Youtube Link">
 
 									</div>
 
@@ -260,7 +260,7 @@ if (isset($_POST["submit"])) {
 
 									<div style="flex: 1 1 100px;">
 										
-										<input type="text" name="x" class="form-control" style="padding-left: 20px;border-radius: 20px;height: 100% !important;width: 100% !important;" placeholder="X Link">
+										<input type="text" name="x" class="form-control" style="padding-left: 20px;border-radius: 20px;height: 56px !important;width: 100% !important;" placeholder="X Link">
 
 									</div>
 
@@ -276,7 +276,7 @@ if (isset($_POST["submit"])) {
 
 									<div style="flex: 1 1 100px;">
 										
-										<input type="text" name="facebook" class="form-control" style="padding-left: 20px;border-radius: 20px;height: 100% !important;width: 100% !important;" placeholder="FaceBook Link">
+										<input type="text" name="facebook" class="form-control" style="padding-left: 20px;border-radius: 20px;height: 56px !important;width: 100% !important;" placeholder="FaceBook Link">
 
 									</div>
 

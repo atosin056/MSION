@@ -4,6 +4,15 @@ session_start();
 
 include 'connect.php';
 
+require 'vendor/autoload.php';
+
+include 'functions.php';
+
+//use PhpOffice\PhpWord\IOFactory;
+
+// use GuzzleHttp\Client;
+
+
 if (!isset($_GET["fuid"])) {
 
     header('location: verify_otp.php');
@@ -107,11 +116,36 @@ if (isset($_POST["submit"])) {
 
                 if ($updates_query) {
 
-                    header('location: complete2.php?distro='.$_GET['fuid']);
+                	// Example usage
+					$filePath = 'cv/'.$cvname; // Replace with the path to your .docx file
 
-                    // echo $update;
+					$text = extractTextFromDocx($filePath); // Assume this function extracts text from the docx file
 
-                    exit();
+					$profession = $title; // Replace with the profession or perspective you want to use
+
+					$rating = sendToOpenAIAPI($text, $profession);
+
+					if ($rating) {
+
+						$re_update = "UPDATE `users` SET `cv_rating`='".$rating."' WHERE `email`='".$_SESSION["otp_email_send"]."'";
+
+						$re_update_query = mysqli_query($conn, $re_update);
+
+						if ($re_update_query) {
+
+		                    header('location: complete2.php?distro='.$_GET['fuid']);
+
+		                    exit();	
+
+						}
+
+					}
+
+					else {
+
+					    echo "Failed to get a valid rating from the OpenAI API.";
+
+					}
 
                 }
 
@@ -249,7 +283,7 @@ if (isset($_POST["submit"])) {
 							
 							<div class="form-group">
 								
-								<input type="text" name="company_name" class="form-control" style="border-radius: 100px;height: 56px;padding-left: 20px;" placeholder="Fullname" >
+								<input type="text" name="fullname" class="form-control" style="border-radius: 100px;height: 56px;padding-left: 20px;" placeholder="Fullname" >
 
 							</div>
 

@@ -291,7 +291,7 @@ if (isset($_POST['submit'])) {
 
 							<div style="margin-top: 20px;">
 								
-								<font>Already have an Account? <a href="#">Login</a></font>
+								<font>Already have an Account? <a href="login.php">Login</a></font>
 
 							</div>
 

@@ -44,6 +44,10 @@ if (isset($_POST["submit"])) {
 
 			$unique_id = $row["unique_id"];
 
+			$cv_rating = $row["cv_rating"];
+
+
+			$_SESSION['cv_rating'] = $cv_rating;
 
 			$_SESSION["unique_id"] = $unique_id;
 
@@ -77,33 +81,21 @@ if (isset($_POST["submit"])) {
 
 	elseif(mysqli_num_rows($select_query) == 0) {
 
-		$select2 = "SELECT * FROM `company_users` WHERE `email`='".$_SESSION["otp_send_email"]."'";
+		$select2 = "SELECT * FROM `company_users` WHERE `email`='".$email."' AND `password`='".$password."'";
 
 		$select2_query = mysqli_query($conn, $select2);
 
 		if (mysqli_num_rows($select2_query) > 0) {
-			
-			
 
-		}
-
-		else{	
-
-			$insert = "INSERT INTO `users` (`id`,`email`,`unique_id`) VALUES (NULL, '".$email."','".$unique_id."')";
-
-			$insert_query = mysqli_query($conn, $insert);
-
-			if ($insert_query) {
+			while ($r = mysqli_fetch_assoc($select2_query)) {
 				
-				$_SESSION["otp_email_send"] = $email;
+				$uniqueid = $r["unique_id"];
 
-				if (isset($_SESSION["otp_email_send"])) {
-		
-					header('location: otp_send_mail.php');
-
-				}
+				$_SESSION["comp_unique"] = $uniqueid;
 
 			}
+			
+			header('location: company/dashboard.php?query='.$uniqueid);
 
 		}
 
@@ -215,7 +207,7 @@ if (isset($_POST["submit"])) {
 
 							<div style="width: 100% !important;">
 								
-								<input type="text" name="email" class="form-control person" style="background: white;box-shadow: 10px 0px 10px #D8F3FF; border-top: 1px solid #13B7FD;border-bottom: 1px solid #13B7FD;border-right: 1px solid #13B7FD;border-left: none !important;border-radius: 0px;height: 56 !important;border-top-right-radius: 20px;border-bottom-right-radius: 20px;" placeholder="Email Address">
+								<input type="text" id="pe" name="email" class="form-control person" style="background: white;box-shadow: 10px 0px 10px #D8F3FF; border-top: 1px solid #13B7FD;border-bottom: 1px solid #13B7FD;border-right: 1px solid #13B7FD;border-left: none !important;border-radius: 0px;height: 56 !important;border-top-right-radius: 20px;border-bottom-right-radius: 20px;" placeholder="Email Address">
 
 							</div>
 

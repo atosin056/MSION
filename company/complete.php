@@ -16,7 +16,7 @@ if (isset($_POST["submit"])) {
        
     $tagline = mysqli_real_escape_string($conn, $_POST['tagline']);
     
-    $about = mysqli_real_escape_string($conn, $_POST["about"]);
+    $about = str_replace(array("\r\n", "\n", "\r"), '<br>', $_POST["about"]);
 
     if (isset($_FILES["photo"]) && $_FILES["photo"]["error"] <= 0) {
         
@@ -51,7 +51,7 @@ if (isset($_POST["submit"])) {
 
             if ($move) {
     
-                $update = "UPDATE `company_users` SET `about`='".$about."',`tagline`='".$tagline."',`company_logo`='".$filename."' WHERE `email`='".$_SESSION["otp_email_send"]."'";
+                $update = "UPDATE `company_users` SET `about`='".mysqli_real_escape_string($conn, $about)."',`tagline`='".$tagline."',`company_logo`='".$filename."' WHERE `email`='".$_SESSION["otp_email_send"]."'";
 
                 $update_query = mysqli_query($conn, $update);
 
@@ -145,7 +145,7 @@ if (isset($_POST["submit"])) {
 
 							<div style="background: transparent;width: 40% !important;display: flex;align-items: center;">
 								
-								<p style="font-size: 25px;color: #726C6C;" id="uploadStatus">Upload a profile picture</p>
+								<p style="font-size: 25px;color: #726C6C;" id="uploadStatus">Upload Company's Logo</p>
 
 							</div>
 

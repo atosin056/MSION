@@ -4,9 +4,99 @@ session_start();
 
 include 'connect.php';
 
+include 'functions.php';
+
 if (!isset($_SESSION["email"])) {
 	
 	header('location: login.php');
+
+}
+
+if (isset($_POST["cv_update"])) {
+	
+	if (isset($_FILES["file"]) && $_FILES["file"]["error"] <= 0) {
+        
+        $alloweds = array("docx" => "application/vnd.openxmlformats-officedocument.wordprocessingml.document", "pdf" => "application/pdf");
+
+        $cvname = $_FILES["file"]["name"];
+        
+        $filetypes = $_FILES["file"]["type"];
+        
+        $filesizes = $_FILES["file"]["size"];
+
+        $fileSizeKB = $filesizes / 1024;
+        
+        $ext = pathinfo($cvname, PATHINFO_EXTENSION);
+
+        if (!array_key_exists($ext, $alloweds)) {
+        
+            die("Please select a valid file format");
+        
+        }
+        
+        $maxsize = 5000000000000 * 1024 * 1024;
+
+        if ($filesizes > $maxsize) {
+           
+            die("Error: Filesize too Massive");
+        
+        }
+
+        if (in_array($filetypes, $alloweds)) {
+            
+            $moves = move_uploaded_file($_FILES["file"]["tmp_name"], "cv/". $cvname);
+
+            if ($moves) {
+
+                $updates = "UPDATE `users` SET `cv`='".$cvname."' WHERE `email`='".$_SESSION["email"]."'";
+
+                $updates_query = mysqli_query($conn, $updates);
+
+                if ($updates_query) {
+
+                	// Example usage
+                	
+					$filePath = 'cv/'.$cvname; // Replace with the path to your .docx file
+
+					$text = extractTextFromDocx($filePath); // Assume this function extracts text from the docx file
+
+					$profession = $_SESSION["title"]; // Replace with the profession or perspective you want to use
+
+					$rating = sendToOpenAIAPI($text, $profession);
+
+					if ($rating) {
+
+						$re_update = "UPDATE `users` SET `cv_rating`='".$rating."' WHERE `email`='".$_SESSION["email"]."'";
+
+						$re_update_query = mysqli_query($conn, $re_update);
+
+						if ($re_update_query) {
+
+							$_SESSION["cv"] = $cvname;
+
+							$_SESSION["cv_rating"] = $rating;
+
+		                    header('location: dashboard.php');
+
+		                    exit();	
+
+						}
+
+					}
+
+					else {
+
+					    echo "Failed to get a valid rating from the OpenAI API.";
+
+					}
+
+                }
+
+            }
+
+        }
+
+    }
 
 }
 
@@ -67,11 +157,10 @@ if (isset($_POST["upload"])) {
 
 if (isset($_POST["biography_update"])) {
 	
-	$bio = mysqli_real_escape_string($conn, $_POST["biography"]);
+	$bio = str_replace(array("\r\n", "\n", "\r"), '<br>', $_POST["biography"]);;
 
-	
 
-	$update = "UPDATE `users` SET `biography`='".$bio."' WHERE `email`='".$_SESSION["email"]."'";
+	$update = "UPDATE `users` SET `biography`='".mysqli_real_escape_string($conn, $bio)."' WHERE `email`='".$_SESSION["email"]."'";
 
 	$update_query = mysqli_query($conn, $update);
 
@@ -91,19 +180,28 @@ if (isset($_POST["biography_update"])) {
 
 }
 
+$bioForTextarea = str_replace(array('<br>', '<br />'), "\n", $_SESSION["biography"]);
+
+// Escape special HTML characters for textarea
+
+$bioForTextarea = htmlspecialchars($bioForTextarea, ENT_QUOTES, 'UTF-8');
+
 if (isset($_POST["looking_update"])) {
 	
-	$looking = mysqli_real_escape_string($conn, $_POST["looking"]);
+	$looking = str_replace(array("\r\n", "\n", "\r"), '<br>', $_POST["looking"]);;
 
-	$update = "UPDATE `users` SET `looking`='".$looking."' WHERE `email`='".$_SESSION["email"]."'";
+	$update = "UPDATE `users` SET `looking`='".mysqli_real_escape_string($conn, $looking)."' WHERE `email`='".$_SESSION["email"]."'";
 
 	$update_query = mysqli_query($conn, $update);
 
 	if ($update_query) {
+
+		$_SESSION["looking"] = $looking;
 		
-		header('location: logout.php');
+		header('location: dashboard.php');
 
 	}
+
 
 	// else{
 
@@ -112,6 +210,12 @@ if (isset($_POST["looking_update"])) {
 	// }
 
 }
+
+$lookingForTextarea = str_replace(array('<br>', '<br />'), "\n", $_SESSION["looking"]);
+
+// Escape special HTML characters for textarea
+
+$lookingForTextarea = htmlspecialchars($lookingForTextarea, ENT_QUOTES, 'UTF-8');
 
 if(isset($_POST["experience_update"])){
 
@@ -275,7 +379,7 @@ if(isset($_POST["experience_update"])){
 		      	<div class="form-group">
 											
 					<textarea name="biography" required class="form-control" style="border-radius: 20px !important;height: 200px;padding-left: 20px;padding-top: 20px;line-height: 30px !important;" placeholder="Enter Text">
-<?php echo $_SESSION["biography"];?>
+<?php echo $bioForTextarea;?>
 					</textarea>
 
 				</div>
@@ -323,7 +427,7 @@ if(isset($_POST["experience_update"])){
 		      	<div class="form-group">
 											
 					<textarea name="looking" required class="form-control" style="border-radius: 20px !important;height: 200px;padding-left: 20px;padding-top: 20px;line-height: 30px !important;" placeholder="Enter Text">
-<?php echo $_SESSION["looking"];?>
+<?php echo $lookingForTextarea?>
 					</textarea>
 
 				</div>
@@ -343,6 +447,8 @@ if(isset($_POST["experience_update"])){
   </div>
 
 </div>
+
+
 
 <!-- Fourth Looking Modal -->
 
@@ -433,6 +539,138 @@ if(isset($_POST["experience_update"])){
 	    </div>
   
   </div>
+
+</div>
+
+<div class="modal fade" id="modal6" tabindex="-1" role="dialog" aria-labelledby="modal1Title" aria-hidden="true">
+
+	<div class="modal-dialog modal-dialog-centered" role="document" style="margin-top: 100px !important;">
+
+	    <div class="modal-content">
+
+	      <div class="modal-header">
+
+	        <h5 class="modal-title" id="modal1Title">Update CV</h5>
+
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+
+	          <span aria-hidden="true">x</span>
+
+	        </button>
+
+	      </div>
+
+	      <div class="modal-body">
+
+	      	<form method="POST" style="display: flex;gap: 20px;flex-direction: column;" enctype="multipart/form-data">
+
+		      	<div>
+							
+					<input type="file" id="fileInput" name="file" accept=".docx, .pdf" style="display: none;" />
+
+					<div class="upload-area" onclick="document.getElementById('fileInput').click();">
+								
+						<div style="display: flex;flex-direction: column;">
+									
+							<div style="width: 100% !important;display: flex;justify-content: center;">
+										
+								<img id="fileIcon" src="images/upload.png" style="width: 40px !important;height: 40px !important;border-radius: 50px;">
+
+							</div>
+
+						<div>
+										
+						<div style="text-align: center;display: flex;flex-direction: column;gap: 8px;">
+											
+							<font><font style="font-weight: 600;color: #016B98;">Click to upload</font> or drag and drop</font>
+
+							<font id="uploadText" style="color: var(--Grey-600, #475367);">PDF, DOCX, JPG or GIF (max. 800x400px)</font>
+
+						</div>
+
+					</div>
+
+					</div>
+
+					</div>
+
+					<div class="modal-footer">
+
+		        	<button type="submit" class="get-started" style="color: white;" name="cv_update">Create</button>
+
+		     		</div>
+
+	  			</form>
+	    
+	    	</div>
+  
+		</div>
+
+	</div>
+
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- Fourth Looking Modal -->
+
+<div class="modal fade" id="modal5" tabindex="-1" role="dialog" aria-labelledby="modal1Title" aria-hidden="true">
+
+	<div class="modal-dialog modal-dialog-centered" role="document" style="margin-top: 100px !important;">
+
+	    <div class="modal-content">
+
+	      <div class="modal-header">
+
+	        <h5 class="modal-title" id="modal1Title">Delete CV</h5>
+
+	        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+
+	          <span aria-hidden="true">x</span>
+
+	        </button>
+
+	      </div>
+
+	      <div class="modal-body">
+
+	  		<div>
+	  			
+	  			<div>
+	  				
+	  				<div>
+	  					
+	  					<div style="display: flex;background: transparent;justify-content: center;gap: 10px;">
+	  						
+	  						<a href="delete_cv.php?id=<?php echo $_SESSION["email"]; ?>" style="width: inherit;background: transparent;">
+	  							
+	  							<div class="btn btn-secondary" style="background:red;border: none;">
+	  								
+	  								Yes
+
+	  							</div>
+
+	  						</a>
+
+	  						<button type="button" class="btn btn-secondary" data-dismiss="modal" style="background: green;">No</button>
+
+	  					</div>
+
+	  				</div>
+
+	  			</div>
+
+	  		</div>
+	    
+	      </div>
+  
+  </div>
+
+</div>
 
 </div>
 
@@ -714,8 +952,30 @@ include 'navbar.php';
 
 							</div>
 
-							<div style="width: 24px;height: 24px;">
+							<?php
+
+							if ($_SESSION['cv'] == ' ') {
+
+							?>
+
+							<div style="width: 24px;height: 24px;" class="modal-trigger" data-target="#modal6" data-toggle="modal">
 								
+							<?php
+
+							}
+
+							else{
+
+							?>
+
+							<div style="width: 24px;height: 24px;">
+
+							<?php
+
+							}
+
+							?>
+
 								<img src="images/edit.png">
 
 							</div>
@@ -728,29 +988,31 @@ include 'navbar.php';
 
 								<a href="cv/<?php echo $_SESSION["cv"]; ?>" download>
 								
-								<div style="display: flex;gap: 8px;">
-									
-									<div style="width: 40px;height: 40px;">
+									<div style="display: flex;gap: 8px;">
 										
-										<img src="images/file type.png" id="fileTypeImage" style="width: 100% !important;height: 100% !important;">
+										<div style="width: 40px;height: 40px;">
+											
+											<img src="images/file type.png" id="fileTypeImage" style="width: 100% !important;height: 100% !important;">
 
-									</div>
+										</div>
 
-									<div style="display: flex;align-items: center;">
+										<div style="display: flex;align-items: center;">
 
-										<div style="flex-direction: column;display: flex;gap: 3px;">
-										
-											<font class="cv-name"><?php echo $_SESSION["cv"]; ?></font>
+											<div style="flex-direction: column;display: flex;gap: 3px;">
+											
+												<font class="cv-name"><?php echo $_SESSION["cv"]; ?></font>
 
-											<font class="addons">313 KB. 2 July 2024</font>
+												<font class="addons">313 KB. 2 July 2024</font>
+
+											</div>
 
 										</div>
 
 									</div>
 
-								</div>
+								</a>
 
-								<a href="#">
+								<div class="modal-trigger" data-target="#modal5" data-toggle="modal" style="width: 16px !important;background: transparent;">
 
 									<div style="background: transparent;">
 										
@@ -758,7 +1020,7 @@ include 'navbar.php';
 
 									</div>
 
-								</a>
+								</div>
 
 							</div>
 
@@ -766,7 +1028,7 @@ include 'navbar.php';
 
 						<div>
 							
-							<a href="#">
+							<a href="generate_cv.php">
 								
 								<div class="extract-cv">
 									
@@ -1285,6 +1547,42 @@ else if (fileExtension === 'docx') {
         skillInput.style.borderBottom = '1px solid #CCCBCB';
     }
 });
+   document.getElementById('profileImageInput').addEventListener('change', function(event) {
+    const file = event.target.files[0];
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            const preview = document.getElementById('profileImagePreview');
+            preview.src = e.target.result;
+            preview.style.display = 'block';
+
+            // Update the text in the <p> tag with the filename
+            const uploadStatus = document.getElementById('uploadStatus');
+            uploadStatus.textContent = `${file.name}`;
+        };
+        reader.readAsDataURL(file);
+    }
+});
+document.getElementById('fileInput').addEventListener('change', function(event) {
+    const file = event.target.files[0];
+    const fileIcon = document.getElementById('fileIcon');
+    const uploadText = document.getElementById('uploadText');
+
+    if (file) {
+        const fileName = file.name;
+        const fileExtension = fileName.split('.').pop().toLowerCase();
+
+        // Change the icon based on the file extension
+        if (fileExtension === 'docx') {
+            fileIcon.src = 'images/docx_icon.webp'; // Path to your .docx icon image
+        }
+        if (fileExtension === 'pdf') {
+        	fileIcon.src = 'images/pdf_icon.png';
+        }
+        uploadText.textContent = `${fileName}`;
+    }
+});
+
 </script>
 
 </html>
