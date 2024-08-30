@@ -18,6 +18,25 @@ if($_GET["em"] == $_SESSION["email"]){
 
 		$experience = $_POST["experience"];
 
+
+
+		$field1 = $_POST["field1"];
+
+		$title1 = $_POST["title1"];
+
+
+
+		$field2 = $_POST["field2"];
+
+		$title2 = $_POST["title2"];
+
+
+		$field3 = $_POST["field3"];
+
+		$title3 = $_POST["title3"];
+
+
+
 		$cv_rating = '1';
 
 		//Code to check the rating
@@ -92,7 +111,7 @@ if($_GET["em"] == $_SESSION["email"]){
 
 		//Update the DB
 
-		$insert = "INSERT INTO `job` (`id`,`jobtitle`,`jobdescription`,`cv_rating`,`jobtype`,`currency`,`salary`,`deadline`,`application_link`,`unique_id`,`company_name`,`company_logo`,`company_location`,`location`) VALUES (NULL,'".$jobtitle."','".mysqli_real_escape_string($conn, $jobdesc)."','".$cv_rating."','".$jobtype."','".$currency."','".$salary."','".$deadline."','".$application_link."','".$unique_id."','".$_SESSION["company_name"]."','".$_SESSION["company_logo"]."','".$_SESSION["location"]."','".$location."')";
+		$insert = "INSERT INTO `job` (`id`,`jobtitle`,`jobdescription`,`cv_rating`,`jobtype`,`currency`,`salary`,`deadline`,`application_link`,`unique_id`,`company_name`,`company_logo`,`company_location`,`location`,`requirements`,`responsibilities`,`questions`,`requirements_text`,`responsibilities_text`,`questions_text`) VALUES (NULL,'".$jobtitle."','".mysqli_real_escape_string($conn, $jobdesc)."','".$cv_rating."','".$jobtype."','".$currency."','".$salary."','".$deadline."','".$application_link."','".$unique_id."','".$_SESSION["company_name"]."','".$_SESSION["company_logo"]."','".$_SESSION["location"]."','".$location."','".$title1."','".$title2."','".$title3."','".$field1."','".$field2."','".$field3."')";
 
 		$insert_query = mysqli_query($conn, $insert);
 
@@ -152,7 +171,7 @@ include 'navbar.php';
 
 			</div>
 
-			<form style="gap: 20px;display: flex;margin-top: 20px;" method="POST">
+			<form style="gap: 20px;display: flex;margin-top: 20px;" method="POST" onsubmit="return formatTextareas()">
 				
 				<div class="col-lg-6 col-sm-6 col-md-6" style="flex: 1 1 100;background: #FAFAFA;border-radius: 24px 24px 0px 0px;padding: 24px;display: flex;flex-direction: column;gap: 24px;">
 				
@@ -177,6 +196,77 @@ include 'navbar.php';
 					</div>
 
 					<!-- End -->
+
+					<div class="dash-sec" style="flex-direction: column;gap: 20px;">
+						
+						<div style="display: flex;flex-direction: column;gap: 20px;">
+
+
+							<div>
+								
+								<label class="label-for">Field Title</label>
+
+								<input required type="text" name="title1" class="form-control personal" placeholder="e.g Job Requirements" style="margin-top: 10px;">
+
+							</div>
+
+							<div>
+								
+								<label class="label-for">Field Description</label>
+
+								<textarea required name="field1" class="form-control personal list-input" placeholder="Enter Field Description ✨" style="margin-top: 10px;height: 200px;padding-top: 20px;"></textarea>
+
+							</div>
+
+						</div>
+
+						<div style="display: flex;flex-direction: column;gap: 20px;">
+
+							<div>
+								
+								<label class="label-for">Field Title</label>
+
+								<input required type="text" name="title2" class="form-control personal" placeholder="e.g Responsibilities" style="margin-top: 10px;">
+
+							</div>
+
+							<div>
+								
+								<label class="label-for">Field Description</label>
+
+								<textarea name="field2" class="form-control personal list-input" placeholder="Enter Field Description ✨" style="margin-top: 10px;height: 200px;padding-top: 20px;"></textarea>
+
+							</div>
+
+						</div>
+
+						<div style="display: flex;flex-direction: column;gap: 20px;">
+
+							<div>
+								
+								<label class="label-for">Field Title</label>
+
+								<input required type="text" name="title3" class="form-control personal" placeholder="e.g Questions" style="margin-top: 10px;">
+
+							</div>
+
+							<div>
+								
+								<label class="label-for">Field Description</label>
+
+								<textarea name="field3" class="form-control personal list-input" placeholder="Enter Field Description ✨" style="margin-top: 10px;height: 200px;padding-top: 20px;"></textarea>
+
+							</div>
+
+						</div>	
+
+					</div>
+
+					<!-- End -->
+
+				</div>
+
+				<div class="col-lg-6 col-sm-6 col-md-6" style="flex: 1 1 100;background: #FAFAFA;border-radius: 24px 24px 0px 0px;padding: 24px;display: flex;flex-direction: column;gap: 24px;">
 
 					<div class="dash-sec" style="flex-direction: column;gap: 20px;">
 						
@@ -312,9 +402,6 @@ include 'navbar.php';
 
 					</div>
 
-				</div>
-
-				<div class="col-lg-6 col-sm-6 col-md-6" style="flex: 1 1 100;background: #FAFAFA;border-radius: 24px 24px 0px 0px;padding: 24px;display: flex;flex-direction: column;gap: 24px;">
 					
 					<div class="dash-sec" style="flex-direction: column;gap: 20px;">
 						
@@ -454,6 +541,42 @@ function onlyOne(checkbox) {
 
     });
 }
+
+
+function formatTextareas() {
+	
+	// Get all textarea elements with class 'list-input'
+	
+	var textareas = document.querySelectorAll(".list-input");
+
+	// Loop through each textarea
+	
+	textareas.forEach(function(textarea) {
+	
+	    // Split the textarea content by new lines
+	
+	    var lines = textarea.value.split('\n');
+	
+
+	
+	    // Format each line by wrapping it with <li> tags
+	
+	    var formattedValue = lines.map(line => `<li class="responsibilities">${line.trim()}</li>`).join('');
+	
+
+	
+	    // Set the formatted value back to the textarea for submission
+	
+	    textarea.value = formattedValue;
+	
+	});
+
+	// Return false to prevent form submission if you want to see the result without refreshing the page
+	
+	return true;
+
+}
+
 
 function onlyone(checkbox) {
 

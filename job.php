@@ -4,6 +4,8 @@ session_start();
 
 include 'connect.php';
 
+include 'functions.php';
+
 ?>
 
 <html>
@@ -107,6 +109,47 @@ include 'navbar.php';
 				<div style="width: 35%;background: transparent;height: 1400px !important;overflow-y: auto;">
 
 					<div style="background: transparent;gap: 16px !important;flex-wrap: wrap;flex-direction: column;display: flex;width: 100%;">
+
+						<?php
+
+
+						if (isset($_GET["job_id"])) {
+							
+							$sele = "SELECT * FROM `job` WHERE `unique_id`='".$_GET["job_id"]."'";
+
+							$sele_query = mysqli_query($conn, $sele);
+
+							if (mysqli_num_rows($sele_query) > 0) {
+								
+								while ($row = mysqli_fetch_assoc($sele_query)){
+
+									$company_logo = $row["company_logo"];
+
+									$company_name = $row["company_name"];
+
+									$company_location = $row["company_location"];
+
+									$status = $row["status"];
+
+									$jobtitle = $row["jobtitle"];
+
+									$jobdesc = $row["jobdescription"];
+
+									$jobtype = $row["jobtype"];
+
+									$location = $row["location"];
+
+									$salary = $row["salary"];
+
+									$currency = $row["currency"];
+
+									$timecreated = $row["timecreated"];
+
+									$unique_id = $row["unique_id"];
+
+								
+
+						?>
 						 
 						<div class="job-story-box job-active">
 							
@@ -116,7 +159,7 @@ include 'navbar.php';
 									
 									<div class="company-logo">
 										
-										<img src="images/logo.png" style="width: 100% !important;height: 100% !important;">
+										<img src="company/profile/<?php echo $company_logo; ?>" style="width: 100% !important;height: 100% !important;border-radius: inherit;border: inherit;">
 
 									</div>
 
@@ -128,9 +171,9 @@ include 'navbar.php';
 
 												<div style="height: auto;background: transparent;height: 80%;">
 
-													<h4 class="name">MSI Nigeria</h4>
+													<h4 class="name"><?php echo $company_name; ?></h4>
 
-													<p class="location">Abuja, Nigeria</p>
+													<p class="location"><?php echo $company_location; ?></p>
 
 												</div>
 
@@ -154,7 +197,7 @@ include 'navbar.php';
 
 												<div>
 													
-													<font class="active-text">Active</font>
+													<font class="active-text"><?php echo $status; ?></font>
 
 												</div>
 
@@ -162,7 +205,11 @@ include 'navbar.php';
 
 											<div style="background: transparent;display: flex;justify-content: flex-end;">
 												
-												<font class="time">2Hrs Ago</font>
+												<font class="time"><?php
+
+											$timestamp = strtotime($timecreated); // Example timestamp
+
+											echo timeAgo($timestamp);?></font>
 
 											</div>
 
@@ -180,13 +227,13 @@ include 'navbar.php';
 									
 									<div>
 										
-										<font class="post">Technical Support Specialist</font>
+										<font class="post"><?php echo $jobtitle; ?></font>
 
 									</div>
 
 									<div>
 										
-										<p class="job-post">We are a car wash business and have been opened since 2001, we look are very concerned about providing the best customer <a href="#">...see more</a></p>
+										<p class="job-post"><?php echo $jobdesc; ?></p>
 
 									</div>
 
@@ -204,7 +251,7 @@ include 'navbar.php';
 
 												<div>
 													
-													<font class="full-time">Full-time</font>
+													<font class="full-time"><?php echo $jobtype; ?></font>
 
 												</div>
 
@@ -220,7 +267,7 @@ include 'navbar.php';
 
 												<div>
 													
-													<font class="full-time">Remote</font>
+													<font class="full-time"><?php echo $location; ?></font>
 
 												</div>
 
@@ -236,7 +283,7 @@ include 'navbar.php';
 
 												<div>
 													
-													<font class="full-time money">$40K - $60K USD</font>
+													<font class="full-time money"><?php echo $salary; ?> <?php echo $currency; ?></font>
 
 												</div>
 
@@ -308,6 +355,53 @@ include 'navbar.php';
 
 						<!-- End -->
 
+						<?php
+
+
+						}}}
+
+						?>
+
+						T
+
+						<?php
+
+						if (!isset($_GET["search"])) {
+					
+							$jb_select = "SELECT * FROM `job` WHERE `cv_rating`='".$_SESSION["cv_rating"]."'";
+
+							$jb_select_query = mysqli_query($conn, $jb_select);
+
+							if (mysqli_num_rows($jb_select_query) > 0) {
+								
+								while ($row = mysqli_fetch_assoc($jb_select_query)) {
+
+									$company_logo = $row["company_logo"];
+
+									$company_name = $row["company_name"];
+
+									$company_location = $row["company_location"];
+
+									$status = $row["status"];
+
+									$jobtitle = $row["jobtitle"];
+
+									$jobdesc = $row["jobdescription"];
+
+									$jobtype = $row["jobtype"];
+
+									$location = $row["location"];
+
+									$salary = $row["salary"];
+
+									$currency = $row["currency"];
+
+									$timecreated = $row["timecreated"];
+
+									$unique_id = $row["unique_id"];
+
+						?>
+
 						<div class="job-story-box">
 							
 							<div style="border-bottom: 1px solid var(--Neutrals-Neutrals200, #CCCBCB);;padding-bottom: 20px;">
@@ -316,7 +410,7 @@ include 'navbar.php';
 									
 									<div class="company-logo">
 										
-										<img src="images/logo.png" style="width: 100% !important;height: 100% !important;">
+										<img src="company/profile/<?php echo $company_logo; ?>" style="width: 100% !important;height: 100% !important;border-radius: inherit;border: inherit;">
 
 									</div>
 
@@ -328,9 +422,9 @@ include 'navbar.php';
 
 												<div style="height: auto;background: transparent;height: 80%;">
 
-													<h4 class="name">MSI Nigeria</h4>
+													<h4 class="name"><?php echo $company_name; ?></h4>
 
-													<p class="location">Abuja, Nigeria</p>
+													<p class="location"><?php echo $company_location; ?></p>
 
 												</div>
 
@@ -354,7 +448,7 @@ include 'navbar.php';
 
 												<div>
 													
-													<font class="active-text">Active</font>
+													<font class="active-text"><?php echo $status; ?></font>
 
 												</div>
 
@@ -362,7 +456,11 @@ include 'navbar.php';
 
 											<div style="background: transparent;display: flex;justify-content: flex-end;">
 												
-												<font class="time">2Hrs Ago</font>
+												<font class="time"><?php
+
+											$timestamp = strtotime($timecreated); // Example timestamp
+
+											echo timeAgo($timestamp);?></font>
 
 											</div>
 
@@ -380,13 +478,13 @@ include 'navbar.php';
 									
 									<div>
 										
-										<font class="post">Technical Support Specialist</font>
+										<font class="post"><?php echo $jobtitle; ?></font>
 
 									</div>
 
 									<div>
 										
-										<p class="job-post">We are a car wash business and have been opened since 2001, we look are very concerned about providing the best customer <a href="#">...see more</a></p>
+										<p class="job-post"><?php echo $jobdesc; ?></p>
 
 									</div>
 
@@ -404,7 +502,7 @@ include 'navbar.php';
 
 												<div>
 													
-													<font class="full-time">Full-time</font>
+													<font class="full-time"><?php echo $jobtype; ?></font>
 
 												</div>
 
@@ -420,7 +518,7 @@ include 'navbar.php';
 
 												<div>
 													
-													<font class="full-time">Remote</font>
+													<font class="full-time"><?php echo $location; ?></font>
 
 												</div>
 
@@ -436,7 +534,7 @@ include 'navbar.php';
 
 												<div>
 													
-													<font class="full-time money">$40K - $60K USD</font>
+													<font class="full-time money"><?php echo $salary; ?> <?php echo $currency; ?></font>
 
 												</div>
 
@@ -490,7 +588,7 @@ include 'navbar.php';
 
 								<div style="display: flex;justify-content: flex-end;flex-grow: 1;">
 									
-									<a href="#">
+									<a href="job.php?job_id=<?php echo $unique_id; ?>">
 										
 										<div class="View">
 											
@@ -508,811 +606,74 @@ include 'navbar.php';
 
 						<!-- End -->
 
-						<div class="job-story-box">
-							
-							<div style="border-bottom: 1px solid var(--Neutrals-Neutrals200, #CCCBCB);;padding-bottom: 20px;">
-								
-								<div style="display: flex;gap: 10px;">
-									
-									<div class="company-logo">
-										
-										<img src="images/logo.png" style="width: 100% !important;height: 100% !important;">
+						<?php
 
-									</div>
+						}}}
 
-									<div>
-										
-										<div style="display: flex;flex-direction: column;height: 100% !important;background: transparent;">
-											
-											<div style="display: flex;align-items: center;height: auto;">
+						?>
 
-												<div style="height: auto;background: transparent;height: 80%;">
-
-													<h4 class="name">MSI Nigeria</h4>
-
-													<p class="location">Abuja, Nigeria</p>
-
-												</div>
-
-											</div>
-
-										</div>
-
-									</div>
-
-									<div style="flex-grow: 1;display: flex;justify-content: flex-end;">
-										
-										<div style="flex-direction: column;gap: 5px;display: flex;">
-												
-											<div class="closed">
-												
-												<div>
-													
-													<img src="images/closed.png">
-
-												</div>
-
-												<div>
-													
-													<font class="active-text">Closed</font>
-
-												</div>
-
-											</div>
-
-											<div style="background: transparent;display: flex;justify-content: flex-end;">
-												
-												<font class="time">2Hrs Ago</font>
-
-											</div>
-
-										</div>
-
-									</div>
-
-								</div>
-
-							</div>
-
-							<div>
-								
-								<div style="display: flex;gap: 8px;flex-direction: column;">
-									
-									<div>
-										
-										<font class="post">Technical Support Specialist</font>
-
-									</div>
-
-									<div>
-										
-										<p class="job-post">We are a car wash business and have been opened since 2001, we look are very concerned about providing the best customer <a href="#">...see more</a></p>
-
-									</div>
-
-									<div>
-										
-										<div class="row" style="padding-left: 16px;gap: 8px;">
-											
-											<div class="resources">
-												
-												<div style="width: 16px;height: 16px;">
-													
-													<img src="images/Bag.png" style="width: 16px;height: 16px;">
-
-												</div>
-
-												<div>
-													
-													<font class="full-time">Full-time</font>
-
-												</div>
-
-											</div>
-
-											<div class="resources">
-												
-												<div style="width: 16px;height: 16px;">
-													
-													<img src="images/Location.png" style="width: 16px;height: 16px;">
-
-												</div>
-
-												<div>
-													
-													<font class="full-time">Remote</font>
-
-												</div>
-
-											</div>
-
-											<div class="resources">
-												
-												<div style="width: 16px;height: 16px;">
-													
-													<img src="images/Money.png" style="width: 16px;height: 16px;">
-
-												</div>
-
-												<div>
-													
-													<font class="full-time money">$40K - $60K USD</font>
-
-												</div>
-
-											</div>
-
-										</div>
-
-									</div>
-
-								</div>
-
-							</div>
-
-							<div style="display: flex;">
-								
-								<div style="display: flex;flex-direction: column;gap: 8px;">
-									
-									<div style="display: flex;gap: 4px;">
-
-										<div style="width: 16px;height: 16px;">
-											
-											<img src="images/Users.png" style="width: 16px;height: 16px;">
-
-										</div>
-
-										<div>
-											
-											<font class="application-number">95 Applications</font>
-
-										</div>
-
-									</div>
-
-									<div style="display: flex;gap: 4px;">
-
-										<div style="width: 16px;height: 16px;">
-											
-											<img src="images/verified-tick.png" style="width: 16px;height: 16px;">
-
-										</div>
-
-										<div>
-											
-											<font class="application-number">Verified Company</font>
-
-										</div>
-
-									</div>
-
-								</div>
-
-								<div style="display: flex;justify-content: flex-end;flex-grow: 1;">
-									
-									<a href="#">
-										
-										<div class="View">
-											
-											<font>View Job</font>
-
-										</div>
-
-									</a>
-
-								</div>
-
-							</div>
-
-						</div> 
-
-						<!-- End -->
-
-						<div class="job-story-box">
-							
-							<div style="border-bottom: 1px solid var(--Neutrals-Neutrals200, #CCCBCB);;padding-bottom: 20px;">
-								
-								<div style="display: flex;gap: 10px;">
-									
-									<div class="company-logo">
-										
-										<img src="images/logo.png" style="width: 100% !important;height: 100% !important;">
-
-									</div>
-
-									<div>
-										
-										<div style="display: flex;flex-direction: column;height: 100% !important;background: transparent;">
-											
-											<div style="display: flex;align-items: center;height: auto;">
-
-												<div style="height: auto;background: transparent;height: 80%;">
-
-													<h4 class="name">MSI Nigeria</h4>
-
-													<p class="location">Abuja, Nigeria</p>
-
-												</div>
-
-											</div>
-
-										</div>
-
-									</div>
-
-									<div style="flex-grow: 1;display: flex;justify-content: flex-end;">
-										
-										<div style="flex-direction: column;gap: 5px;display: flex;">
-												
-											<div class="active">
-												
-												<div>
-													
-													<img src="images/active.png">
-
-												</div>
-
-												<div>
-													
-													<font class="active-text">Active</font>
-
-												</div>
-
-											</div>
-
-											<div style="background: transparent;display: flex;justify-content: flex-end;">
-												
-												<font class="time">2Hrs Ago</font>
-
-											</div>
-
-										</div>
-
-									</div>
-
-								</div>
-
-							</div>
-
-							<div>
-								
-								<div style="display: flex;gap: 8px;flex-direction: column;">
-									
-									<div>
-										
-										<font class="post">Technical Support Specialist</font>
-
-									</div>
-
-									<div>
-										
-										<p class="job-post">We are a car wash business and have been opened since 2001, we look are very concerned about providing the best customer <a href="#">...see more</a></p>
-
-									</div>
-
-									<div>
-										
-										<div class="row" style="padding-left: 16px;gap: 8px;">
-											
-											<div class="resources">
-												
-												<div style="width: 16px;height: 16px;">
-													
-													<img src="images/Bag.png" style="width: 16px;height: 16px;">
-
-												</div>
-
-												<div>
-													
-													<font class="full-time">Full-time</font>
-
-												</div>
-
-											</div>
-
-											<div class="resources">
-												
-												<div style="width: 16px;height: 16px;">
-													
-													<img src="images/Location.png" style="width: 16px;height: 16px;">
-
-												</div>
-
-												<div>
-													
-													<font class="full-time">Remote</font>
-
-												</div>
-
-											</div>
-
-											<div class="resources">
-												
-												<div style="width: 16px;height: 16px;">
-													
-													<img src="images/Money.png" style="width: 16px;height: 16px;">
-
-												</div>
-
-												<div>
-													
-													<font class="full-time money">$40K - $60K USD</font>
-
-												</div>
-
-											</div>
-
-										</div>
-
-									</div>
-
-								</div>
-
-							</div>
-
-							<div style="display: flex;">
-								
-								<div style="display: flex;flex-direction: column;gap: 8px;">
-									
-									<div style="display: flex;gap: 4px;">
-
-										<div style="width: 16px;height: 16px;">
-											
-											<img src="images/Users.png" style="width: 16px;height: 16px;">
-
-										</div>
-
-										<div>
-											
-											<font class="application-number">95 Applications</font>
-
-										</div>
-
-									</div>
-
-									<div style="display: flex;gap: 4px;">
-
-										<div style="width: 16px;height: 16px;">
-											
-											<img src="images/verified-tick.png" style="width: 16px;height: 16px;">
-
-										</div>
-
-										<div>
-											
-											<font class="application-number">Verified Company</font>
-
-										</div>
-
-									</div>
-
-								</div>
-
-								<div style="display: flex;justify-content: flex-end;flex-grow: 1;">
-									
-									<a href="#">
-										
-										<div class="View">
-											
-											<font>View Job</font>
-
-										</div>
-
-									</a>
-
-								</div>
-
-							</div>
-
-						</div> 
-
-						<!-- End -->
-
-						<div class="job-story-box">
-							
-							<div style="border-bottom: 1px solid var(--Neutrals-Neutrals200, #CCCBCB);;padding-bottom: 20px;">
-								
-								<div style="display: flex;gap: 10px;">
-									
-									<div class="company-logo">
-										
-										<img src="images/logo.png" style="width: 100% !important;height: 100% !important;">
-
-									</div>
-
-									<div>
-										
-										<div style="display: flex;flex-direction: column;height: 100% !important;background: transparent;">
-											
-											<div style="display: flex;align-items: center;height: auto;">
-
-												<div style="height: auto;background: transparent;height: 80%;">
-
-													<h4 class="name">MSI Nigeria</h4>
-
-													<p class="location">Abuja, Nigeria</p>
-
-												</div>
-
-											</div>
-
-										</div>
-
-									</div>
-
-									<div style="flex-grow: 1;display: flex;justify-content: flex-end;">
-										
-										<div style="flex-direction: column;gap: 5px;display: flex;">
-												
-											<div class="active">
-												
-												<div>
-													
-													<img src="images/active.png">
-
-												</div>
-
-												<div>
-													
-													<font class="active-text">Active</font>
-
-												</div>
-
-											</div>
-
-											<div style="background: transparent;display: flex;justify-content: flex-end;">
-												
-												<font class="time">2Hrs Ago</font>
-
-											</div>
-
-										</div>
-
-									</div>
-
-								</div>
-
-							</div>
-
-							<div>
-								
-								<div style="display: flex;gap: 8px;flex-direction: column;">
-									
-									<div>
-										
-										<font class="post">Technical Support Specialist</font>
-
-									</div>
-
-									<div>
-										
-										<p class="job-post">We are a car wash business and have been opened since 2001, we look are very concerned about providing the best customer <a href="#">...see more</a></p>
-
-									</div>
-
-									<div>
-										
-										<div class="row" style="padding-left: 16px;gap: 8px;">
-											
-											<div class="resources">
-												
-												<div style="width: 16px;height: 16px;">
-													
-													<img src="images/Bag.png" style="width: 16px;height: 16px;">
-
-												</div>
-
-												<div>
-													
-													<font class="full-time">Full-time</font>
-
-												</div>
-
-											</div>
-
-											<div class="resources">
-												
-												<div style="width: 16px;height: 16px;">
-													
-													<img src="images/Location.png" style="width: 16px;height: 16px;">
-
-												</div>
-
-												<div>
-													
-													<font class="full-time">Remote</font>
-
-												</div>
-
-											</div>
-
-											<div class="resources">
-												
-												<div style="width: 16px;height: 16px;">
-													
-													<img src="images/Money.png" style="width: 16px;height: 16px;">
-
-												</div>
-
-												<div>
-													
-													<font class="full-time money">$40K - $60K USD</font>
-
-												</div>
-
-											</div>
-
-										</div>
-
-									</div>
-
-								</div>
-
-							</div>
-
-							<div style="display: flex;">
-								
-								<div style="display: flex;flex-direction: column;gap: 8px;">
-									
-									<div style="display: flex;gap: 4px;">
-
-										<div style="width: 16px;height: 16px;">
-											
-											<img src="images/Users.png" style="width: 16px;height: 16px;">
-
-										</div>
-
-										<div>
-											
-											<font class="application-number">95 Applications</font>
-
-										</div>
-
-									</div>
-
-									<div style="display: flex;gap: 4px;">
-
-										<div style="width: 16px;height: 16px;">
-											
-											<img src="images/verified-tick.png" style="width: 16px;height: 16px;">
-
-										</div>
-
-										<div>
-											
-											<font class="application-number">Verified Company</font>
-
-										</div>
-
-									</div>
-
-								</div>
-
-								<div style="display: flex;justify-content: flex-end;flex-grow: 1;">
-									
-									<a href="#">
-										
-										<div class="View">
-											
-											<font>View Job</font>
-
-										</div>
-
-									</a>
-
-								</div>
-
-							</div>
-
-						</div> 
-
-						<!-- End -->
-
-						<div class="job-story-box">
-							
-							<div style="border-bottom: 1px solid var(--Neutrals-Neutrals200, #CCCBCB);;padding-bottom: 20px;">
-								
-								<div style="display: flex;gap: 10px;">
-									
-									<div class="company-logo">
-										
-										<img src="images/logo.png" style="width: 100% !important;height: 100% !important;">
-
-									</div>
-
-									<div>
-										
-										<div style="display: flex;flex-direction: column;height: 100% !important;background: transparent;">
-											
-											<div style="display: flex;align-items: center;height: auto;">
-
-												<div style="height: auto;background: transparent;height: 80%;">
-
-													<h4 class="name">MSI Nigeria</h4>
-
-													<p class="location">Abuja, Nigeria</p>
-
-												</div>
-
-											</div>
-
-										</div>
-
-									</div>
-
-									<div style="flex-grow: 1;display: flex;justify-content: flex-end;">
-										
-										<div style="flex-direction: column;gap: 5px;display: flex;">
-												
-											<div class="active">
-												
-												<div>
-													
-													<img src="images/active.png">
-
-												</div>
-
-												<div>
-													
-													<font class="active-text">Active</font>
-
-												</div>
-
-											</div>
-
-											<div style="background: transparent;display: flex;justify-content: flex-end;">
-												
-												<font class="time">2Hrs Ago</font>
-
-											</div>
-
-										</div>
-
-									</div>
-
-								</div>
-
-							</div>
-
-							<div>
-								
-								<div style="display: flex;gap: 8px;flex-direction: column;">
-									
-									<div>
-										
-										<font class="post">Frontend Developer</font>
-
-									</div>
-
-									<div>
-										
-										<p class="job-post">We are a car wash business and have been opened since 2001, we look are very concerned about providing the best customer <a href="#">...see more</a></p>
-
-									</div>
-
-									<div>
-										
-										<div class="row" style="padding-left: 16px;gap: 8px;">
-											
-											<div class="resources">
-												
-												<div style="width: 16px;height: 16px;">
-													
-													<img src="images/Bag.png" style="width: 16px;height: 16px;">
-
-												</div>
-
-												<div>
-													
-													<font class="full-time">Full-time</font>
-
-												</div>
-
-											</div>
-
-											<div class="resources">
-												
-												<div style="width: 16px;height: 16px;">
-													
-													<img src="images/Location.png" style="width: 16px;height: 16px;">
-
-												</div>
-
-												<div>
-													
-													<font class="full-time">Remote</font>
-
-												</div>
-
-											</div>
-
-											<div class="resources">
-												
-												<div style="width: 16px;height: 16px;">
-													
-													<img src="images/Money.png" style="width: 16px;height: 16px;">
-
-												</div>
-
-												<div>
-													
-													<font class="full-time money">$40K - $60K USD</font>
-
-												</div>
-
-											</div>
-
-										</div>
-
-									</div>
-
-								</div>
-
-							</div>
-
-							<div style="display: flex;">
-								
-								<div style="display: flex;flex-direction: column;gap: 8px;">
-									
-									<div style="display: flex;gap: 4px;">
-
-										<div style="width: 16px;height: 16px;">
-											
-											<img src="images/Users.png" style="width: 16px;height: 16px;">
-
-										</div>
-
-										<div>
-											
-											<font class="application-number">95 Applications</font>
-
-										</div>
-
-									</div>
-
-									<div style="display: flex;gap: 4px;">
-
-										<div style="width: 16px;height: 16px;">
-											
-											<img src="images/verified-tick.png" style="width: 16px;height: 16px;">
-
-										</div>
-
-										<div>
-											
-											<font class="application-number">Verified Company</font>
-
-										</div>
-
-									</div>
-
-								</div>
-
-								<div style="display: flex;justify-content: flex-end;flex-grow: 1;">
-									
-									<a href="#">
-										
-										<div class="View">
-											
-											<font>View Job</font>
-
-										</div>
-
-									</a>
-
-								</div>
-
-							</div>
-
-						</div> 
-
-						<!-- End -->
-
+					
 					</div>
 
 				</div>
 
 				<!-- Start of next -->
+
+				<?php
+
+				if (isset($_GET["job_id"])) {
+					
+					$se = "SELECT * FROM `job` WHERE `unique_id`='".$_GET["job_id"]."'";
+
+					$se_query = mysqli_query($conn, $se);
+
+					if (mysqli_num_rows($se_query) > 0) {
+						
+						while ($roe = mysqli_fetch_assoc($se_query)){
+
+							$company_logo = $roe["company_logo"];
+
+							$company_name = $roe["company_name"];
+
+							$company_location = $roe["company_location"];
+
+							$status = $roe["status"];
+
+							$jobtitle = $roe["jobtitle"];
+
+							$jobdesc = $roe["jobdescription"];
+
+							$jobtype = $roe["jobtype"];
+
+							$location = $roe["location"];
+
+							$salary = $roe["salary"];
+
+							$currency = $roe["currency"];
+
+							$timecreated = $roe["timecreated"];
+
+							$unique_id = $roe["unique_id"];
+
+							$requirements = $roe["requirements"];
+
+							$responsibilities = $roe["responsibilities"];
+
+							$questions = $roe["questions"];
+
+							$requirements_text = $roe["requirements_text"];
+
+							$responsibilities_text = $roe["responsibilities_text"];
+
+							$questions_text = $roe["questions_text"];
+
+							$deadline = $roe["deadline"];
+
+						}
+
+					
+
+				?>
 
 				<div class="role-desc">
 					
@@ -1324,7 +685,7 @@ include 'navbar.php';
 										
 								<div class="company-logo">
 									
-									<img src="images/logo.png" style="width: 100% !important;height: 100% !important;">
+									<img src="company/profile/<?php echo $company_logo; ?>" style="width: 100% !important;height: 100% !important;border-radius: inherit;border: inherit;">
 
 								</div>
 
@@ -1336,9 +697,9 @@ include 'navbar.php';
 
 											<div style="height: auto;background: transparent;height: 80%;">
 
-												<h4 class="name">MSI Nigeria</h4>
+												<h4 class="name"><?php echo $company_name; ?></h4>
 
-												<p class="location">Abuja, Nigeria</p>
+												<p class="location"><?php echo $company_location; ?></p>
 
 											</div>
 
@@ -1362,7 +723,7 @@ include 'navbar.php';
 
 											<div>
 												
-												<font class="active-text">Active</font>
+												<font class="active-text"><?php echo $status; ?></font>
 
 											</div>
 
@@ -1370,7 +731,11 @@ include 'navbar.php';
 
 										<div style="background: transparent;display: flex;justify-content: flex-end;">
 											
-											<font class="time">2Hrs Ago</font>
+											<font class="time"><?php
+
+											$timestamp = strtotime($timecreated); // Example timestamp
+
+											echo timeAgo($timestamp);?></font>
 
 										</div>
 
@@ -1388,7 +753,7 @@ include 'navbar.php';
 								
 								<div>
 									
-									<font class="j-name">Frontend Developer</font>
+									<font class="j-name"><?php echo $jobtitle; ?></font>
 
 								</div>
 
@@ -1406,7 +771,7 @@ include 'navbar.php';
 
 											<div>
 													
-												<font class="full-time">Full-time</font>
+												<font class="full-time"><?php echo $jobtype; ?></font>
 
 											</div>
 
@@ -1422,7 +787,7 @@ include 'navbar.php';
 
 											<div>
 													
-												<font class="full-time">Remote</font>
+												<font class="full-time"><?php echo $location; ?></font>
 
 											</div>
 
@@ -1438,7 +803,7 @@ include 'navbar.php';
 
 											<div>
 													
-												<font class="full-time money">$40K - $60K USD</font>
+												<font class="full-time money"><?php echo $salary; ?> <?php echo $currency; ?></font>
 
 											</div>
 
@@ -1496,7 +861,7 @@ include 'navbar.php';
 
 										</a>
 
-										<a href="#" style="display: inline-flex;">
+										<a href="viewcompany.php?company=<?php echo $company_name; ?>" style="display: inline-flex;">
 										
 											<div class="c-profile">
 												
@@ -1506,7 +871,7 @@ include 'navbar.php';
 
 										</a>
 
-										<a href="#" style="display: inline-flex;">
+										<a href="savejob.php?job_id=<?php echo $unique_id; ?>" style="display: inline-flex;">
 										
 											<div class="bk-mark">
 												
@@ -1536,29 +901,21 @@ include 'navbar.php';
 									
 									<font class="bio">Job Description</font>
 
-									<font class="j-desc">We are a Digital Product Engineering company that is scaling in a big way! We build products, services, and experiences that inspire, excite, and delight. We work at scale — across all devices and digital mediums, and our people exist everywhere in the world (18000+ experts across 36 countries, to be exact). Our work culture is dynamic and non-hierarchical. We are looking for great new colleagues. That's where you come in!</font>
+									<font class="j-desc"><?php echo $jobdesc; ?></font>
 
 								</div>
 
 								<div style="display: flex;flex-direction: column;width: 100% !important;background: transparent;gap: 10px;">
 									
-									<font class="bio">Responsibilities</font>
+									<font class="bio"><?php echo $responsibilities; ?></font>
 
 									<ul style="flex-direction: column;display: flex;gap: 5px;">
 										
-										<li class="responsibilities">Build web applications with web development best practices</li>
+										<?php
 
-										<li class="responsibilities">Basic understanding of user interface and user experience (UI/UX) design</li>
+										echo $responsibilities_text;
 
-										<li class="responsibilities">Work with UI/UX Designer to transform wireframes and mock-ups into usable/reusable front-end code with HTML, CSS, and JavaScript.</li>
-
-										<li class="responsibilities">Optimizing components for maximum performance across a vast array of web-capable devices, mobile and desktop browsers</li>
-
-										<li class="responsibilities">Write high-quality, scalable, and reusable code</li>
-
-										<li class="responsibilities">Collaborate with other teams to identify and resolve complex technical issues</li>
-
-										<li class="responsibilities">Attention to detail</li>
+										?>
 
 									</ul>
 
@@ -1566,23 +923,15 @@ include 'navbar.php';
 
 								<div style="display: flex;flex-direction: column;width: 100% !important;background: transparent;gap: 10px;">
 									
-									<font class="bio">Requirements</font>
+									<font class="bio"><?php echo $requirements; ?></font>
 
 									<ul style="flex-direction: column;display: flex;gap: 5px;">
 										
-										<li class="responsibilities">Build web applications with web development best practices</li>
+										<?php
 
-										<li class="responsibilities">Basic understanding of user interface and user experience (UI/UX) design</li>
+										echo $requirements_text;
 
-										<li class="responsibilities">Work with UI/UX Designer to transform wireframes and mock-ups into usable/reusable front-end code with HTML, CSS, and JavaScript.</li>
-
-										<li class="responsibilities">Optimizing components for maximum performance across a vast array of web-capable devices, mobile and desktop browsers</li>
-
-										<li class="responsibilities">Write high-quality, scalable, and reusable code</li>
-
-										<li class="responsibilities">Collaborate with other teams to identify and resolve complex technical issues</li>
-
-										<li class="responsibilities">Attention to detail</li>
+										?>
 
 									</ul>
 
@@ -1590,13 +939,15 @@ include 'navbar.php';
 
 								<div style="display: flex;flex-direction: column;width: 100% !important;background: transparent;gap: 10px;">
 									
-									<font class="bio">Application Questions</font>
+									<font class="bio"><?php echo $questions; ?></font>
 
 									<ul style="flex-direction: column;display: flex;gap: 5px;">
 										
-										<li class="responsibilities">Have you worked with a team of Developers on a project?</li>
+										<?php
 
-										<li class="responsibilities">Have you worked with a team of Developers on a project?</li>
+										echo $questions_text;
+
+										?>
 
 									</ul>
 
@@ -1606,28 +957,10 @@ include 'navbar.php';
 									
 									<font class="bio">Deadline</font>
 
-									<font class="responsibilities">24th October 2024</font>
+									<font class="responsibilities"><?php $date = $deadline;$t = formatDate($date);echo $t; ?></font>
 
 								</div>
 
-								<div style="display: flex;flex-direction: column;width: 100% !important;background: transparent;gap: 10px;">
-									
-									<font class="bio">Employee Benefits</font>
-
-									<ul style="flex-direction: column;display: flex;gap: 5px;">
-										
-										<li class="responsibilities">Life insurance</li>
-
-										<li class="responsibilities">Healthcare insurance</li>
-
-										<li class="responsibilities">Employee assistance program (EAP)</li>
-
-										<li class="responsibilities">Paid vacation (At least 3 weeks per year)</li>
-
-									</ul>
-
-								</div>
-				
 							</div>
 
 						</div>
@@ -1635,6 +968,12 @@ include 'navbar.php';
 					</div>
 
 				</div>
+
+				<?php
+
+				}}
+
+				?>
 
 			</div>
 

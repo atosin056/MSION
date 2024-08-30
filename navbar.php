@@ -182,7 +182,38 @@
 				    			
 				    			<div style="padding: 10px;border-radius: 100px;background: #E3E3E3;width: auto;">
 				    				
-				    				3
+				    				<?php
+									// Your database connection should already be established here
+									// $conn = new mysqli('localhost', 'username', 'password', 'database_name');
+
+									$count = "SELECT COUNT(*) AS total FROM `saved_jobs`";
+									
+									$result = mysqli_query($conn, $count);
+
+									if ($result) {
+									
+									    // Fetch the result as an associative array
+									
+									    $row = $result->fetch_assoc();
+
+									    // Store the total count in the session
+									
+									    $_SESSION["jobs"] = $row['total'];
+									
+									}
+
+									else {
+									
+									    // Handle the case where the query fails
+									
+									    echo "Query failed: " . mysqli_error($conn);
+									
+									}
+
+									echo $_SESSION["jobs"];
+
+									?>
+
 
 				    			</div>
 
@@ -413,7 +444,7 @@
 
 				    		<div>
 				    			
-				    			<font>Saved Jobs</font>
+				    			<font>Saved Jbs</font>
 
 				    		</div>
 

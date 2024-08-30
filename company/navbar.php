@@ -28,9 +28,15 @@
 
 	         	</li>
 
-	         	<li class="nav-item link">
+	         	<!-- <li class="nav-item link">
 
 	          		<a href="../jobsearch.php" class="nav-link" data-page="jobsearch">Job Search</a>
+
+	         	</li> -->
+
+	         	<li class="nav-item link">
+
+	          		<a href="#" class="nav-link" data-page="jobsearch">Resources</a>
 
 	         	</li>
 

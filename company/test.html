@@ -1,91 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Your OTP Code</title>
+    <meta charset="UTF-8">
+    <title>Textarea with LI Tags</title>
     <style>
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-        }
-        .email-wrapper {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            padding: 20px;
-            background-color: #f4f4f4;
-        }
-        .email-content {
-            background-color: #ffffff;
-            border-radius: 8px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-            width: 100%;
-            max-width: 600px;
-            padding: 30px;
-            text-align: center;
-        }
-        .email-header {
-            background-color: #013E59;
-            color: #ffffff;
-            padding: 15px;
-            border-radius: 8px 8px 0 0;
-            font-size: 22px;
-            font-weight: bold;
-        }
-        .otp-container {
-            margin: 20px 0;
-        }
-        .otp {
-            background-color: #013E59;
-            color: #ffffff;
-            padding: 15px 25px;
-            border-radius: 50px;
-            display: inline-block;
-            font-size: 32px;
-            font-weight: bold;
-            letter-spacing: 2px;
-        }
-        .message {
-            font-size: 16px;
-            color: #333333;
-            line-height: 1.6;
-            margin-top: 20px;
-        }
-        .email-footer {
-            margin-top: 30px;
-            font-size: 14px;
-            color: #777777;
-        }
-        .footer-link {
-            color: #013E59;
-            text-decoration: none;
-        }
+        textarea { width: 100%; height: 150px; }
     </style>
 </head>
 <body>
-    <div class="email-wrapper">
-        <div class="email-content">
-            <div class="email-header">
-                Hullo User 👋
-            </div>
-            <div class="otp-container">
-                <p style="margin: 0; font-size: 18px;">Here is your OTP:</p>
-                <div class="otp">
-                    <?php echo $otp; ?>
-                </div>
-            </div>
-            <div class="message">
-                Please use the following One Time Password (OTP) to complete your login process. This code is valid for the next 10 minutes. If you did not request this OTP, please ignore this email.
-            </div>
-            <div class="email-footer">
-                <p>Thank you for using our service!</p>
-                <p>If you have any questions, feel free to <a href="mailto:atosin056@gmail.com" class="footer-link">contact us</a>.</p>
-            </div>
-        </div>
-    </div>
+    <form method="post" action="" onsubmit="formatTextarea()">
+        <textarea id="listInput" name="listInput" rows="6" cols="40"></textarea>
+        <button type="submit">Submit</button>
+    </form>
+
+    <?php
+    if ($_SERVER["REQUEST_METHOD"] == "POST") {
+        // Get the submitted value from the textarea
+        $textareaValue = $_POST['listInput'];
+
+        // Output the textarea content
+        echo "<h3>Submitted Content:</h3>";
+        echo "<ul>" . $textareaValue . "</ul>";
+    }
+    ?>
+    
+    <script>
+        function formatTextarea() {
+            // Get the textarea element
+            var textarea = document.getElementById("listInput");
+            
+            // Split the textarea content by new lines
+            var lines = textarea.value.split('\n');
+            
+            // Format each line by wrapping it with <li> tags
+            var formattedValue = lines.map(line => `<li>${line.trim()}</li>`).join('');
+            
+            // Set the formatted value back to the textarea for submission
+            textarea.value = formattedValue;
+        }
+    </script>
 </body>
 </html>

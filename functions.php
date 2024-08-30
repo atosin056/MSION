@@ -72,6 +72,19 @@ function timeAgo($timestamp) {
 
 }
 
+function formatDate($date) {
+    
+    // Convert the input date string to a timestamp
+    
+    $timestamp = strtotime($date);
+
+    // Format the date
+    
+    $formattedDate = date('jS F Y', $timestamp);
+
+    return $formattedDate;
+
+}
 
 function extractTextFromDocx($filePath) {
 
