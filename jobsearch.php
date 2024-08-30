@@ -12,6 +12,65 @@ if (!isset($_SESSION["email"])) {
 
 }
 
+if (isset($_GET["search"])) {
+    
+    // Assuming $conn is your MySQLi connection
+    
+    $search = '%' . $_GET["search"] . '%';
+
+    // Prepare the SQL statement
+    
+    $stmt = $conn->prepare("SELECT COUNT(DISTINCT job.unique_id) AS total FROM job LEFT JOIN tag ON job.unique_id = tag.unique_id WHERE job.jobtitle LIKE ? OR tag.tag LIKE ?");
+
+    if ($stmt === false) {
+        // Handle the case where the statement fails to prepare
+        die("MySQL error: " . $conn->error);
+    }
+
+    // Bind the parameters
+    $stmt->bind_param('ss', $search, $search);
+
+    // Execute the statement
+    if ($stmt->execute()) {
+        // Bind the result to a variable
+        $stmt->bind_result($total);
+
+        // Fetch the result
+        $stmt->fetch();
+
+        // Store the total count in the session
+        $_SESSION["search_results"] = $total;
+    } else {
+        // Handle the case where the query execution fails
+        die("Execution failed: " . $stmt->error);
+    }
+
+    // Close the statement
+    $stmt->close();
+}
+
+else{
+
+	$counts = "SELECT COUNT(*) AS total FROM `job`";
+
+$results = mysqli_query($conn, $counts);
+
+if ($results) {
+
+	// Fetch the result as an associative array
+
+	$rows = $results->fetch_assoc();
+
+	// Store the total count in the session
+
+	$_SESSION["job_count"] = $rows['total'];
+
+}
+
+
+}
+
+
 ?>
 
 <html>
@@ -116,7 +175,7 @@ include 'navbar.php';
 			
 			<div>
 				
-				<p class="search-results">Search Results <font class="results-found">(2,210 jobs found)</font></p>
+				<p class="search-results">Search Results <font class="results-found">(<?php if(isset($_SESSION["search_results"])){echo $_SESSION['search_results'];}else{echo $_SESSION["job_count"];} ?> jobs found)</font></p>
 
 			</div>
 

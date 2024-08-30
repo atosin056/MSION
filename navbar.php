@@ -30,7 +30,7 @@
 
 	         	<li class="nav-item link">
 
-	          		<a href="jobsearch.php" class="nav-link" data-page="jobsearch">Job Search</a>
+	          		<a href="jobsearch.php?search" class="nav-link" data-page="jobsearch">Job Search</a>
 
 	         	</li>
 
@@ -183,6 +183,9 @@
 				    			<div style="padding: 10px;border-radius: 100px;background: #E3E3E3;width: auto;">
 				    				
 				    				<?php
+									
+									include 'connect.php';
+
 									// Your database connection should already be established here
 									// $conn = new mysqli('localhost', 'username', 'password', 'database_name');
 

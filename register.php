@@ -125,7 +125,7 @@ if (isset($_POST['submit'])) {
 			
 			<div style="background: transparent;width: 100% !important;display: flex;justify-content: flex-start;">
 				
-				<a href="../index.php">
+				<a href="index.php">
 
 					<div>
 						
