@@ -1004,9 +1004,9 @@ font-size: 14px;
 }
 .form-control:focus {
    border-radius: 20px;
-border: 1px solid var(--Primary-Primary600, #13B7FD);
+border: 1px solid var(--Primary-Primary600, #4C54C2);
 background: var(--Shade-White, #FFF);
-box-shadow: 0px 0px 0px 4px #D8F3FF;
+box-shadow: 0px 0px 0px 4px #C2C5EA;
 }
 .
 .act:focus {

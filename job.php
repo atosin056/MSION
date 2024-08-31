@@ -851,7 +851,7 @@ include 'navbar.php';
 									
 									<div style="margin-top: 24px;display: flex;gap: 10px;">
 
-										<a href="#" style="display: inline-flex;">
+										<a href="apply.php?job_id=<?php echo $unique_id; ?>" style="display: inline-flex;">
 										
 											<div class="apply">
 												
