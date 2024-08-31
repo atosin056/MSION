@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Aug 30, 2024 at 01:53 AM
+-- Generation Time: Aug 31, 2024 at 06:24 PM
 -- Server version: 8.0.39-0ubuntu0.22.04.1
 -- PHP Version: 8.1.2-1ubuntu2.18
 
@@ -20,6 +20,33 @@ SET time_zone = "+00:00";
 --
 -- Database: `MSION`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `applicants`
+--
+
+CREATE TABLE `applicants` (
+  `id` int NOT NULL,
+  `fname` varchar(255) NOT NULL,
+  `title` text CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL,
+  `phone` varchar(255) NOT NULL,
+  `coverletter` varchar(255) NOT NULL,
+  `email` varchar(255) NOT NULL,
+  `cv` varchar(255) NOT NULL,
+  `cv_rating` varchar(255) NOT NULL,
+  `stage` varchar(255) NOT NULL,
+  `application_status` varchar(255) NOT NULL,
+  `date_entered` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `applicants`
+--
+
+INSERT INTO `applicants` (`id`, `fname`, `title`, `phone`, `coverletter`, `email`, `cv`, `cv_rating`, `stage`, `application_status`, `date_entered`) VALUES
+(1, 'Kehinde Akinfenwa', 'Web designer', '091 151 971 67', 'Booty<br><br>BOoty', 'fenwakehinde538@gmail.com', 'Yo THis is my cv i am a designer with 1 month of e.docx', '1', 'Questioning', 'nothing', '2024-08-31 18:21:26');
 
 -- --------------------------------------------------------
 
@@ -128,7 +155,7 @@ CREATE TABLE `company_users` (
 --
 
 INSERT INTO `company_users` (`id`, `email`, `password`, `company_name`, `company_website`, `company_logo`, `tagline`, `about`, `location`, `founding_year`, `company_size`, `date_created`, `unique_id`) VALUES
-(1, 'atosin056@gmail.com', 'none', 'MSI Nigeria', 'http://msi.com', 'pfp.jpeg', 'Reproductive Choices', 'HIgh Tension<br><br>COnfession', 'Afghanistan', '1111', '500+ Employees', '2024-08-29 08:31:38.417936', '2f4116799197fee23d0cf33487832eaa');
+(1, 'atosin056@gmail.com', 'none', 'MSI Nigeria', 'http://msi.com', 'pfp.jpeg', 'Reproductive Choices', '\"Anybody talk anyhow dem go injure\" Rema HEHEHE', 'Afghanistan', '1111', '500+ Employees', '2024-08-30 13:49:11.844997', '2f4116799197fee23d0cf33487832eaa');
 
 -- --------------------------------------------------------
 
@@ -302,7 +329,8 @@ INSERT INTO `otp` (`id`, `otp`, `email`, `date_created`) VALUES
 (8, 98797, 'atosin056@gmail.com', '2024-08-29 14:16:10.485977'),
 (9, 27855, 'atosin056@gmail.com', '2024-08-29 14:16:11.317124'),
 (10, 18842, 'atosin056@gmail.com', '2024-08-29 14:19:41.387303'),
-(11, 86715, 'atosin056@gmail.com', '2024-08-29 14:29:17.402891');
+(11, 86715, 'atosin056@gmail.com', '2024-08-29 14:29:17.402891'),
+(12, 59752, 'atosin056@gmail.com', '2024-08-30 14:14:32.924676');
 
 -- --------------------------------------------------------
 
@@ -322,7 +350,9 @@ CREATE TABLE `saved_jobs` (
 
 INSERT INTO `saved_jobs` (`id`, `unique_id`, `email`) VALUES
 (1, 'f0935e4cd5920aa6c7c996a5ee53a70f', 'fenwakehinde538@gmail.com'),
-(2, '17e62166fc8586dfa4d1bc0e1742c08b', 'fenwakehinde538@gmail.com');
+(2, '17e62166fc8586dfa4d1bc0e1742c08b', 'fenwakehinde538@gmail.com'),
+(3, '17e62166fc8586dfa4d1bc0e1742c08b', 'fenwakehinde538@gmail.com'),
+(4, '9f61408e3afb633e50cdf1b20de6f466', 'fenwakehinde538@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -477,6 +507,12 @@ CREATE TABLE `user_experience` (
 --
 
 --
+-- Indexes for table `applicants`
+--
+ALTER TABLE `applicants`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Indexes for table `company_industry`
 --
 ALTER TABLE `company_industry`
@@ -577,6 +613,12 @@ ALTER TABLE `user_experience`
 --
 
 --
+-- AUTO_INCREMENT for table `applicants`
+--
+ALTER TABLE `applicants`
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `company_industry`
 --
 ALTER TABLE `company_industry`
@@ -628,13 +670,13 @@ ALTER TABLE `logos`
 -- AUTO_INCREMENT for table `otp`
 --
 ALTER TABLE `otp`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `saved_jobs`
 --
 ALTER TABLE `saved_jobs`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `skills`
@@ -664,7 +706,7 @@ ALTER TABLE `tag`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `user_experience`
