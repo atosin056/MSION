@@ -1,6 +1,9 @@
 *{
 	font-family: montserrat;
 }
+html{
+	scroll-behavior: smooth;
+}
 body{
 	padding: 0;
 	margin: 0;
@@ -951,6 +954,75 @@ line-height: 150%; /* 60px */
 	padding-left: 20px;
 	border-top: none !important;
 }
+.number{
+	color: #000;
+
+/* MSION - 1/Desktop/Body/Highlight Accent */
+font-family: Montserrat;
+font-size: 18px;
+font-style: normal;
+font-weight: 600;
+line-height: 120%; /* 21.6px */
+}
+.holder{
+	height: 100% !important;
+	display: flex;
+	align-items: center;
+}
+.ap-text{
+	color: #FFF;
+
+/* MSION - 1/Desktop/Body/Highlight Accent */
+font-family: Montserrat;
+font-size: 16px;
+font-style: normal;
+font-weight: 600;
+line-height: 120%; /* 21.6px */
+}
+.tbhead{
+	display: flex;
+padding: 14px 0px 14px 16px;
+align-items: center;
+align-self: stretch;
+background: var(--Primary-Primary, #292E78);
+color: white;
+height: 52px;
+}
+.total_app{
+	color: #000;
+
+/* MSION - 1/Mobile/Body/Caption Regular */
+font-family: Montserrat;
+font-size: 12px;
+font-style: normal;
+font-weight: 400;
+line-height: 120%; /* 14.4px */
+opacity: 0.6;
+}
+.japp{
+	display: flex;
+padding: 8px;
+padding-left: 10px;
+flex-direction: column;
+align-items: flex-start;
+gap: 10px;
+align-self: stretch;
+border-radius: 24px;
+border: 1px solid var(--neutral-3, rgba(120, 120, 128, 0.32));
+background: #FFF;
+}
+.tota{
+	display: flex;
+padding: 24px;
+align-items: center;
+gap: 16px;
+flex: 1 1 100;
+flex-shrink: 1;
+width: 376px;
+border-radius: 16px;
+border: 1px solid var(--neutral-3, rgba(120, 120, 128, 0.32));
+background: var(--Shade-White, #FFF);
+}
 .industry-item {
     padding: 10px 8px;
     padding-left: 15px;
@@ -1278,15 +1350,15 @@ line-height: 35px; /* 21px */
 	border: none;
 }
 .navbar{
-	padding-right: 100px;
-	padding-left: 100px;
-	padding-top: 18px;
-	padding-bottom: 18px;
+	padding-right: 100px !important;
+	padding-left: 100px !important;
+	padding-top: 18px !important;
+	padding-bottom: 18px !important;
 	background: white !important;
-	position: fixed;
-	top: 0;
+	position: fixed !important;
+	top: 0 !important;
 	width: 100% !important;
-	z-index: 300000;
+	z-index: 300000 !important;
 }
 .navbar-collapse{
 	justify-content: space-between;

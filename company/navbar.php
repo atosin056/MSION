@@ -102,19 +102,19 @@
 
 				    </a>
 
-				    <a href="../jobsearch.php">
+				    <a href="dials.php">
 
 				    	<div class="list">
 				    		
 				    		<div>
 				    			
-				    			<img src="images/Bag.png" style="width: 24px;height: 24px;">
+				    			<img src="../images/dshbrd.png" style="width: 24px;height: 24px;">
 
 				    		</div>
 
 				    		<div>
 				    			
-				    			<font>Find Jobs</font>
+				    			<font>Dashboard</font>
 
 				    		</div>
 

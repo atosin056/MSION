@@ -93,6 +93,8 @@ if($_GET["em"] == $_SESSION["email"]){
 
 		$unique_id = random_int(2, 10).random_int(3, 10);
 
+		$_SESSION["unique_id"] = $unique_id;
+
 		$unique_id = md5($unique_id);
 
 		$skillstagJson = $_POST['skilltagsArray'] ?? '[]';

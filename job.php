@@ -6,6 +6,13 @@ include 'connect.php';
 
 include 'functions.php';
 
+if (!isset($_SESSION["email"]) || !isset($_GET["job_id"])) {
+
+	header('location: login.php');
+
+}
+
+
 ?>
 
 <html>
@@ -46,7 +53,7 @@ include 'navbar.php';
 		
 		<div style="display: flex;flex-direction: column;justify-content: center;text-align: center;width: 100% !important;gap: 10px;">
 			
-			<div style="width: 100% !important;">
+			<div style="width: 100% !important;" onclick="window.location.href='jobsearch.php?search'">
 				
 				<form method="POST">
 					
@@ -100,7 +107,7 @@ include 'navbar.php';
 			
 			<div>
 				
-				<p class="search-results"><a href="jobsearch.php"><font style="color: black;font-weight: 200;">←</font></a> Search Results <font class="results-found">(2,210 jobs found)</font></p>
+				<p class="search-results"><a href="jobsearch.php"><font style="color: black;font-weight: 200;">←</font></a> Search Results <font class="results-found">(<?php echo $_SESSION["search_results"]; ?> jobs found)</font></p>
 
 			</div>
 
@@ -146,6 +153,8 @@ include 'navbar.php';
 									$timecreated = $row["timecreated"];
 
 									$unique_id = $row["unique_id"];
+
+									$applicants = $row["applicants"];
 
 								
 
@@ -311,7 +320,7 @@ include 'navbar.php';
 
 										<div>
 											
-											<font class="application-number">95 Applications</font>
+											<font class="application-number"><?php echo $applicants; ?> Applications</font>
 
 										</div>
 
@@ -399,6 +408,8 @@ include 'navbar.php';
 									$timecreated = $row["timecreated"];
 
 									$unique_id = $row["unique_id"];
+
+									$applicants = $row["applicants"];
 
 						?>
 
@@ -562,7 +573,7 @@ include 'navbar.php';
 
 										<div>
 											
-											<font class="application-number">95 Applications</font>
+											<font class="application-number"><?php echo $applicants;; ?> Applications</font>
 
 										</div>
 
@@ -644,6 +655,8 @@ include 'navbar.php';
 							$jobdesc = $roe["jobdescription"];
 
 							$jobtype = $roe["jobtype"];
+
+							$applicants = $roe["applicants"];
 
 							$location = $roe["location"];
 
@@ -825,7 +838,7 @@ include 'navbar.php';
 
 									<div>
 										
-										<font class="application-number">95 Applications</font>
+										<font class="application-number"><?php echo $applicants; ?> Applications</font>
 
 									</div>
 
@@ -851,6 +864,36 @@ include 'navbar.php';
 									
 									<div style="margin-top: 24px;display: flex;gap: 10px;">
 
+										<?php
+
+										$selectall = "SELECT * FROM `applicants` WHERE `email`='".$_SESSION["email"]."' AND `job_id`='".$_GET["job_id"]."'";
+
+										$selectall_query = mysqli_query($conn, $selectall);
+
+										if (mysqli_num_rows($selectall_query) > 0) {
+											
+
+										?>
+
+										<a href="#" style="display: inline-flex;">
+										
+											<div class="apply" style="background: rgba(116, 116, 128, 0.10);color: black;">
+												
+												<font>Applied!</font>
+
+											</div>
+
+										</a>
+
+
+										<?php
+
+										}
+
+										else{
+
+										?>
+
 										<a href="apply.php?job_id=<?php echo $unique_id; ?>" style="display: inline-flex;">
 										
 											<div class="apply">
@@ -860,6 +903,12 @@ include 'navbar.php';
 											</div>
 
 										</a>
+
+										<?php
+
+										}
+
+										?>
 
 										<a href="viewcompany.php?company=<?php echo $company_name; ?>" style="display: inline-flex;">
 										

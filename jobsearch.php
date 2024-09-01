@@ -49,26 +49,6 @@ if (isset($_GET["search"])) {
     $stmt->close();
 }
 
-else{
-
-	$counts = "SELECT COUNT(*) AS total FROM `job`";
-
-$results = mysqli_query($conn, $counts);
-
-if ($results) {
-
-	// Fetch the result as an associative array
-
-	$rows = $results->fetch_assoc();
-
-	// Store the total count in the session
-
-	$_SESSION["job_count"] = $rows['total'];
-
-}
-
-
-}
 
 
 ?>
@@ -218,6 +198,8 @@ include 'navbar.php';
 								$timecreated = $row["timecreated"];
 
 								$unique_id = $row["unique_id"];
+
+								$applicants = $row["applicants"];
 
 							
 
@@ -385,7 +367,7 @@ include 'navbar.php';
 
 									<div>
 										
-										<font class="application-number">95 Applications</font>
+										<font class="application-number"><?php echo $applicants; ?> Applications</font>
 
 									</div>
 
@@ -462,6 +444,8 @@ include 'navbar.php';
 								$location = $ro["location"];
 
 								$salary = $ro["salary"];
+
+								$applicants = $ro["applicants"];
 
 								$currency = $ro["currency"];
 
@@ -635,7 +619,7 @@ include 'navbar.php';
 
 									<div>
 										
-										<font class="application-number">95 Applications</font>
+										<font class="application-number"><?php echo $applicants; ?> Applications</font>
 
 									</div>
 

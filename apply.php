@@ -26,13 +26,21 @@ if (isset($_POST["apply"])) {
 	$title = $_SESSION["title"];
 
 
-	$insert = "INSERT INTO `applicants` (`id`,`fname`,`title`,`phone`,`email`,`coverletter`,`cv`,`cv_rating`,`stage`,`application_status`,`date_entered`) VALUES (NULL, '".$name."','".$title."','".$phone."','".$email."','".$coverletter."','".$_SESSION["cv"]."','".$_SESSION["cv_rating"]."','Questioning','nothing',CURRENT_TIMESTAMP())";
+	$insert = "INSERT INTO `applicants` (`id`,`fname`,`title`,`phone`,`email`,`coverletter`,`cv`,`cv_rating`,`stage`,`application_status`,`job_id`,`date_entered`) VALUES (NULL, '".$name."','".$title."','".$phone."','".$email."','".$coverletter."','".$_SESSION["cv"]."','".$_SESSION["cv_rating"]."','Questioning','nothing','".$_GET["job_id"]."',CURRENT_TIMESTAMP())";
 
 	$insert_query = mysqli_query($conn, $insert);
 
 	if ($insert_query) {
+
+		$update = "UPDATE `job` SET `applicants`=`applicants`+1 WHERE `unique_id`='".$_GET["job_id"]."'";
+
+		$update_query = mysqli_query($conn, $update);
+
+		if ($update_query) {
 		
-		header('location: jobsearch.php?applied=yes');
+			header('location: jobsearch.php?applied=yes');
+
+		}
 
 	}
 

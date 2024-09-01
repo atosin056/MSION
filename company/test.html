@@ -1,43 +1,83 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Textarea with LI Tags</title>
-    <style>
-        textarea { width: 100%; height: 150px; }
-    </style>
-</head>
-<body>
-    <form method="post" action="" onsubmit="formatTextarea()">
-        <textarea id="listInput" name="listInput" rows="6" cols="40"></textarea>
-        <button type="submit">Submit</button>
-    </form>
+<style>
+  /* Custom class for the table */
+  .custom-table {
+    display: table;
+    width: 100%;
+    border-collapse: collapse;
+  }
 
-    <?php
-    if ($_SERVER["REQUEST_METHOD"] == "POST") {
-        // Get the submitted value from the textarea
-        $textareaValue = $_POST['listInput'];
+  /* Class for table row */
+  .row {
+    display: table-row;
+  }
 
-        // Output the textarea content
-        echo "<h3>Submitted Content:</h3>";
-        echo "<ul>" . $textareaValue . "</ul>";
-    }
-    ?>
-    
-    <script>
-        function formatTextarea() {
-            // Get the textarea element
-            var textarea = document.getElementById("listInput");
-            
-            // Split the textarea content by new lines
-            var lines = textarea.value.split('\n');
-            
-            // Format each line by wrapping it with <li> tags
-            var formattedValue = lines.map(line => `<li>${line.trim()}</li>`).join('');
-            
-            // Set the formatted value back to the textarea for submission
-            textarea.value = formattedValue;
-        }
-    </script>
-</body>
-</html>
+  /* Class for table cell */
+  .cell {
+    display: table-cell;
+    padding: 8px;
+    border: 1px solid #ddd;
+    text-align: left;
+  }
+
+  /* Class for table header */
+  .header {
+    font-weight: bold;
+    background-color: #333;
+    color: #fff;
+  }
+
+  /* Alternating row colors */
+  .row:nth-child(even) {
+    background-color: #f2f2f2; /* Light grey for even rows */
+  }
+
+  .row:nth-child(odd) {
+    background-color: #ffffff; /* White for odd rows */
+  }
+</style>
+
+<div class="custom-table">
+  <!-- Header Row -->
+  <div class="row header">
+    <div class="cell">Applicant</div>
+    <div class="cell">Date</div>
+    <div class="cell">Time</div>
+    <div class="cell">Job Title</div>
+    <div class="cell">Stage</div>
+    <div class="cell">Application Status</div>
+  </div>
+
+  <!-- Data Rows -->
+  <div class="row">
+    <div class="cell">Hubert Blank</div>
+    <div class="cell">18/07/2024</div>
+    <div class="cell">04:24:15</div>
+    <div class="cell">Data Analyst</div>
+    <div class="cell">Interview</div>
+    <div class="cell">Hired</div>
+  </div>
+  <div class="row">
+    <div class="cell">Hubert Blank</div>
+    <div class="cell">18/07/2024</div>
+    <div class="cell">04:24:15</div>
+    <div class="cell">Frontend Dev</div>
+    <div class="cell">Interview</div>
+    <div class="cell">Interviewing</div>
+  </div>
+  <div class="row">
+    <div class="cell">Hubert Blank</div>
+    <div class="cell">18/07/2024</div>
+    <div class="cell">04:24:15</div>
+    <div class="cell">UI/UX Designer</div>
+    <div class="cell">Interview</div>
+    <div class="cell">Interviewing</div>
+  </div>
+  <div class="row">
+    <div class="cell">Hubert Blank</div>
+    <div class="cell">18/07/2024</div>
+    <div class="cell">04:24:15</div>
+    <div class="cell">Data Analyst</div>
+    <div class="cell">Questioning</div>
+    <div class="cell">Interviewing</div>
+  </div>
+</div>
