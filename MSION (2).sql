@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Aug 31, 2024 at 06:24 PM
+-- Generation Time: Sep 01, 2024 at 11:10 PM
 -- Server version: 8.0.39-0ubuntu0.22.04.1
 -- PHP Version: 8.1.2-1ubuntu2.18
 
@@ -38,6 +38,8 @@ CREATE TABLE `applicants` (
   `cv_rating` varchar(255) NOT NULL,
   `stage` varchar(255) NOT NULL,
   `application_status` varchar(255) NOT NULL,
+  `job_id` varchar(255) NOT NULL,
+  `company_name` varchar(255) NOT NULL,
   `date_entered` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
@@ -45,8 +47,9 @@ CREATE TABLE `applicants` (
 -- Dumping data for table `applicants`
 --
 
-INSERT INTO `applicants` (`id`, `fname`, `title`, `phone`, `coverletter`, `email`, `cv`, `cv_rating`, `stage`, `application_status`, `date_entered`) VALUES
-(1, 'Kehinde Akinfenwa', 'Web designer', '091 151 971 67', 'Booty<br><br>BOoty', 'fenwakehinde538@gmail.com', 'Yo THis is my cv i am a designer with 1 month of e.docx', '1', 'Questioning', 'nothing', '2024-08-31 18:21:26');
+INSERT INTO `applicants` (`id`, `fname`, `title`, `phone`, `coverletter`, `email`, `cv`, `cv_rating`, `stage`, `application_status`, `job_id`, `company_name`, `date_entered`) VALUES
+(1, 'Kehinde Akinfenwa', 'Web designer', '234 567', 'gizza', 'fenwakehinde538@gmail.com', 'ceevsa.docx', '1', 'Questioning', 'nothing', '182be0c5cdcd5072bb1864cdee4d3d6e', 'MSI Nigeria', '2024-09-01 17:32:55'),
+(2, 'Oluwanifemi Akinfenwa', 'UI/UX Designer', '703 127 257 2', 'K JAEFOI', 'anifemi513@gmail.com', 'Nife\'s cv.docx', '1', 'Questioning', 'nothing', '182be0c5cdcd5072bb1864cdee4d3d6e', 'MSI Nigeria', '2024-09-01 17:58:49');
 
 -- --------------------------------------------------------
 
@@ -107,7 +110,7 @@ CREATE TABLE `company_socials` (
 --
 
 INSERT INTO `company_socials` (`id`, `facebook`, `x`, `youtube`, `linkedin`, `email`) VALUES
-(1, NULL, NULL, NULL, 'tosin', 'atosin056@gmail.com');
+(1, NULL, NULL, NULL, 'http://tosin.com', 'atosin056@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -198,17 +201,16 @@ CREATE TABLE `job` (
   `questions` text NOT NULL,
   `requirements_text` text,
   `responsibilities_text` text,
-  `questions_text` text
+  `questions_text` text,
+  `applicants` varchar(255) CHARACTER SET utf8mb4 COLLATE utf8mb4_0900_ai_ci NOT NULL DEFAULT '0'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 --
 -- Dumping data for table `job`
 --
 
-INSERT INTO `job` (`id`, `jobtitle`, `jobdescription`, `cv_rating`, `jobtype`, `currency`, `salary`, `application_link`, `unique_id`, `company_name`, `status`, `company_logo`, `company_location`, `timecreated`, `deadline`, `location`, `requirements`, `responsibilities`, `questions`, `requirements_text`, `responsibilities_text`, `questions_text`) VALUES
-(3, 'Web development', 'Nike is more than a brand; it\'s a movement that connects athletes, communities, and the world through the love of sport. Our diverse range of products, from footwear to apparel and equipment, is designed to help athletes of all levels reach their full potential. We collaborate with the best athletes, coaches, and teams to constantly push the boundaries of performance and style.', '1', 'Internship', 'SHP', '322', 'http://exa.com', '9f61408e3afb633e50cdf1b20de6f466', 'MSI Nigeria', 'Active', 'pfp.jpeg', 'Nigeria', '2024-08-29 13:03:16', '2024-08-12', 'Remote', NULL, NULL, '', NULL, NULL, NULL),
-(4, 'Project Manager', 'Nike is more than a brand; it\'s a movement that connects athletes, communities, and the world through the love of sport. Our diverse range of products, from footwear to apparel and equipment, is designed to help athletes of all levels reach their full potential. We collaborate with the best athletes, coaches, and teams to constantly push the boundaries of performance and style.', '1', 'part-time', 'SHP', '566000', 'http://tosin.com', '17e62166fc8586dfa4d1bc0e1742c08b', 'MSI Nigeria', 'Active', 'pfp.jpeg', 'Afghanistan', '2024-08-29 13:18:10', '2024-08-19', 'onsite', NULL, NULL, '', NULL, NULL, NULL),
-(9, 'ss', 'ssa', '1', 'Internship', 'CHF', '234567890', 'http://lobvelydate.com', 'f0935e4cd5920aa6c7c996a5ee53a70f', 'MSI Nigeria', 'Active', 'pfp.jpeg', 'Afghanistan', '2024-08-30 00:26:56', '2024-08-30', 'onsite', 'a', 'syd', 'ddaa', '<li>a</li><li>s</li><li>s</li><li>s</li><li>s</li><li>ss</li><li></li>', '<li>dyyf</li><li>f</li><li>f</li><li>f</li><li>f</li><li>f</li>', '<li>uyu</li><li>e</li><li>e</li><li>e</li><li>e</li><li>e</li><li></li>');
+INSERT INTO `job` (`id`, `jobtitle`, `jobdescription`, `cv_rating`, `jobtype`, `currency`, `salary`, `application_link`, `unique_id`, `company_name`, `status`, `company_logo`, `company_location`, `timecreated`, `deadline`, `location`, `requirements`, `responsibilities`, `questions`, `requirements_text`, `responsibilities_text`, `questions_text`, `applicants`) VALUES
+(1, 'Senior developer', 'My design philosophy centers around a user-centric approach, where every design decision is informed by a deep understanding of the target audience and their needs. Whether designing a logo, website, app or physical product, I focus on creating experiences that are intuitive, engaging, and memorable.\r\nWith a keen eye for aesthetics and a strong understanding of design principles, I bring a unique perspective to every project. From conceptualization to execution, I am committed to delivering designs that not only look great but also perform well in the real world.', '1', 'Internship', 'MAD', '20000', 'http://tosin.com', '182be0c5cdcd5072bb1864cdee4d3d6e', 'MSI Nigeria', 'Active', 'pfp.jpeg', 'Afghanistan', '2024-09-01 17:58:49', '2024-09-01', 'onsite', 'Job Requirements', 'Responsibilities', 'Nazareth', '<li class=\"responsibilities\">Tosin</li><li class=\"responsibilities\">is</li><li class=\"responsibilities\">the</li><li class=\"responsibilities\">2nd best</li><li class=\"responsibilities\">teenage</li><li class=\"responsibilities\">programmer</li>', '<li class=\"responsibilities\">Tosin</li><li class=\"responsibilities\">is</li><li class=\"responsibilities\">a</li><li class=\"responsibilities\">good</li><li class=\"responsibilities\">boy</li>', '<li class=\"responsibilities\">wahala</li><li class=\"responsibilities\">pro</li><li class=\"responsibilities\">max</li>', '2');
 
 -- --------------------------------------------------------
 
@@ -330,7 +332,8 @@ INSERT INTO `otp` (`id`, `otp`, `email`, `date_created`) VALUES
 (9, 27855, 'atosin056@gmail.com', '2024-08-29 14:16:11.317124'),
 (10, 18842, 'atosin056@gmail.com', '2024-08-29 14:19:41.387303'),
 (11, 86715, 'atosin056@gmail.com', '2024-08-29 14:29:17.402891'),
-(12, 59752, 'atosin056@gmail.com', '2024-08-30 14:14:32.924676');
+(12, 59752, 'atosin056@gmail.com', '2024-08-30 14:14:32.924676'),
+(13, 17616, 'anifemi513@gmail.com', '2024-09-01 16:39:02.732493');
 
 -- --------------------------------------------------------
 
@@ -343,16 +346,6 @@ CREATE TABLE `saved_jobs` (
   `unique_id` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
-
---
--- Dumping data for table `saved_jobs`
---
-
-INSERT INTO `saved_jobs` (`id`, `unique_id`, `email`) VALUES
-(1, 'f0935e4cd5920aa6c7c996a5ee53a70f', 'fenwakehinde538@gmail.com'),
-(2, '17e62166fc8586dfa4d1bc0e1742c08b', 'fenwakehinde538@gmail.com'),
-(3, '17e62166fc8586dfa4d1bc0e1742c08b', 'fenwakehinde538@gmail.com'),
-(4, '9f61408e3afb633e50cdf1b20de6f466', 'fenwakehinde538@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -371,7 +364,9 @@ CREATE TABLE `skills` (
 --
 
 INSERT INTO `skills` (`id`, `skill`, `email`) VALUES
-(1, 'Strategic Planning', 'fenwakehinde538@gmail.com');
+(1, 'Strategic Planning', 'fenwakehinde538@gmail.com'),
+(2, 'Derivatives', 'anifemi513@gmail.com'),
+(3, 'BREAKING WOOD', 'anifemi513@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -393,7 +388,8 @@ CREATE TABLE `socials` (
 --
 
 INSERT INTO `socials` (`id`, `facebook`, `linkedin`, `youtube`, `x`, `email`) VALUES
-(1, NULL, 'http://tsin.com', NULL, NULL, 'fenwakehinde538@gmail.com');
+(1, NULL, 'http://tsin.com', NULL, NULL, 'fenwakehinde538@gmail.com'),
+(2, 'gtjgfajzk', NULL, NULL, 'tggg', 'anifemi513@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -412,7 +408,9 @@ CREATE TABLE `stack` (
 --
 
 INSERT INTO `stack` (`id`, `stack`, `email`) VALUES
-(1, 'Angular', 'fenwakehinde538@gmail.com');
+(1, 'Angular', 'fenwakehinde538@gmail.com'),
+(2, 'Figma', 'anifemi513@gmail.com'),
+(3, 'Sketchbook', 'anifemi513@gmail.com');
 
 -- --------------------------------------------------------
 
@@ -454,7 +452,9 @@ INSERT INTO `tag` (`id`, `tag`, `unique_id`, `company_name`) VALUES
 (20, 'Pet Care', '182be0c5cdcd5072bb1864cdee4d3d6e', 'MSI Nigeria'),
 (21, 'Social Media Management', '93db85ed909c13838ff95ccfa94cebd9', 'MSI Nigeria'),
 (22, 'Tutoring', '98dce83da57b0395e163467c9dae521b', 'MSI Nigeria'),
-(23, 'Social Media Management', 'f0935e4cd5920aa6c7c996a5ee53a70f', 'MSI Nigeria');
+(23, 'Social Media Management', 'f0935e4cd5920aa6c7c996a5ee53a70f', 'MSI Nigeria'),
+(24, 'coder', '182be0c5cdcd5072bb1864cdee4d3d6e', 'MSI Nigeria'),
+(25, 'Web Development', '182be0c5cdcd5072bb1864cdee4d3d6e', 'MSI Nigeria');
 
 -- --------------------------------------------------------
 
@@ -483,7 +483,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `unique_id`, `email`, `password`, `fullname`, `title`, `profile`, `cv`, `biography`, `looking`, `acct_status`, `cv_rating`, `date_created`) VALUES
-(1, '6fd72fff64d6a609c3507b05c11a971d', 'fenwakehinde538@gmail.com', '8b8db4833d8a0cd3e6405493647d1207', 'Kehinde Akinfenwa', 'Web designer', 'pfp.jpg', 'Yo THis is my cv i am a designer with 1 month of e.docx', 'Lemme cry', 'Lemme cry', 'unverified', '1', '2024-08-29 08:28:36.186538');
+(1, '6fd72fff64d6a609c3507b05c11a971d', 'fenwakehinde538@gmail.com', '8b8db4833d8a0cd3e6405493647d1207', 'Kehinde Akinfenwa', 'Web designer', 'pfp.jpg', 'ceevsa.docx', 'Lemme cry', 'Lemme cry', 'unverified', '1', '2024-09-01 16:32:42.702737'),
+(5, '4ab1f4bb9cff4e8dc851f9e5314e41f9', 'anifemi513@gmail.com', '43e15b135c2abb63f368b50658a8ef80', 'Oluwanifemi Akinfenwa', 'UI/UX Designer', 'Nifemi\'s howling wolf.jpeg', 'Nife\'s cv.docx', 'HELLO dfdfe', 'gfdgdgd', 'unverified', '1', '2024-09-01 16:53:42.246742');
 
 -- --------------------------------------------------------
 
@@ -616,7 +617,7 @@ ALTER TABLE `user_experience`
 -- AUTO_INCREMENT for table `applicants`
 --
 ALTER TABLE `applicants`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `company_industry`
@@ -658,7 +659,7 @@ ALTER TABLE `experience`
 -- AUTO_INCREMENT for table `job`
 --
 ALTER TABLE `job`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `logos`
@@ -670,43 +671,43 @@ ALTER TABLE `logos`
 -- AUTO_INCREMENT for table `otp`
 --
 ALTER TABLE `otp`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `saved_jobs`
 --
 ALTER TABLE `saved_jobs`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `skills`
 --
 ALTER TABLE `skills`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `socials`
 --
 ALTER TABLE `socials`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `stack`
 --
 ALTER TABLE `stack`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `tag`
 --
 ALTER TABLE `tag`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=24;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `user_experience`

@@ -16,6 +16,22 @@ if (isset($_POST["apply"])) {
 
 	$email = $_SESSION["email"];
 
+	$sel = "SELECT * FROM `job` WHERE `unique_id`='".$_GET["job_id"]."'";
+
+	$sel_query = mysqli_query($conn, $sel);
+
+	if (mysqli_num_rows($sel_query) > 0) {
+		
+		while ($row = mysqli_fetch_assoc($sel_query)){
+
+			$company_name = $row["company_name"];
+
+			$_SESSION["compan_name"] = $company_name;
+
+		}
+
+	}
+
 	$coverletter = str_replace(array("\r\n", "\n", "\r"), '<br>', $_POST["coverletter"]);
 
 
@@ -26,7 +42,7 @@ if (isset($_POST["apply"])) {
 	$title = $_SESSION["title"];
 
 
-	$insert = "INSERT INTO `applicants` (`id`,`fname`,`title`,`phone`,`email`,`coverletter`,`cv`,`cv_rating`,`stage`,`application_status`,`job_id`,`date_entered`) VALUES (NULL, '".$name."','".$title."','".$phone."','".$email."','".$coverletter."','".$_SESSION["cv"]."','".$_SESSION["cv_rating"]."','Questioning','nothing','".$_GET["job_id"]."',CURRENT_TIMESTAMP())";
+	$insert = "INSERT INTO `applicants` (`id`,`fname`,`title`,`phone`,`email`,`coverletter`,`cv`,`cv_rating`,`stage`,`application_status`,`company_name`,`job_id`,`date_entered`) VALUES (NULL, '".$name."','".mysqli_real_escape_string($conn, $title)."','".$phone."','".$email."','".mysqli_real_escape_string($conn, $coverletter)."','".mysqli_real_escape_string($conn, $_SESSION["cv"])."','".$_SESSION["cv_rating"]."','Questioning','nothing','".$_SESSION["compan_name"]."','".$_GET["job_id"]."',CURRENT_TIMESTAMP())";
 
 	$insert_query = mysqli_query($conn, $insert);
 

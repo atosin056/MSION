@@ -4,11 +4,17 @@ session_start();
 
 include '../connect.php';
 
+include '../functions.php';
+
 if (!isset($_SESSION["email"])) {
 	
 	header('location: ../login.php');
 
 }
+
+
+// Check if the 'viewresume' GET parameter is set
+
 
 $select = "SELECT * FROM `job` WHERE `company_name`='".$_SESSION["company_name"]."' ORDER BY `timecreated` DESC LIMIT 1";
 
@@ -66,13 +72,84 @@ if ($select1_query) {
 
 </head>
 
-<body>
+<body style="font-size: 16px !important;font-family: montserrat;">
+
+
 
 <?php
+
+if ($_GET["viewresume"]) {
+
+	
+	
+
+?>
+
+
+	<div class="overlay big-box" id="wholeBox">
+		
+		<div style="height: auto;background: white;width: 100% !important;padding: 50px;overflow-y: auto;">
+			
+			<?php
+
+			$cv_select = "SELECT * FROM `applicants` WHERE `email`='".$_GET["viewresume"]."' AND `job_id`='".$_SESSION["j_id"]."'";
+
+			$cv_select_query = mysqli_query($conn, $cv_select);
+
+			if (mysqli_num_rows($cv_select_query) > 0) {
+				
+				while ($row = mysqli_fetch_assoc($cv_select_query)){
+
+					$cv = $row["cv"];
+
+				}
+
+				$filePath = '../cv/'.$cv;
+			
+				$docContent = getDocxContentAsHtml($filePath);
+
+				echo $docContent;
+
+			}
+
+			?>
+
+				<div style="margin-top: 50px;display: flex;">
+		
+					<div class="btn btn-primary" id="close">
+						
+						Close
+
+					</div>
+
+
+					<a href="perform.php?email=<?php echo $_GET["viewresume"]; ?>&&id=<?php echo $_SESSION['j_id']; ?>">
+
+						<div class="btn btn-primary">
+							
+							Perform other task
+
+						</div>
+
+					</a>
+
+			</div>
+
+		</div>
+
+	</div>
+
+</a>
+
+<?php
+
+}
 
 include 'navbar.php';
 
 ?>
+
+
 
 <div class="sections" style="background: white;padding-top: 164px;">
 	
@@ -234,65 +311,138 @@ include 'navbar.php';
 
 		<div style="margin-top: 20px;">
 			
-			<div>
-				
-				<div class="tbhead">
-					
-					<div style="width: 100% !important;display: flex;height: 52px !important;background: transparent;">
-						
-						<div class="holder" style="width: 20% !important;background: transparent;">
-							
-							<font class="ap-text">Applicant</font>
+			<div class="table-container">
+			
+			    <div class="table-header">
+			
+			        <div class="header-cell" style="width: 20%;">Applicant</div>
+			
+			        <div class="header-cell" style="width: 12%;">Date</div>
+			
+			        <div class="header-cell" style="width: 12%;">Time</div>
+			
+			        <div class="header-cell" style="width: 18%;">Job Title</div>
+			
+			        <div class="header-cell" style="width: 12%;">Stage</div>
+			
+			        <div class="header-cell" style="width: 18%;">Application Status</div>
+			
+			        <div class="header-cell" style="width: 9%;">Ranking</div>
+			
+			        <div class="header-cell applicant-cell">Actions</div>
+			
+			    </div>
 
-						</div>
+			    <?php 
 
-						<div class="holder" style="width: 12% !important;background: transparent;">
-							
-							<font class="ap-text">Date</font>
+			    $select = "SELECT * FROM `applicants` WHERE `company_name`='".$_SESSION["company_name"]."' ORDER BY `date_entered` ASC";
 
-						</div>
+			    $select_query = mysqli_query($conn, $select);
 
-						<div class="holder" style="width: 12% !important;background: transparent;">
-							
-							<font class="ap-text">Time</font>
+			    if (mysqli_num_rows($select_query) > 0) {
+			    	
+			    	while ($row = mysqli_fetch_assoc($select_query)) {
+			    		
+			    		$applicant_name = $row["fname"];
 
-						</div>
+			    		$date_entered = $row["date_entered"];
 
-						<div class="holder" style="width: 15% !important;background: transparent;">
-							
-							<font class="ap-text">Job Title</font>
+			    		$cv_rating = $row["cv_rating"];
 
-						</div>
+			    		$title = $row["title"];
 
-						<div class="holder" style="width: 12% !important;background: transparent;">
-							
-							<font class="ap-text">Stage</font>
+			    		$application_status = $row["application_status"];
 
-						</div>
+			    		$stage = $row["stage"];
 
-						<div class="holder" style="width: 15% !important;background: transparent;">
-							
-							<font class="ap-text">Application Status</font>
+			    		$email = $row["email"];
 
-						</div>
+			    		$j_id = $row["job_id"];
 
-						<div class="holder" style="width: 10% !important;background: transparent;">
-							
-							<font class="ap-text">Ranking</font>
 
-						</div>
+			    	
 
-						<div class="holder" style="flex-grow: 1;">
-							
-							<font class="ap-text">Applicant</font>
+			    ?>
+			
+			    <div class="table-row">
+			
+			        <div class="table-cell" style="width: 20%;"><?php echo $applicant_name; ?></div>
+			
+			        <div class="table-cell" style="width: 12%;"><?php echo convertToCustomDate($date_entered); ?></div>
+			
+			        <div class="table-cell" style="width: 12%;"><?php echo extractTime($date_entered); ?></div>
+			
+			        <div class="table-cell" style="width: 18%;"><?php echo $title; ?></div>
+			
+			        <div class="table-cell" style="width: 12%;"><?php if ($stage == 'Questioning'){
 
-						</div>
+			        	echo 'Questioning';
 
-					</div>
+			        } ?></div>
+			
+			        <div class="table-cell" style="width: 18%;"><?php 
 
-				</div>
+
+			        if ($application_status == 'nothing'){
+
+			        	echo 'Pending';
+
+			        }
+
+			        else{
+
+			        echo $application_status;} ?></div>
+			
+			        <div class="table-cell" style="width: 9%;">
+
+			        <?php
+
+				        if ($cv_rating == '1') {
+				        	
+				        	echo '<img src="../images/1 star.png">';
+
+				        }
+
+				        if ($cv_rating == '2') {
+				        	
+				        	echo '<img src="../images/2 star.png">';
+
+				        }
+
+				        if ($cv_rating == '3') {
+				        	
+				        	echo '<img src="../images/3 star.png">';
+
+				        }
+
+				        if ($cv_rating == '4') {
+				        	
+				        	echo '<img src="../images/4 star.png">';
+
+				        }
+
+				        if ($cv_rating == '5') {
+				        	
+				        	echo '<img src="../images/5 star.png">';
+
+				        }
+
+			        ?>
+
+			        </div>
+			
+			        <div class="table-cell applicant-cell action" style="cursor: pointer;text-align: center;"><a href="dials.php?viewresume=<?php echo $email; ?>" style="width: 100% !important;"><div style="width: 100% !important;">:</div></a></div>
+
+			    </div>
+
+			    <?php
+
+				}$_SESSION["j_id"] = $j_id;}
+
+			    ?>
 
 			</div>
+
 
 		</div>
 
@@ -301,5 +451,19 @@ include 'navbar.php';
 </div>
 
 </body>
+
+<script type="text/javascript">
+
+	var close = document.getElementById('close');
+
+	wholeBox = document.getElementById('wholeBox');
+
+	close.addEventListener('click', function () {
+
+		wholeBox.style.display = 'none';
+
+	})
+
+</script>
 
 </html>

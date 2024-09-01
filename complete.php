@@ -60,7 +60,7 @@ if (isset($_POST["submit"])) {
 
             if ($move) {
     
-                $update = "UPDATE `users` SET `fullname`='".$fullname."',`title`='".$title."',`profile`='".$filename."' WHERE `email`='".$_SESSION["otp_email_send"]."'";
+                $update = "UPDATE `users` SET `fullname`='".$fullname."',`title`='".$title."',`profile`='".mysqli_real_escape_string($conn, $filename)."' WHERE `email`='".$_SESSION["otp_email_send"]."'";
 
                 $update_query = mysqli_query($conn, $update);
 
@@ -110,7 +110,7 @@ if (isset($_POST["submit"])) {
 
             if ($moves) {
 
-                $updates = "UPDATE `users` SET `cv`='".$cvname."' WHERE `email`='".$_SESSION["otp_email_send"]."'";
+                $updates = "UPDATE `users` SET `cv`='".mysqli_real_escape_string($conn, $cvname)."' WHERE `email`='".$_SESSION["otp_email_send"]."'";
 
                 $updates_query = mysqli_query($conn, $updates);
 

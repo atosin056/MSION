@@ -910,7 +910,7 @@ include 'navbar.php';
 
 										?>
 
-										<a href="viewcompany.php?company=<?php echo $company_name; ?>" style="display: inline-flex;">
+										<a href="viewcompany.php?company=<?php echo $company_name; ?>" style="display: inline-flex;" target="_blank">
 										
 											<div class="c-profile">
 												

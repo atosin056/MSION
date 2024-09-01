@@ -8,6 +8,7 @@ body{
 	padding: 0;
 	margin: 0;
 	background: #FAFAFA;
+
 }
 /* Responsive Styles */
 @media (max-width: 1200px) {
@@ -256,6 +257,9 @@ background: rgba(116, 116, 128, 0.10);
 }
 .sign-out:hover{
 	background: #ff000038 !important;
+}
+.excellent:hover{
+	background: #0bd30b40 !important;
 }
 .addons{
 	color: var(--Grey-400, #98A2B3);
@@ -615,6 +619,57 @@ line-height: 120%; /* 28.8px */
 	font-weight: 400;
 	line-height: 25px; /* 16.8px */
 }
+.talent::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background-color: red;
+    transition: left 0.4s ease;
+}
+/*.talent:hover{
+	background: rgba(98, 107, 117, 0.2);
+}*/
+.talent{
+	transition: color 0.7s ease;
+	position: relative;
+	overflow: hidden;
+	transition-duration: 800ms;
+	display: flex;
+	padding: 10px;
+	align-items: center;
+	gap: 10px;
+	border-radius: 8px;
+	border: 1px solid var(--Neutrals-Neutrals600, #726C6C);
+	background: rgba(231, 235, 239, 0.20);
+	width: 44px;
+	height: 44px;
+}
+.skill-tag{
+	display: flex;
+	padding: 4px 8px;
+	justify-content: center;
+	align-items: center;
+	gap: 4px;
+	border-radius: 6px;
+	border: 1px solid var(--Neutrals-Neutrals100, #E3E3E3);
+	background: var(--Neutrals-Base-White, #FAFAFA);
+}
+.talent:hover::before {
+    left: 0;
+}
+.talent::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: rgba(98, 107, 117, 0.2);
+    transition: left 0.7s ease;
+}
 .testi{
 	margin-top: 5px;
 }
@@ -964,11 +1019,87 @@ font-style: normal;
 font-weight: 600;
 line-height: 120%; /* 21.6px */
 }
-.holder{
-	height: 100% !important;
-	display: flex;
-	align-items: center;
+.table-container {
+    width: 100%;
 }
+
+.table-header, .table-row {
+    display: flex;
+    font-size: 16px;
+    font-family: montserrat;
+    width: 100%;
+    background: transparent;
+    padding-left: 8px;
+}
+
+.header-cell, .table-cell {
+    display: flex;
+    align-items: center;
+    padding: 8px;
+    font-size: 16px;
+    padding-left: 10px;
+    border: 0;
+    font-family: montserrat;
+    /* Ensuring consistent widths between headers and cells */
+    width: calc(100% / 8); /* Adjust the number based on columns */
+    box-sizing: border-box; /* Ensures padding and border are included in width */
+    height: 52px;
+}
+.big-box{
+	width: 100% !important;
+	height: auto !important;
+	font-family: montserrat;
+	background: black;
+	z-index: 1000000 !important;
+	position: absolute;
+	background: rgba(0, 0, 0, 0.77);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding-left: 100px;
+	padding-right: 100px;
+	padding-bottom: 100px;
+	padding-top: 100px;
+}
+.overlay{
+	width: 100% !important;
+	height: auto !important;
+	background: black;
+	z-index: 80000000 !important;
+	position: absolute;
+	background: rgba(0, 0, 0, 0.77);
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding-left: 100px;
+	padding-right: 100px;
+	padding-bottom: 100px;
+	padding-top: 100px;
+}
+.table-header {
+    display: flex;
+padding-left: 8px;
+padding-right: 8px;
+align-items: center;
+align-self: stretch;
+background: var(--Primary-Primary, #292E78);
+color: white;
+height: 52px;
+font-weight: 700;
+}
+
+.table-row:nth-child(even) {
+    background-color: #f2f2f2; /* Light grey for even rows */
+}
+
+.table-row:nth-child(odd) {
+    background-color: #ffffff; /* White for odd rows */
+}
+
+.applicant-cell {
+    flex-grow: 1;
+}
+
 .ap-text{
 	color: #FFF;
 

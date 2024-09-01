@@ -9,6 +9,44 @@ use GuzzleHttp\Client;
 
 use PhpOffice\PhpWord\PhpWord;
 
+function getDocxContentAsHtml($filePath) {
+    // Load the DOCX file
+    $phpWord = IOFactory::load($filePath);
+
+    // Convert to HTML
+    $htmlWriter = IOFactory::createWriter($phpWord, 'HTML');
+    
+    ob_start(); // Start output buffering
+    $htmlWriter->save('php://output'); // Output the HTML content
+    $htmlContent = ob_get_clean(); // Get the buffered content and clean the buffer
+
+    return $htmlContent;
+}
+
+function extractTime($datetime) {
+    
+    // Create a DateTime object from the datetime string
+    
+    $date = new DateTime($datetime);
+
+    
+    // Extract the time part and format it as HH:MM:SS
+    
+    return $date->format('H:i:s');
+
+}
+
+function convertToCustomDate($datetime) {
+   
+    // Create a DateTime object from the datetime string
+   
+    $date = new DateTime($datetime);
+
+    // Format the date as DD/MM/YYYY
+   
+    return $date->format('d/m/Y');
+
+}
 
 // Function to calculate time ago
 
@@ -121,12 +159,17 @@ function extractTextFromDocx($filePath) {
 }
 
 function replaceNewLinesWithBr($text) {
+  
     // First, convert special HTML characters to entities
+  
     $text = htmlspecialchars($text, ENT_QUOTES, 'UTF-8');
 
     // Replace all types of line breaks with <br>
+  
     $text = str_replace(array("\r\n", "\r", "\n"), '<br>', $text);
+  
     return $text;
+
 }
 
 
