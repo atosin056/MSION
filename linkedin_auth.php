@@ -10,7 +10,7 @@ $clientID = '776d6sag7ov48j';
 
 $clientSecret = 'fI4mrSCMZhBgIvxv';
 
-$redirectUrl = 'https://5e6b-105-112-67-21.ngrok-free.app/MSION/linkedin_auth.php';
+$redirectUrl = 'https://de56-105-112-201-63.ngrok-free.app/MSION/linkedin_auth.php';
 
 
 

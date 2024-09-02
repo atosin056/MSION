@@ -88,7 +88,7 @@ if ($_GET["viewresume"]) {
 
 	<div class="overlay big-box" id="wholeBox">
 		
-		<div style="height: auto;background: white;width: 100% !important;padding: 50px;overflow-y: auto;">
+		<div style="min-height: 100% !important;height: auto;background: white;width: 100% !important;padding: 50px;overflow-y: auto;">
 			
 			<?php
 
@@ -114,7 +114,7 @@ if ($_GET["viewresume"]) {
 
 			?>
 
-				<div style="margin-top: 50px;display: flex;">
+				<div style="margin-top: 50px;display: flex;gap: 10px;">
 		
 					<div class="btn btn-primary" id="close">
 						

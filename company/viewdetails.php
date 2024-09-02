@@ -184,7 +184,7 @@ include 'navbar.php';
 
 								<div class="resume" style="width: 100% !important;margin-top: 10px;">
 
-								<a href="cv/<?php echo $_SESSION["ololo"]; ?>" download>
+								<a href="../cv/<?php echo $_SESSION["ololo"]; ?>" download>
 								
 									<div style="display: flex;gap: 8px;">
 										

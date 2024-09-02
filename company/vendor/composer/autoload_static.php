@@ -10,11 +10,13 @@ class ComposerStaticInit2624fb338757c23e67c31c02b98b9e2e
         '7b11c4dc42b3b3023073cb14e519683c' => __DIR__ . '/..' . '/ralouphie/getallheaders/src/getallheaders.php',
         '6e3fae29631ef280660b3cdad06f25a8' => __DIR__ . '/..' . '/symfony/deprecation-contracts/function.php',
         '37a3dc5111fe8f707ab4c132ef1dbc62' => __DIR__ . '/..' . '/guzzlehttp/guzzle/src/functions_include.php',
-        'e39a8b23c42d4e1452234d762b03835a' => __DIR__ . '/..' . '/ramsey/uuid/src/functions.php',
         '9c67151ae59aff4788964ce8eb2a0f43' => __DIR__ . '/..' . '/clue/stream-filter/src/functions_include.php',
+        'e39a8b23c42d4e1452234d762b03835a' => __DIR__ . '/..' . '/ramsey/uuid/src/functions.php',
         '8cff32064859f4559445b89279f3199c' => __DIR__ . '/..' . '/php-http/message/src/filters.php',
         'a4a119a56e50fbb293281d9a48007e0e' => __DIR__ . '/..' . '/symfony/polyfill-php80/bootstrap.php',
+        'a4ecaeafb8cfb009ad0e052c90355e98' => __DIR__ . '/..' . '/beberlei/assert/lib/Assert/functions.php',
         '1f87db08236948d07391152dccb70f04' => __DIR__ . '/..' . '/google/apiclient-services/autoload.php',
+        '60799491728b879e74601d83e38b2cad' => __DIR__ . '/..' . '/illuminate/collections/helpers.php',
         'decc78cc4436b1292c6c0d151b19445c' => __DIR__ . '/..' . '/phpseclib/phpseclib/phpseclib/bootstrap.php',
         '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
         'a8d3953fd9959404dd22d3dfcd0a79f0' => __DIR__ . '/..' . '/google/apiclient/src/aliases.php',
@@ -29,15 +31,12 @@ class ComposerStaticInit2624fb338757c23e67c31c02b98b9e2e
         array (
             'Webmozart\\Assert\\' => 17,
         ),
-        'T' => 
-        array (
-            'Tests\\PhpOffice\\Math\\' => 21,
-        ),
         'S' => 
         array (
             'Symfony\\Polyfill\\Php80\\' => 23,
             'Symfony\\Polyfill\\Mbstring\\' => 26,
             'Symfony\\Component\\OptionsResolver\\' => 34,
+            'SendinBlue\\Client\\' => 18,
         ),
         'R' => 
         array (
@@ -47,9 +46,11 @@ class ComposerStaticInit2624fb338757c23e67c31c02b98b9e2e
         ),
         'P' => 
         array (
+            'Psr\\SimpleCache\\' => 16,
             'Psr\\Log\\' => 8,
             'Psr\\Http\\Message\\' => 17,
             'Psr\\Http\\Client\\' => 16,
+            'Psr\\Container\\' => 14,
             'Psr\\Cache\\' => 10,
             'PhpOffice\\PhpWord\\' => 18,
             'PhpOffice\\Math\\' => 15,
@@ -60,10 +61,16 @@ class ComposerStaticInit2624fb338757c23e67c31c02b98b9e2e
         array (
             'Monolog\\' => 8,
             'Mailgun\\' => 8,
+            'MailerSend\\' => 11,
         ),
         'L' => 
         array (
             'League\\OAuth2\\Client\\' => 21,
+        ),
+        'I' => 
+        array (
+            'Illuminate\\Support\\' => 19,
+            'Illuminate\\Contracts\\' => 21,
         ),
         'H' => 
         array (
@@ -118,6 +125,10 @@ class ComposerStaticInit2624fb338757c23e67c31c02b98b9e2e
         array (
             'Brick\\Math\\' => 11,
         ),
+        'A' => 
+        array (
+            'Assert\\' => 7,
+        ),
     );
 
     public static $prefixDirsPsr4 = array (
@@ -128,10 +139,6 @@ class ComposerStaticInit2624fb338757c23e67c31c02b98b9e2e
         'Webmozart\\Assert\\' => 
         array (
             0 => __DIR__ . '/..' . '/webmozart/assert/src',
-        ),
-        'Tests\\PhpOffice\\Math\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/phpoffice/math/tests/Math',
         ),
         'Symfony\\Polyfill\\Php80\\' => 
         array (
@@ -145,6 +152,10 @@ class ComposerStaticInit2624fb338757c23e67c31c02b98b9e2e
         array (
             0 => __DIR__ . '/..' . '/symfony/options-resolver',
         ),
+        'SendinBlue\\Client\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/sendinblue/api-v3-sdk/lib',
+        ),
         'Rize\\' => 
         array (
             0 => __DIR__ . '/..' . '/rize/uri-template/src/Rize',
@@ -156,6 +167,10 @@ class ComposerStaticInit2624fb338757c23e67c31c02b98b9e2e
         'Ramsey\\Collection\\' => 
         array (
             0 => __DIR__ . '/..' . '/ramsey/collection/src',
+        ),
+        'Psr\\SimpleCache\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/psr/simple-cache/src',
         ),
         'Psr\\Log\\' => 
         array (
@@ -169,6 +184,10 @@ class ComposerStaticInit2624fb338757c23e67c31c02b98b9e2e
         'Psr\\Http\\Client\\' => 
         array (
             0 => __DIR__ . '/..' . '/psr/http-client/src',
+        ),
+        'Psr\\Container\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/psr/container/src',
         ),
         'Psr\\Cache\\' => 
         array (
@@ -198,9 +217,23 @@ class ComposerStaticInit2624fb338757c23e67c31c02b98b9e2e
         array (
             0 => __DIR__ . '/..' . '/mailgun/mailgun-php/src',
         ),
+        'MailerSend\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/mailersend/mailersend/src',
+        ),
         'League\\OAuth2\\Client\\' => 
         array (
             0 => __DIR__ . '/..' . '/league/oauth2-client/src',
+        ),
+        'Illuminate\\Support\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/illuminate/collections',
+            1 => __DIR__ . '/..' . '/illuminate/conditionable',
+            2 => __DIR__ . '/..' . '/illuminate/macroable',
+        ),
+        'Illuminate\\Contracts\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/illuminate/contracts',
         ),
         'Http\\Promise\\' => 
         array (
@@ -353,6 +386,10 @@ class ComposerStaticInit2624fb338757c23e67c31c02b98b9e2e
         'Brick\\Math\\' => 
         array (
             0 => __DIR__ . '/..' . '/brick/math/src',
+        ),
+        'Assert\\' => 
+        array (
+            0 => __DIR__ . '/..' . '/beberlei/assert/lib/Assert',
         ),
     );
 

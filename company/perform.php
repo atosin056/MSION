@@ -153,7 +153,7 @@ include 'navbar.php';
 
 						</a>
 
-						<a href="#">
+						<a href="hired.php?email=<?php echo $_GET["email"]; ?>&&job_id=<?php echo $_GET["id"] ?>">
 							
 							<div class="list excellent">
 

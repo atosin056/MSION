@@ -99,6 +99,28 @@ if (isset($_POST["submit"])) {
 
 		}
 
+		else{
+
+			$error_response = true;
+
+			if ($error_response) {
+				
+				$error_msg = 'You have Entered an Incorrect OTP, Please check your Inbox and Try again';
+
+				echo '<div style="width: 100% !important;display: flex;justify-content: center;position: absolute;margin-top: 20px;">
+
+	<div class="error-msg" id="error-msg">
+					
+		<p>You have Entered Incorrect Login Details, Please Try again</p>
+
+	</div>
+
+</div>';
+
+			}
+
+		}
+
 	}
 
 }
@@ -207,7 +229,7 @@ if (isset($_POST["submit"])) {
 
 							<div style="width: 100% !important;">
 								
-								<input type="text" id="pe" name="email" class="form-control person" style="background: white;box-shadow: 10px 0px 10px #D8F3FF; border-top: 1px solid #13B7FD;border-bottom: 1px solid #13B7FD;border-right: 1px solid #13B7FD;border-left: none !important;border-radius: 0px;height: 56 !important;border-top-right-radius: 20px;border-bottom-right-radius: 20px;" placeholder="Email Address">
+								<input type="text" id="pe" name="email" class="form-control person" style="background: white;box-shadow: 10px 0px 10px #D8F3FF; border-top: 1px solid #13B7FD;border-bottom: 1px solid #13B7FD;border-right: 1px solid #13B7FD;border-left: none !important;border-radius: 0px;height: 56 !important;border-top-right-radius: 20px;border-bottom-right-radius: 20px;" value="<?php echo isset($_POST['email']) ? $_POST['email'] : '' ; ?>" placeholder="Email Address">
 
 							</div>
 
@@ -227,7 +249,7 @@ if (isset($_POST["submit"])) {
 
 							<div style="width: 100% !important;">
 								
-								<input type="password" name="password" class="form-control person" style="background: white;border-top: 1px solid var(--Neutrals-Neutrals200, #CCCBCB);border-bottom: 1px solid var(--Neutrals-Neutrals200, #CCCBCB);border-right: 1px solid var(--Neutrals-Neutrals200, #CCCBCB);border-left: none !important;border-radius: 0px;height: 56 !important;border-top-right-radius: 20px;border-bottom-right-radius: 20px;" placeholder="Password">
+								<input type="password" name="password" class="form-control person" style="background: white;border-top: 1px solid var(--Neutrals-Neutrals200, #CCCBCB);border-bottom: 1px solid var(--Neutrals-Neutrals200, #CCCBCB);border-right: 1px solid var(--Neutrals-Neutrals200, #CCCBCB);border-left: none !important;border-radius: 0px;height: 56 !important;border-top-right-radius: 20px;border-bottom-right-radius: 20px;" value="<?php echo isset($_POST['password']) ? $_POST['password'] : '' ; ?>" placeholder="Password">
 
 							</div>
 

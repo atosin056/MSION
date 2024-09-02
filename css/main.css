@@ -4,6 +4,52 @@
 html{
 	scroll-behavior: smooth;
 }
+.post-a-job {
+    display: flex;
+    padding: 13px 32px;
+    justify-content: center;
+    align-items: center;
+    gap: 8px;
+    border-radius: 20px;
+    color: #FFF;
+    font-feature-settings: 'liga' off, 'clig' off;
+    font-family: Montserrat;
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    transition: color 0.4s ease; /* Adjusts text color transition */
+    line-height: 150%; /* 24px */
+    background: var(--Primary-Primary, #292E78);
+    position: relative; /* Allows pseudo-element to be positioned correctly */
+    overflow: hidden; /* Prevents pseudo-element from overflowing */
+}
+
+.post-a-job::before {
+    content: "Post Job";
+    display: flex;
+    color: white;
+    border: 1px solid #292E78;
+    justify-content: center;
+    align-items: center;
+    color: ;
+    position: absolute;
+    bottom: -100%; /* Start from below the button */
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: #00065a; /* Change to your desired hover color */
+    transition: bottom 0.4s ease; /* Transition from bottom */
+    z-index: 1; /* Ensures it appears below text */
+}
+
+.post-a-job:hover::before {
+    bottom: 0; /* Move to top when hovered */
+}
+
+.post-a-job:hover {
+    color: #292E78; /* Change text color to contrast with hover background */
+}
+
 body{
 	padding: 0;
 	margin: 0;
@@ -465,22 +511,6 @@ line-height: 120%; /* 28.8px */
 	border-radius: 20px;
 	background: var(--Base-Base-White, #FAFAFA);
 }
-.post-a-job{
-	display: flex;
-	padding: 13px 32px;
-	justify-content: center;
-	align-items: center;
-	gap: 8px;
-	border-radius: 20px;
-	color: #FFF;
-	font-feature-settings: 'liga' off, 'clig' off;
-	font-family: Montserrat;
-	font-size: 16px;
-	font-style: normal;
-	font-weight: 400;
-	line-height: 150%; /* 24px */
-	background: var(--Primary-Primary, #292E78);
-}
 .fname{
 	color: #000;
 	/* MSION - 1/Mobile/Headings/Heading 3 */
@@ -618,16 +648,6 @@ line-height: 120%; /* 28.8px */
 	font-style: italic;
 	font-weight: 400;
 	line-height: 25px; /* 16.8px */
-}
-.talent::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: -100%;
-    width: 100%;
-    height: 100%;
-    background-color: red;
-    transition: left 0.4s ease;
 }
 /*.talent:hover{
 	background: rgba(98, 107, 117, 0.2);
@@ -842,8 +862,9 @@ line-height: 150%; /* 60px */
 }
 .error-msg{
     position: relative;
-    background: red !important;
+    background: #ffa8a8 !important;
     width: auto !important;
+    border-left: 5px solid red;
     display: flex;
     height: 56px;
     padding-left: 30px;
@@ -851,9 +872,10 @@ line-height: 150%; /* 60px */
     justify-content: center;
     align-items: center;
     padding-top: 17px !important;
-    border: none;
-    color: white;
-    border-radius: 10px;
+    color: red;
+    font-weight: 500;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
 }
 .error-msg::after {
     content: '';
@@ -862,7 +884,7 @@ line-height: 150%; /* 60px */
     right: -15px; /* Adjust based on the size of your triangle */
     width: 0;
     height: 0;
-    border-left: 20px solid red; /* Triangle color */
+    border-left: 20px solid #ffa8a8; /* Triangle color */
     border-top: 10px solid transparent;
     border-bottom: 10px solid transparent;
     transform: translateY(-50%);
