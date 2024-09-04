@@ -6,6 +6,12 @@ include '../connect.php';
 
 include '../functions.php';
 
+if (!isset($_SESSION['company_name'])){
+
+	header('location: ../login.php');
+
+}
+
 $select = "SELECT * FROM `users` WHERE `email`='".$_GET['email']."'";
 
 $select_query = mysqli_query($conn, $select);
@@ -80,6 +86,165 @@ if (mysqli_num_rows($sel_query) > 0) {
 
 <body>
 
+	<?php
+
+	if (isset($_POST["sub"])) {
+
+		$message = str_replace(array("\r\n", "\n", "\r"), '<br>', $_POST["message"]);
+
+		$to = $_GET["email"];
+
+		$from = $_SESSION["email"];
+
+		$insert = "INSERT INTO `messages` (`id`,`sender`,`reciever`,`message`) VALUES (NULL, '".$from."','".$to."','".mysqli_real_escape_string($conn, $message)."')";
+
+		$insert_query = mysqli_query($conn, $insert);
+		
+		if ($insert_query) {
+
+		    header('Refresh: 0');
+
+		}
+
+	}
+
+?>
+
+<div style="width: 100% !important;height: auto;padding-top: 100px;padding-bottom: 100px;background: transparent;position: absolute;top: 0;z-index: 1000000000;justify-content: center;align-items: center;display: none;overflow-y: auto;" id="body">
+	
+	<div style="width: 100%;display: flex;justify-content: center;align-items: center;height: auto !important;">
+		
+		<div class="cante">
+			
+			<div class="cante-header" style="justify-content: space-between;display: flex;">
+				
+				<div class="what-to-do">
+					
+					<div>
+						
+						<img src="../images/send_mail.png" style="width: 24px;height: 24px;">
+
+					</div>
+
+					<div>
+						
+						<font class="send-m">Send a Message</font>
+
+					</div>
+
+				</div>
+
+				<div style="cursor: pointer;" id="close">
+					
+					<img src="../images/close.png">
+
+				</div>
+
+			</div>
+
+			<div class="cante-body">
+				
+				<div class="messaging-area" id="chat-box" style="margin-top: 20px;border-bottom: 1px solid #CCCCBB;padding-bottom: 30px;">	
+
+
+
+
+					<!-- $message_select = "SELECT * FROM `messages` WHERE `sender`='".$_SESSION["email"]."' AND `reciever`='".$_GET["email"]."' OR `reciever`='".$_SESSION["email"]."' AND `sender`='".$_GET["email"]."'";
+
+					$message_select_query = mysqli_query($conn, $message_select);
+
+					if (mysqli_num_rows($message_select_query) > 0) {
+
+						while ($futch = mysqli_fetch_assoc($message_select_query)){
+
+							$sender = $futch["sender"];
+
+							$reciever = $futch["reciever"];
+
+							$message = $futch["message"]; -->
+
+					
+					<!-- ?> -->
+
+					
+					<!-- if ($reciever == $_SESSION["email"]) {
+						
+
+					?>
+ -->
+					<div style="display: flex;gap: 8px;">
+					
+						<div class="you">
+							<!-- 
+							<?php
+
+							//echo $message;
+
+							?> -->
+
+						</div>
+
+					</div>
+
+					<!-- From me -->
+
+					
+					<!-- // }
+
+					//if ($sender == $_SESSION["email"]) { -->
+						
+
+					?>
+
+					<div style="display: flex;gap: 8px;justify-content: flex-end;">
+					
+						<div class="me">
+							
+							
+							<!-- //echo $message;
+
+							?> -->
+
+						</div>
+
+					</div>
+
+					// }}}
+
+					<!-- ?> -->
+
+				</div>
+
+				<form class="messaging-footer" method="POST">
+					
+					<div style="width: 40px;height: 40px;background: blue;border-radius: 100% !important;">
+							
+						<img src="profile/<?php echo $_SESSION["company_logo"]; ?>" style="width: 100% !important;height: 100% !important;border-radius: inherit;">
+
+					</div>
+
+					<div style="flex-grow: 1;">
+						
+						<textarea type="text" name="message" class="form-control" style="border-radius: 20px;height: 120px;padding-top: 20px;padding-left: 20px;" placeholder="type a message ..."></textarea>
+
+					</div>
+
+					<div>
+						
+						<input type="submit" name="sub" value="↑" class="message">
+
+					</div>
+
+				</form>
+
+			</div>
+
+		</div>
+
+	</div>
+
+</div>
+
 <?php
 
 include 'navbar.php';
@@ -126,7 +291,7 @@ include 'navbar.php';
 
 						<a href="#" style="width: auto;display: inline-block;padding: 0;">
 							
-							<div class="talent">
+							<div class="talent" id="chat">
 								
 								<img src="../images/Chats.png">
 
@@ -291,42 +456,90 @@ include 'footer.php';
 <script>
 
 
+document.getElementById("close").addEventListener("click", function() {
 
-// Get the container element
-// Get the container element
-const personalContainer = document.getElementById('personal-container');
+    document.getElementById("body").style.display = "none";
 
-// Add event listener for click to add 'personal-active' class
-personalContainer.addEventListener('click', () => {
-    personalContainer.classList.add('personal-active');
 });
 
-// Add event listener to remove 'personal-active' class when clicking outside
-document.addEventListener('click', (event) => {
-    if (!personalContainer.contains(event.target)) {
-        personalContainer.classList.remove('personal-active');
+document.getElementById("chat").addEventListener("click", function() {
+
+    document.getElementById("body").style.display = "block";
+
+});
+
+
+
+
+</script>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script>
+
+    function fetchMessages() {
+        
+        $.ajax({
+        
+            url: 'fetch_messages.php?email=<?php echo $_GET["email"]; ?>',
+        
+            method: 'GET',
+        
+            dataType: 'json',
+        
+            success: function(response) {
+        
+                // Clear existing messages
+        
+                $('#chat-box').html('');
+
+                // Loop through the messages and display them
+        
+                response.forEach(function(message) {
+        
+                    if (message.reciever == '<?php echo $_SESSION["email"]; ?>') {
+        
+                        $('#chat-box').append(`
+        
+                            <div style="display: flex;gap: 8px;">
+        
+                                <div class="you">${message.message}</div>
+        
+                            </div>
+        
+                        `);
+        
+                    }
+
+                    else if (message.sender == '<?php echo $_SESSION["email"]; ?>') {
+                    
+                        $('#chat-box').append(`
+                    
+                            <div style="display: flex;gap: 8px;justify-content: flex-end;">
+                    
+                                <div class="me">${message.message}</div>
+                    
+                            </div>
+                    
+                        `);
+                    
+                    }
+                
+                });
+            
+            }
+        
+        });
+    
     }
-});
 
+    // Fetch messages every 5 seconds
+    
+    setInterval(fetchMessages, 1000);
 
-const fileName = "<?php echo $_SESSION["ololo"]; ?>";
-
-	const fileExtension = fileName.split('.').pop().toLowerCase();
-
-	const imgElement = document.getElementById('fileTypeImage');
-
-	if (fileExtension === 'pdf') {
-	 
-	    imgElement.src = 'images/pdf.png'; // Path to the PDF image
-
-	}
-
-	else if (fileExtension === 'docx') {
-	    
-	    imgElement.src = '../images/docx_icon.png'; // Path to the DOCX image
-
-	}
-
+    // Initial fetch
+    
+    fetchMessages();
 
 </script>
 

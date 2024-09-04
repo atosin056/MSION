@@ -80,6 +80,10 @@ if (isset($_GET["code"])) {
 
 			$unique_id = $row["unique_id"];
 
+			$cv_rating = $row["cv_rating"];
+
+
+			$_SESSION['cv_rating'] = $cv_rating;
 
 			$_SESSION["unique_id"] = $unique_id;
 

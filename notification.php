@@ -51,124 +51,54 @@ include 'navbar.php';
 				</div>
 
 				<div style="display: flex;flex-direction: column;gap: 16px;">
-					
-					<div>
-						
-						<font>Today 18th of July 2024</font>
-
-					</div>
-
+				
 					<div style="display: flex;flex-direction: column;gap: 24px;">
+
+						<?php
+
+							$select = "SELECT * FROM `messages` WHERE `reciever`='".$_SESSION["email"]."' ORDER BY `id` DESC";
+
+							$select_query = mysqli_query($conn, $select);
+
+							if (mysqli_num_rows($select_query) > 0) {
+								
+								while ($row = mysqli_fetch_assoc($select_query)){
+
+									$sender = $row["sender"];
+
+									$message = $row["message"];
+
+									$_SESSION["sender"] = $sender;
+
+							
+
+						?>
 						
-						<div class="notification">
-							
-							<div style="width: 24px !important;height: 24px;">
-								
-								<img src="images/">
+						<a href="perform.php?email=<?php echo $sender; ?>">
 
-							</div>
-
-							<div style="flex-grow: 1;">
+							<div class="notification">
 								
-								<div style="display: flex;flex-direction: column;gap: 10px;">
+								<div style="flex-grow: 1;">
 									
-									<font class="info">Here’s the alert info title</font>
+									<div style="display: flex;flex-direction: column;gap: 10px;">
+										
+										<font class="info"><?php echo $sender; ?> Just messaged you!</font>
 
-									<font class="not">The alert & notifications component is designed to work with the actions buttons. Use the button to let users act on the content in the section message.</font>
+										<font class="not"><?php echo substr($message, 0,200); ?></font>
+
+									</div>
 
 								</div>
 
 							</div>
 
-						</div>
+						</a>
 
-						<div class="notification">
-							
-							<div style="width: 24px !important;height: 24px;">
-								
-								<img src="images/">
+						<?php
 
-							</div>
+						}}
 
-							<div style="flex-grow: 1;">
-								
-								<div style="display: flex;flex-direction: column;gap: 10px;">
-									
-									<font class="info">Here’s the alert info title</font>
-
-									<font class="not">The alert & notifications component is designed to work with the actions buttons. Use the button to let users act on the content in the section message.</font>
-
-								</div>
-
-							</div>
-
-						</div>
-
-						<div class="notification">
-							
-							<div style="width: 24px !important;height: 24px;">
-								
-								<img src="images/">
-
-							</div>
-
-							<div style="flex-grow: 1;">
-								
-								<div style="display: flex;flex-direction: column;gap: 10px;">
-									
-									<font class="info">Here’s the alert info title</font>
-
-									<font class="not">The alert & notifications component is designed to work with the actions buttons. Use the button to let users act on the content in the section message.</font>
-
-								</div>
-
-							</div>
-
-						</div>
-
-						<div class="notification">
-							
-							<div style="width: 24px !important;height: 24px;">
-								
-								<img src="images/">
-
-							</div>
-
-							<div style="flex-grow: 1;">
-								
-								<div style="display: flex;flex-direction: column;gap: 10px;">
-									
-									<font class="info">Here’s the alert info title</font>
-
-									<font class="not">The alert & notifications component is designed to work with the actions buttons. Use the button to let users act on the content in the section message.</font>
-
-								</div>
-
-							</div>
-
-						</div>
-
-						<div class="notification">
-							
-							<div style="width: 24px !important;height: 24px;">
-								
-								<img src="images/">
-
-							</div>
-
-							<div style="flex-grow: 1;">
-								
-								<div style="display: flex;flex-direction: column;gap: 10px;">
-									
-									<font class="info">Here’s the alert info title</font>
-
-									<font class="not">The alert & notifications component is designed to work with the actions buttons. Use the button to let users act on the content in the section message.</font>
-
-								</div>
-
-							</div>
-
-						</div>
+						?>
 
 					</div>
 

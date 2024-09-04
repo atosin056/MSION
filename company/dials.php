@@ -76,8 +76,6 @@ if ($select1_query) {
 
 <body style="font-size: 16px !important;font-family: montserrat;">
 
-
-
 <?php
 
 if ($_GET["viewresume"]) {
@@ -547,6 +545,266 @@ include 'navbar.php';
 
 			</div>
 
+
+		</div>
+
+	</div>
+
+	<div style="margin-top: 50px;">
+		
+		<div class="row" style="column-gap: 20px;">
+			
+			<?php
+					
+						$jb_select = "SELECT * FROM `job` WHERE `company_name`='".$_SESSION["company_name"]."' ORDER BY `timecreated` DESC";
+
+						$jb_select_query = mysqli_query($conn, $jb_select);
+
+						if (mysqli_num_rows($jb_select_query) > 0) {
+							
+							while ($row = mysqli_fetch_assoc($jb_select_query)) {
+
+								$company_logo = $row["company_logo"];
+
+								$company_name = $row["company_name"];
+
+								$company_location = $row["company_location"];
+
+								$status = $row["status"];
+
+								$jobtitle = $row["jobtitle"];
+
+								$jobdesc = $row["jobdescription"];
+
+								$jobtype = $row["jobtype"];
+
+								$location = $row["location"];
+
+								$salary = $row["salary"];
+
+								$currency = $row["currency"];
+
+								$timecreated = $row["timecreated"];
+
+								$unique_id = $row["unique_id"];
+
+								$applicants = $row["applicants"];
+
+							
+
+					?>
+
+					<div class="col-lg-4 col-md-4 col-sm-4 job-story-box">
+						
+						<div style="border-bottom: 1px solid var(--Neutrals-Neutrals200, #CCCBCB);;padding-bottom: 20px;">
+							
+							<div style="display: flex;gap: 10px;">
+								
+								<div class="company-logo">
+									
+									<img src="profile/<?php echo $company_logo; ?>" style="width: 100% !important;height: 100% !important;border-radius: inherit;border: inherit;">
+
+								</div>
+
+								<div>
+									
+									<div style="display: flex;flex-direction: column;height: 100% !important;background: transparent;">
+										
+										<div style="display: flex;align-items: center;height: auto;">
+
+											<div style="height: auto;background: transparent;height: 80%;">
+
+												<h4 class="name"><?php echo $company_name; ?></h4>
+
+												<p class="location"><?php echo $company_location; ?></p>
+
+											</div>
+
+										</div>
+
+									</div>
+
+								</div>
+
+								<div style="flex-grow: 1;display: flex;justify-content: flex-end;">
+									
+									<div style="flex-direction: column;gap: 5px;display: flex;">
+											
+										<div class="active">
+											
+											<div>
+												
+												<img src="../images/active.png">
+
+											</div>
+
+											<div>
+												
+												<font class="active-text"><?php echo $status; ?></font>
+
+											</div>
+
+										</div>
+
+										<div style="background: transparent;display: flex;justify-content: flex-end;">
+											
+											<font class="time"><?php
+
+											$timestamp = strtotime($timecreated); // Example timestamp
+
+											echo timeAgo($timestamp); // Outputs: e.g., "5 days ago"
+
+										?></font>
+
+										</div>
+
+									</div>
+
+								</div>
+
+							</div>
+
+						</div>
+
+						<div>
+							
+							<div style="display: flex;gap: 8px;flex-direction: column;">
+								
+								<div>
+									
+									<font class="post"><?php echo $jobtitle; ?></font>
+
+								</div>
+
+								<div>
+									
+									<p class="job-post"><?php echo $jobdesc; ?></p>
+
+								</div>
+
+								<div>
+									
+									<div class="row" style="padding-left: 16px;gap: 8px;">
+										
+										<div class="resources">
+											
+											<div style="width: 16px;height: 16px;">
+												
+												<img src="../images/Bag.png" style="width: 16px;height: 16px;">
+
+											</div>
+
+											<div>
+												
+												<font class="full-time"><?php echo $jobtype; ?></font>
+
+											</div>
+
+										</div>
+
+										<div class="resources">
+											
+											<div style="width: 16px;height: 16px;">
+												
+												<img src="../images/Location.png" style="width: 16px;height: 16px;">
+
+											</div>
+
+											<div>
+												
+												<font class="full-time"><?php echo $location; ?></font>
+
+											</div>
+
+										</div>
+
+										<div class="resources">
+											
+											<div style="width: 16px;height: 16px;">
+												
+												<img src="../images/Money.png" style="width: 16px;height: 16px;">
+
+											</div>
+
+											<div>
+												
+												<font class="full-time money"><?php echo $salary ?> <?php echo $currency ?></font>
+
+											</div>
+
+										</div>
+
+									</div>
+
+								</div>
+
+							</div>
+
+						</div>
+
+						<div style="display: flex;">
+							
+							<div style="display: flex;flex-direction: column;gap: 8px;">
+								
+								<div style="display: flex;gap: 4px;">
+
+									<div style="width: 16px;height: 16px;">
+										
+										<img src="../images/Users.png" style="width: 16px;height: 16px;">
+
+									</div>
+
+									<div>
+										
+										<font class="application-number"><?php echo $applicants; ?> Applications</font>
+
+									</div>
+
+								</div>
+
+								<div style="display: flex;gap: 4px;">
+
+									<div style="width: 16px;height: 16px;">
+										
+										<img src="../images/verified-tick.png" style="width: 16px;height: 16px;">
+
+									</div>
+
+									<div>
+										
+										<font class="application-number">Verified Company</font>
+
+									</div>
+
+								</div>
+
+							</div>
+
+							<div style="display: flex;justify-content: flex-end;flex-grow: 1;">
+								
+								<a href="overview.php?job_id=<?php echo $unique_id; ?>">
+									
+									<div class="View">
+										
+										<font>View Job</font>
+
+									</div>
+
+								</a>
+
+							</div>
+
+						</div>
+
+					</div> 
+
+					<!-- End -->
+
+					<?php
+
+					}}
+
+					?>
 
 		</div>
 
