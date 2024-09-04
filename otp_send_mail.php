@@ -1,8 +1,8 @@
 <?php
 
-include '../connect.php';
+include 'connect.php';
 
-require '../vendor/autoload.php'; // Ensure you've installed the Sendinblue library via Composer
+require 'vendor/autoload.php'; // Ensure you've installed the Sendinblue library via Composer
 
 use SendinBlue\Client\Configuration;
 

@@ -227,7 +227,7 @@ include 'navbar.php';
 
 						</a>
 
-						<a href="#">
+						<a href="reject.php?email=<?php echo $_GET["email"]; ?>&&job_id=<?php echo $_GET["id"] ?>">
 							
 							<div class="list sign-out">
 

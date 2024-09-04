@@ -107,7 +107,8 @@ include 'navbar.php';
 			
 			<div>
 				
-				<p class="search-results"><a href="jobsearch.php"><font style="color: black;font-weight: 200;">←</font></a> Search Results <font class="results-found">(<?php echo $_SESSION["search_results"]; ?> jobs found)</font></p>
+				<p class="search-results">Search Results <font class="results-found">(<?php if(isset($_SESSION["search_results"])){echo $_SESSION['search_results'].' '.'Jobs found';}elseif(!isset($_SESSION["job_count"])){
+					echo 'Showing based on CV rating';}else{echo $_SESSION["job_count"].' '.'Jobs found';} ?>)</font></p>
 
 			</div>
 

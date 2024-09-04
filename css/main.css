@@ -843,6 +843,24 @@ line-height: 150%; /* 60px */
 #skillsContainer {
     margin-top: 20px;
 }
+.not-yet{
+	display: flex;
+padding: 2px 10px 2px 8px;
+justify-content: center;
+align-items: center;
+gap: 4px;
+border-radius: 100px;
+background: var(--Base-Base-White, #FAFAFA);
+}
+.jo-search{
+	display: flex;
+	padding: 10px 16px;
+	justify-content: center;
+	align-items: center;
+	gap: 8px;
+	border-radius: 12px;
+	background: rgba(116, 116, 128, 0.10);
+}
 #stack-container {
     margin-top: 20px;
 }

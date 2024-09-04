@@ -1,18 +1,29 @@
+
 <?php
 
+
 include '../connect.php';
+
 require '../vendor/autoload.php'; // Ensure you've installed the Sendinblue library via Composer
 
+
 use SendinBlue\Client\Configuration;
+
 use SendinBlue\Client\Api\TransactionalEmailsApi;
+
 use GuzzleHttp\Client;
 
 session_start();
 
 if (!isset($_GET['email']) || !isset($_GET["company_name"]) || !isset($_GET["job_id"])) {
+
     header('location: dashboard.php?error');
+
     exit;
-} else {
+
+} 
+
+else {
     $body = '
     <!DOCTYPE html>
 <html lang="en">
@@ -122,8 +133,6 @@ if (!isset($_GET['email']) || !isset($_GET["company_name"]) || !isset($_GET["job
 </body>
 </html>
 ';
-
-    if (isset($_SESSION["otp_email_send"])) {
        
        // Initialize Sendinblue API
        
@@ -171,6 +180,12 @@ if (!isset($_GET['email']) || !isset($_GET["company_name"]) || !isset($_GET["job
             
             }
 
+            else{
+
+                echo 'Tosin';
+
+            }
+
         }
 
         catch (Exception $e) {
@@ -181,6 +196,6 @@ if (!isset($_GET['email']) || !isset($_GET["company_name"]) || !isset($_GET["job
     
     }
 
-}
+
 
 ?>

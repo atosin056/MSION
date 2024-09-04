@@ -83,7 +83,7 @@ include 'navbar.php';
 
 ?>
 
-<div class="sections" style="padding-top: 100px;background: #FAFAFA;height: 70% !important;">
+<div class="sections" style="padding-top: 100px;background: #FAFAFA;height: 100% !important;">
 	
 	<div style="display: flex;justify-content: center;align-items: center;height: 100% !important;width: 100% !important;">
 		
@@ -141,6 +141,42 @@ include 'navbar.php';
 
 			</div>
 
+			<div style="display: flex;flex-wrap: wrap;width: 100%;column-gap: 8px;row-gap: 10px;">
+
+				<?php
+
+				$select5 = "SELECT * FROM `job_filters` ORDER BY `id` ASC";
+
+				$select5_query = mysqli_query($conn, $select5);
+
+				if (mysqli_num_rows($select5_query) > 0) {
+					
+					while ($fetch = mysqli_fetch_assoc($select5_query)) {
+
+						$filter = $fetch["filter"];
+
+				?>
+
+				<a href="jobsearch.php?search=<?php echo $filter; ?>" style="color: inherit !important;">
+				
+					<div class="jo-search" style="color: black !important;">
+						
+						<?php echo $filter; ?>
+
+					</div>
+
+				</a>
+
+				<?php
+
+				}
+
+				}
+
+				?>
+
+			</div>
+
 		</div>
 
 	</div>	
@@ -155,7 +191,8 @@ include 'navbar.php';
 			
 			<div>
 				
-				<p class="search-results">Search Results <font class="results-found">(<?php if(isset($_SESSION["search_results"])){echo $_SESSION['search_results'];}else{echo $_SESSION["job_count"];} ?> jobs found)</font></p>
+				<p class="search-results">Search Results <font class="results-found">(<?php if(isset($_SESSION["search_results"])){echo $_SESSION['search_results'].' '.'Jobs found';}elseif(!isset($_SESSION["job_count"])){
+					echo 'Showing based on CV rating';}else{echo $_SESSION["job_count"].' '.'Jobs found';} ?>)</font></p>
 
 			</div>
 
@@ -167,7 +204,7 @@ include 'navbar.php';
 
 					if (!isset($_GET["search"])) {
 					
-						$jb_select = "SELECT * FROM `job` WHERE `cv_rating`='".$_SESSION["cv_rating"]."'";
+						$jb_select = "SELECT * FROM `job` WHERE `cv_rating`='".$_SESSION["cv_rating"]."' ORDER BY `timecreated` DESC";
 
 						$jb_select_query = mysqli_query($conn, $jb_select);
 

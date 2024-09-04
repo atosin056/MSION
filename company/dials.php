@@ -13,6 +13,8 @@ if (!isset($_SESSION["email"])) {
 }
 
 
+
+
 // Check if the 'viewresume' GET parameter is set
 
 
@@ -223,7 +225,46 @@ include 'navbar.php';
 								
 								<font class="total_app">Hired Talents</font>
 
-								<font class="number">57 Interviews</font>
+								<font class="number"><?php 
+
+								$selects = "SELECT * FROM `applicants` WHERE `company_name`='".$_SESSION["company_name"]."' ORDER BY `date_entered` DESC LIMIT 1";
+
+							    $selects_query = mysqli_query($conn, $selects);
+
+							    if (mysqli_num_rows($selects_query) > 0) {
+
+							    	while ($fu = mysqli_fetch_assoc($selects_query)){
+
+							    		$jib = $fu["job_id"];
+
+
+							    	}
+
+
+								$s = "SELECT COUNT(*) AS totals FROM `hired` WHERE `job_id`='".$jib."'";
+
+								$s_query = mysqli_query($conn, $s);
+
+								if (mysqli_num_rows($s_query) > 0){
+
+									while ($r = mysqli_fetch_assoc($s_query)){
+
+										$hired = $r["totals"];
+
+									}
+
+									echo $hired;
+
+								}
+
+								else{
+
+									echo '0';
+
+								}
+}
+
+								 ?> Talent</font>
 
 							</div>
 
@@ -267,7 +308,44 @@ include 'navbar.php';
 								
 								<font class="total_app">Total Applications Rejected</font>
 
-								<font class="number">405 Applications</font>
+								<font class="number"><?php
+
+								$selectss = "SELECT * FROM `applicants` WHERE `company_name`='".$_SESSION["company_name"]."' ORDER BY `date_entered` DESC LIMIT 1";
+
+							    $selects_query = mysqli_query($conn, $selects);
+
+							    if (mysqli_num_rows($selects_query) > 0) {
+
+							    	while ($fu = mysqli_fetch_assoc($selects_query)){
+
+							    		$jibs = $fu["job_id"];
+
+
+							    	}
+
+
+								$ss = "SELECT COUNT(*) AS totalss FROM `rejected` WHERE `job_id`='".$jibs."'";
+
+								$ss_query = mysqli_query($conn, $ss);
+
+								if (mysqli_num_rows($ss_query) > 0){
+
+									while ($r = mysqli_fetch_assoc($ss_query)){
+
+										$rejected = $r["totalss"];
+
+									}
+
+									echo $rejected;
+
+								}
+
+								else{
+
+									echo '0';
+
+								}
+} ?> Applications</font>
 
 							</div>
 
@@ -335,14 +413,14 @@ include 'navbar.php';
 
 			    <?php 
 
-			    $select = "SELECT * FROM `applicants` WHERE `company_name`='".$_SESSION["company_name"]."' ORDER BY `date_entered` ASC";
+			    $select = "SELECT * FROM `applicants` WHERE `company_name`='".$_SESSION["company_name"]."' AND `job_id`='".$jib."' ORDER BY `date_entered` DESC";
 
 			    $select_query = mysqli_query($conn, $select);
 
 			    if (mysqli_num_rows($select_query) > 0) {
 			    	
 			    	while ($row = mysqli_fetch_assoc($select_query)) {
-			    		
+
 			    		$applicant_name = $row["fname"];
 
 			    		$date_entered = $row["date_entered"];
@@ -431,7 +509,33 @@ include 'navbar.php';
 
 			        </div>
 			
+					<?php
+
+					if ($application_status == "Hired") {
+						
+						echo '<div class="table-cell applicant-cell action" style="cursor: pointer;text-align: center;"><a href="#" style="width: 100% !important;"><div style="width: 100% !important;">:</div></a></div>';
+
+					}
+
+					elseif ($application_status == "rejected"){
+
+						echo '<div class="table-cell applicant-cell action" style="cursor: pointer;text-align: center;"><a href="#" style="width: 100% !important;"><div style="width: 100% !important;">:</div></a></div>';
+
+					}
+
+					else{
+
+					?>
+
 			        <div class="table-cell applicant-cell action" style="cursor: pointer;text-align: center;"><a href="dials.php?viewresume=<?php echo $email; ?>" style="width: 100% !important;"><div style="width: 100% !important;">:</div></a></div>
+
+			        <?php
+
+			    	}
+
+
+
+			        ?>
 
 			    </div>
 

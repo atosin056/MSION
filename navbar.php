@@ -30,7 +30,7 @@
 
 	         	<li class="nav-item link">
 
-	          		<a href="jobsearch.php?search" class="nav-link" data-page="jobsearch">Job Search</a>
+	          		<a href="jobsearch.php" class="nav-link" data-page="jobsearch">Job Search</a>
 
 	         	</li>
 
@@ -375,19 +375,19 @@
 
 				    </a>
 
-				    <a href="jobsearch.php">
+				    <a href="company/dials.php">
 
 				    	<div class="list">
 				    		
 				    		<div>
 				    			
-				    			<img src="images/Bag.png" style="width: 24px;height: 24px;">
+				    			<img src="images/dshbrd.png" style="width: 24px;height: 24px;">
 
 				    		</div>
 
 				    		<div>
 				    			
-				    			<font>Find Jobs</font>
+				    			<font>Dashboard</font>
 
 				    		</div>
 
@@ -395,7 +395,7 @@
 
 				    </a>
 
-				    <a href="applied.php">
+				    <a href="../applied.php">
 
 				    	<div class="list">
 				    		
@@ -415,7 +415,7 @@
 
 				    </a>
 
-				    <a href="notification.php">
+				    <a href="../notification.php">
 
 				    	<div class="list">
 				    		
@@ -435,7 +435,7 @@
 
 				    </a>
 
-				    <a href="saved.php">
+				    <a href="../saved.php">
 
 				    	<div class="list">
 				    		
@@ -447,7 +447,7 @@
 
 				    		<div>
 				    			
-				    			<font>Saved Jbs</font>
+				    			<font>Saved Jobs</font>
 
 				    		</div>
 
@@ -471,7 +471,7 @@
 
 			    <div style="width: 100% !important;background: white;border-radius: 12px;padding-left: 12px;padding-right: 12px;display: flex;flex-direction: column;gap: 8px;margin-top: 10px;">
 			    	
-			    	<a href="#">
+			    	<a href="../#">
 
 				    	<div class="list">
 				    		
@@ -491,7 +491,7 @@
 
 				    </a>
 
-				    <a href="settings.php">
+				    <a href="../settings.php">
 
 				    	<div class="list">
 				    		
@@ -517,7 +517,7 @@
 				    		
 				    		<div>
 				    			
-				    			<img src="images/signout.png" style="width: 24px;height: 24px;">
+				    			<img src="../images/signout.png" style="width: 24px;height: 24px;">
 
 				    		</div>
 
