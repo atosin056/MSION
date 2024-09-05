@@ -1,2 +1,3 @@
 connect.php
 /vendor
+/configuration/credentials.json
