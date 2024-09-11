@@ -117,27 +117,14 @@ if (isset($_POST["submit"])) {
                 if ($updates_query) {
 
                 	// Example usage
-					$filePath = 'cv/'.$cvname; // Replace with the path to your .docx file
 
-					$text = extractTextFromDocx($filePath); // Assume this function extracts text from the docx file
+					
 
-					$profession = $title; // Replace with the profession or perspective you want to use
-
-					$rating = sendToOpenAIAPI($text, $profession);
-
-					if ($rating) {
-
-						$re_update = "UPDATE `users` SET `cv_rating`='".$rating."' WHERE `email`='".$_SESSION["otp_email_send"]."'";
-
-						$re_update_query = mysqli_query($conn, $re_update);
-
-						if ($re_update_query) {
-
+					
 		                    header('location: complete2.php?distro='.$_GET['fuid']);
 
 		                    exit();	
 
-						}
 
 					}
 
@@ -155,7 +142,7 @@ if (isset($_POST["submit"])) {
 
     }
 
-}
+
 
 ?>
 

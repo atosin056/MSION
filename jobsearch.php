@@ -192,7 +192,7 @@ include 'navbar.php';
 			<div>
 				
 				<p class="search-results">Search Results <font class="results-found">(<?php if(isset($_SESSION["search_results"])){echo $_SESSION['search_results'].' '.'Jobs found';}elseif(!isset($_SESSION["job_count"])){
-					echo 'Showing based on CV rating';}else{echo $_SESSION["job_count"].' '.'Jobs found';} ?>)</font></p>
+					echo 'Showing all jobs';}else{echo $_SESSION["job_count"].' '.'Jobs found';} ?>)</font></p>
 
 			</div>
 
@@ -204,7 +204,7 @@ include 'navbar.php';
 
 					if (!isset($_GET["search"])) {
 					
-						$jb_select = "SELECT * FROM `job` WHERE `cv_rating`='".$_SESSION["cv_rating"]."' ORDER BY `timecreated` DESC";
+						$jb_select = "SELECT * FROM `job` ORDER BY `timecreated` DESC";
 
 						$jb_select_query = mysqli_query($conn, $jb_select);
 
