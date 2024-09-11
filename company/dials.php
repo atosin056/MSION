@@ -475,31 +475,31 @@ include 'navbar.php';
 
 				        if ($cv_rating == '1') {
 				        	
-				        	echo '<img src="../images/1 star.png">';
+				        	echo '<img src="../images/1 Star.png">';
 
 				        }
 
 				        if ($cv_rating == '2') {
 				        	
-				        	echo '<img src="../images/2 star.png">';
+				        	echo '<img src="../images/2 Star.png">';
 
 				        }
 
 				        if ($cv_rating == '3') {
 				        	
-				        	echo '<img src="../images/3 star.png">';
+				        	echo '<img src="../images/3 Star.png">';
 
 				        }
 
 				        if ($cv_rating == '4') {
 				        	
-				        	echo '<img src="../images/4 star.png">';
+				        	echo '<img src="../images/4 Star.png">';
 
 				        }
 
 				        if ($cv_rating == '5') {
 				        	
-				        	echo '<img src="../images/5 star.png">';
+				        	echo '<img src="../images/5 Star.png">';
 
 				        }
 

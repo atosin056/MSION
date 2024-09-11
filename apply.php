@@ -4,6 +4,8 @@ session_start();
 
 include 'connect.php';
 
+include 'functions.php';
+
 if (!isset($_GET["job_id"])) {
 	
 	header('location: jobsearch.php');
@@ -28,6 +30,13 @@ if (isset($_POST["apply"])) {
 
 			$_SESSION["compan_name"] = $company_name;
 
+
+			//Collect the requirements for the job
+
+			$requirements = $row["requirements_text"];
+
+			$_SESSION["requirements_text"]= $requirements;
+
 		}
 
 	}
@@ -41,8 +50,16 @@ if (isset($_POST["apply"])) {
 
 	$title = $_SESSION["title"];
 
+	$filePath = 'cv/'.$_SESSION["cv"]; // Replace with the path to your .docx file
 
-	$insert = "INSERT INTO `applicants` (`id`,`fname`,`title`,`phone`,`email`,`coverletter`,`cv`,`cv_rating`,`stage`,`application_status`,`company_name`,`job_id`,`date_entered`) VALUES (NULL, '".$name."','".mysqli_real_escape_string($conn, $title)."','".$phone."','".$email."','".mysqli_real_escape_string($conn, $coverletter)."','".mysqli_real_escape_string($conn, $_SESSION["cv"])."','".$_SESSION["cv_rating"]."','Questioning','nothing','".$_SESSION["compan_name"]."','".$_GET["job_id"]."',CURRENT_TIMESTAMP())";
+	$text = extractTextFromDocx($filePath); // Assume this function extracts text from the docx file
+
+	$profession = $_SESSION["requirements_text"]; // Replace with the profession or perspective you want to use
+
+	$rate = sendToOpenAIAPI($text, $profession);
+
+
+	$insert = "INSERT INTO `applicants` (`id`,`fname`,`title`,`phone`,`email`,`coverletter`,`cv`,`cv_rating`,`stage`,`application_status`,`company_name`,`job_id`,`date_entered`) VALUES (NULL, '".$name."','".mysqli_real_escape_string($conn, $title)."','".$phone."','".$email."','".mysqli_real_escape_string($conn, $coverletter)."','".mysqli_real_escape_string($conn, $_SESSION["cv"])."','".$rate."','Questioning','nothing','".$_SESSION["compan_name"]."','".$_GET["job_id"]."',CURRENT_TIMESTAMP())";
 
 	$insert_query = mysqli_query($conn, $insert);
 
