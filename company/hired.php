@@ -4,9 +4,28 @@ session_start();
 
 include '../connect.php';
 
+include '../functions.php';
+
 $email = $_GET["email"];
 
 $job_id = $_GET["job_id"];
+
+$sel = "SELECT * FROM `users` WHERE `email`='".$email."'";
+
+$sel_query = mysqli_query($conn, $sel);
+
+if (mysqli_num_rows($sel_query) > 0) {
+	
+	while ($roe = mysqli_fetch_assoc($sel_query)){
+
+		$fullname = $roe["fullname"];
+
+		$_SESSION['fname'] = $fullname;
+
+	}
+
+}
+
 
 
 //Update the Database
@@ -29,11 +48,12 @@ if ($update_query) {
 
 		}
 
-
+		
 
 	}
 
 	header('location: hired_send_email.php?email='.$email.'&&company_name='.$company_name.'&&job_id='.$job_id.'&&company_email='.$_SESSION["email"]);
+
 
 }
 

@@ -80,7 +80,7 @@ HR at MSION</p>';
 
             if ($insert_query) {
                 
-                header('location: dials.php?rejected');
+               header('location: dials.php?rejected='.$email.'&&job_id='.$job_id);
                 
                 exit;
             

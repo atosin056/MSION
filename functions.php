@@ -1,6 +1,5 @@
 <?php
 
-
 require 'vendor/autoload.php';
 
 use PhpOffice\PhpWord\IOFactory;
@@ -8,6 +7,58 @@ use PhpOffice\PhpWord\IOFactory;
 use GuzzleHttp\Client;
 
 use PhpOffice\PhpWord\PhpWord;
+function createAndDownloadDocument($filename, $title, $content) {
+    // Create a new instance of PhpWord
+    $phpWord = new PhpWord();
+    
+    // Add a section to the document
+    $section = $phpWord->addSection();
+    
+    // Add title with formatting
+    $section->addTitle($title, 1);
+    
+    // Add content text to the section
+    $section->addText($content);
+    
+    // Set document properties (optional)
+    $properties = $phpWord->getDocInfo();
+    $properties->setCreator('MSION');
+    $properties->setTitle($title);
+    
+    // Save the document to a temporary file
+    $temp_file = tempnam(sys_get_temp_dir(), 'PHPWord');
+    if ($temp_file === false) {
+        throw new Exception("Unable to create a temporary file.");
+    }
+    
+    // Save the document
+    try {
+        $phpWord->save($temp_file, 'Word2007');
+    } catch (Exception $e) {
+        throw new Exception("Failed to save the document: " . $e->getMessage());
+    }
+    
+    // Serve the document for download
+    header('Content-Description: File Transfer');
+    header('Content-Disposition: attachment; filename="' . $filename . '.docx"');
+    header('Content-Type: application/vnd.openxmlformats-officedocument.wordprocessingml.document');
+    header('Content-Transfer-Encoding: binary');
+    header('Content-Length: ' . filesize($temp_file));
+    
+    // Read the file and output it
+    readfile($temp_file);
+    
+    // Clean up
+    unlink($temp_file);
+    
+    exit; // Ensure no further output is sent
+}
+
+
+// Example usage: Call this function when you want to download the PDF
+// generatePDF('example.pdf', 'My PDF Title', 'This is the content of the PDF document. You can customize it.');
+
+
 
 function getDocxContentAsHtml($filePath) {
     // Load the DOCX file

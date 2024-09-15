@@ -78,7 +78,7 @@ if ($select1_query) {
 
 <?php
 
-if ($_GET["viewresume"]) {
+if (isset($_GET["viewresume"])) {
 
 	
 	
@@ -145,11 +145,119 @@ if ($_GET["viewresume"]) {
 
 }
 
-include 'navbar.php';
+else{echo '';}
+
 
 ?>
 
+<?php
 
+if (!isset($_GET["job_id"])) {
+
+	
+
+}
+
+else{
+
+
+	$emai = $_GET["hired"];
+
+	$jobssss_id = $_GET["job_id"];
+
+	$checkele = "SELECT * FROM `applicants` WHERE `email`='".$emai."' AND `job_id`='".$jobssss_id."'";
+
+	$checkele_query = mysqli_query($conn, $checkele);
+
+	if (mysqli_num_rows($checkele_query) > 0) {
+		
+		while ($r = mysqli_fetch_assoc($checkele_query)){
+
+			$sage = $r["stage"];
+
+		}
+	
+		  $stages = [];
+
+		    if ($sage == 'Interview') {
+			    $stages = ['Questioning', 'Interview'];
+			} elseif ($sage == 'Hired') {
+			    $stages = ['Questioning', 'Interview', 'Hired'];
+			} elseif ($sage == 'Rejected') {
+			    $stages = ['Questioning', 'Interview', 'Rejected'];
+			} elseif ($sage == 'Questioning') {
+			    $stages = ['Hasn\'t Passed Any Stage yet'];
+			} else {
+			    $stages = []; // Default to an empty array
+			}
+
+	
+
+			$filename = 'Stages Passed for ('.$_SESSION["fname"].')';
+
+			$title = "These are the stages passed for".$_SESSION["fname"];
+
+			$stages_content = implode(", ", $stages);
+
+			createAndDownloadDocument($filename, $title, $stages_content);
+
+			}}
+
+
+			if (!isset($_GET["rejected"])) {
+				
+				$emai = $_GET["hired"];
+
+			$jobssss_id = $_GET["job_id"];
+
+			$checkele = "SELECT * FROM `applicants` WHERE `email`='".$emai."' AND `job_id`='".$jobssss_id."'";
+
+			$checkele_query = mysqli_query($conn, $checkele);
+
+			if (mysqli_num_rows($checkele_query) > 0) {
+				
+				while ($r = mysqli_fetch_assoc($checkele_query)){
+
+					$sage = $r["stage"];
+
+				}
+			
+				  $stages = [];
+
+				    if ($sage == 'Interview') {
+					    $stages = ['Questioning', 'Interview'];
+					} elseif ($sage == 'Hired') {
+					    $stages = ['Questioning', 'Interview', 'Hired'];
+					} elseif ($sage == 'Rejected') {
+					    $stages = ['Questioning', 'Interview', 'Rejected'];
+					} elseif ($sage == 'Questioning') {
+					    $stages = ['Hasn\'t Passed Any Stage yet'];
+					} else {
+					    $stages = []; // Default to an empty array
+					}
+
+			
+
+					$filename = 'Stages Passed for ('.$_SESSION["fname"].')';
+
+					$title = "These are the stages passed for".$_SESSION["fname"];
+
+					$stages_content = implode(", ", $stages);
+
+					createAndDownloadDocument($filename, $title, $stages_content);
+
+					}
+
+			}
+
+
+?>
+
+<?php
+
+include 'navbar.php';
+
+?>
 
 <div class="sections" style="background: white;padding-top: 164px;">
 	
