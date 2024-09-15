@@ -4,7 +4,8 @@
 
 include '../connect.php';
 
-require '../vendor/autoload.php'; // Ensure you've installed the Sendinblue library via Composer
+include '../functions.php';
+
 
 
 use SendinBlue\Client\Configuration;
@@ -15,6 +16,10 @@ use GuzzleHttp\Client;
 
 session_start();
 
+$job_id = $_GET["job_id"];
+
+$email = $_GET["email"];
+
 if (!isset($_GET['email']) || !isset($_GET["company_name"]) || !isset($_GET["job_id"])) {
 
     header('location: dashboard.php?error');
@@ -23,7 +28,12 @@ if (!isset($_GET['email']) || !isset($_GET["company_name"]) || !isset($_GET["job
 
 } 
 
+
 else {
+     // code...
+
+   
+
     $body = '
     <!DOCTYPE html>
 <html lang="en">
@@ -174,7 +184,7 @@ else {
 
             if ($insert_query) {
                 
-                header('location: dials.php?hired');
+                header('location: dials.php?hired='.$email.'&&job_id='.$job_id);
                 
                 exit;
             
