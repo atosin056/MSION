@@ -6,11 +6,149 @@ include 'connect.php';
 
 include 'functions.php';
 
+use SendinBlue\Client\Configuration;
+
+		use SendinBlue\Client\Api\TransactionalEmailsApi;
+
+		use GuzzleHttp\Client;
+
 if (!isset($_SESSION["email"])) {
 	
 	header('location: login.php');
 
 }
+
+if (isset($_GET["applied"])) {
+	
+	
+
+		$body = '<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <title>Welcome to MSION</title>
+    <style>
+        /* Fallback styles for email clients */
+        body {
+            width: 100% !important;
+            background-color: #E8E8E8;
+            margin: 0;
+            padding: 0;
+            font-family: Montserrat, sans-serif;
+        }
+        .email-container {
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 24px;
+            box-sizing: border-box;
+        }
+        .email-header {
+            padding-bottom: 30px;
+            border-bottom: 1px solid #CBD8CD;
+            
+        }
+        .email-header img {
+            max-width: 100px;
+        }
+        .email-content {
+            padding-top: 20px;
+        }
+        .email-content p {
+            line-height: 1.6;
+            color: #333333;
+        }
+        .email-content h1 {
+            font-weight: 600;
+            font-size: 20px;
+            color: #333333;
+        }
+        .email-footer {
+            margin-top: 40px;
+        }
+        .email-footer p {
+            font-weight: 600;
+        }
+        p{
+            line-height: 30px !important;
+        }
+    </style>
+</head>
+<body>
+    <div class="email-container">
+        <div class="email-header">
+            <img src="http://msiontest.mtest.org.ng/images/logo.png" alt="MSION Logo">
+        </div>
+        <div class="email-content">
+            <h1>Hi👋! atosin056@gmail.com</h1>
+            <p style="line-height: 30px;">We have detected a job application from your MSION account. If this was you, no further action is required. We will notify you about any updates regarding the application.</p>
+            
+            <p style="line-height: 30px;">If you did not make this application, please contact us immediately for assistance.</p>
+            
+            <p>Thank you for using MSION.</p>
+            
+            <p>We are confident that your experience with MSION will be productive and rewarding. Our team is dedicated to helping you reach your career goals, and we cannot wait to see what you achieve.</p>
+            
+            <p>If you have any questions or need assistance, we are always here to help. Welcome once again, and let us get started on building a brighter future together!</p>
+        </div>
+        <div class="email-footer">
+            <p>Best Regards,</p>
+            <p>The MSION team!</p>
+        </div>
+    </div>
+</body>
+</html>
+';
+	    
+	        // Initialize Sendinblue API
+	    
+	        $config = Configuration::getDefaultConfiguration()->setApiKey('api-key', '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');
+	   
+	        $apiInstance = new TransactionalEmailsApi(
+	   
+	            new Client(),
+	   
+	            $config
+	   
+	        );
+
+	        $sendSmtpEmail = new \SendinBlue\Client\Model\SendSmtpEmail([
+
+	            'subject' => 'MSION Job Application Success',
+
+	            'sender' => ['name' => 'MSION', 'email' => 'atosin056@gmail.com'],
+
+	            'to' => [['email' => $_SESSION["email"], 'name' => 'User']],
+
+	            'htmlContent' => $body
+
+	        ]);
+
+
+
+	        try {
+
+	            $response = $apiInstance->sendTransacEmail($sendSmtpEmail);
+
+	            // Insert OTP into database
+
+	           header('location: jobsearch.php');
+
+	        } catch (Exception $e) {
+
+	            echo 'Exception when calling TransactionalEmailsApi->sendTransacEmail: ', $e->getMessage(), PHP_EOL;
+
+	        }
+
+	    }
+
+
 
 if (isset($_GET["search"])) {
     

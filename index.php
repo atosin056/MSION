@@ -44,7 +44,7 @@ session_start();
 			
 			<div class="chat-head" style="width: 100% !important;height: auto;padding: 24px;background: #292E78 !important;">
 				
-				<font>MSION - Artificial Intelligence</font>
+				<font>MSIN BOT</font>
 
 			</div>
 
@@ -54,7 +54,7 @@ session_start();
 
                     <div class="from typewriter-text">
                         
-                        Hi there! I am Benjamin 👋, your friendly AI assistant. I was developed by MSION to help you with your queries and provide information. How can I assist you today?
+                        Hi there! I am MSINBOT 👋, your friendly AI assistant. I was developed by MSION to help you with your queries and provide information. How can I assist you today?
 
                     </div>
 
