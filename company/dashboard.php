@@ -64,6 +64,8 @@ if (isset($_GET["query"])) {
 
 }
 
+
+
 if (isset($_POST["upload"])) {
        
     if (isset($_FILES["profile"]) && $_FILES["profile"]["error"] <= 0) {

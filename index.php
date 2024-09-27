@@ -32,11 +32,82 @@ session_start();
 
 <body>
 
+	<div class="chatbot-icon" id="chat-toggle" style="font-size: 50px;padding-top: 10px;cursor: pointer;">
+		
+		🤖
+
+	</div>
+
+	<div class="chatbot" style="display: flex;align-items: flex-end;width: 400px !important;z-index: 100000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000;position: fixed;top: 0;height: 100vh;">
+		
+		<div style="width: 400px !important;height:95vh;background: white;box-shadow: 0px 0px 40px #292E78;border-top-left-radius: 20px;border-top-right-radius: 20px;" id="chatbox">
+			
+			<div class="chat-head" style="width: 100% !important;height: auto;padding: 24px;background: #292E78 !important;">
+				
+				<font>MSIN BOT</font>
+
+			</div>
+
+			<div class="chat-body" style="padding-top: 30px;padding-left: 30px;padding-right: 30px;">
+				
+				<div style="width: 100%;display: flex;justify-content: flex-start;">
+
+                    <div class="from typewriter-text">
+                        
+                        Hi there! I am MSINBOT 👋, your friendly AI assistant. I was developed by MSION to help you with your queries and provide information. How can I assist you today?
+
+                    </div>
+
+                </div>
+<!-- 
+                <div style="width: 100%;display: flex;justify-content: flex-end;">
+
+                    <div class="to typewriter-text">
+                        
+                       Yo whatsupp
+
+                    </div>
+
+                </div> -->
+
+			</div>
+
+			<div class="chat-bottom">
+                        
+	            <form method="POST" id="chatForm">
+
+	                <div style="display: flex;width: 100%;">
+	                
+	                    <div class="form-group">
+	                        
+	                        <input type="text" name="message" placeholder="Type a Message.." class="form-control wolo" style="height: 60px;flex-grow: 1;border-right: none;border-top-right-radius: 0px;border-bottom-right-radius: 0px;border-bottom: 0px;border-left: 0px;padding-left: 20px;">
+
+	                    </div>
+
+	                    <div style="display: flex;justify-content: flex-end;flex-grow: 1;padding-right: 20px;border-top: 1px solid #C8CBD9;">
+	                        
+	                        <input type="submit" name="submit" value="→" style="background: transparent;border: none;">
+
+	                    </div>
+
+	                </div>
+
+	            </form>
+
+            </div>
+
+		</div>
+
+	</div>
+
+
 <?php
 
 include 'navbar.php';
 
 ?>
+
+
 
 <div class="header">
 
@@ -1171,6 +1242,15 @@ include 'footer.php';
 
 </body>
 
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"></script>
+
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<script type="text/javascript" src="js/main.js"></script>
+
+
 <script type="text/javascript">
 	
 	document.addEventListener('DOMContentLoaded', function() {
@@ -1191,15 +1271,258 @@ include 'footer.php';
     
 });
 
-</script>
 
-<script>
+	function typewriterEffect(element, speed = 30) {
+    const text = element.textContent;
+    element.textContent = ''; // Clear the text content
+    let index = 0;
+
+    function type() {
+      if (index < text.length) {
+        element.textContent += text.charAt(index);
+        index++;
+        setTimeout(type, speed);
+      }
+    }
+
+    type();
+  }
+
+  // Initialize the typing effect for all elements with class 'typewriter-text'
+  document.addEventListener('DOMContentLoaded', function () {
+    const elements = document.querySelectorAll('.typewriter-text');
+    elements.forEach(element => typewriterEffect(element, 20)); // 20ms per character
+  });
+
+  // Initialize the typing effect for the element with ID 'typewriter-text'
+  document.addEventListener('DOMContentLoaded', function () {
+    typewriterEffect('typewriter-text', 20); // 50ms per character
+  });
+
     
-    SmoothScrollbar.init(document.querySelector('body'), {
-        
-        damping: 0.1
     
+
+   
+
+
+
+document.addEventListener("DOMContentLoaded", function() {
+    
+    var chatbox = document.getElementById("chatbox");
+    
+    var chatToggle = document.getElementById("chat-toggle");
+
+
+
+    // Toggle the chatbox when the chat icon is clicked
+
+    chatToggle.addEventListener("click", function() {
+
+        if (chatbox.classList.contains("show")) {
+
+            chatbox.classList.remove("show");
+
+            setTimeout(function() {
+
+                chatbox.style.display = "none";
+
+            }, 300); // Wait for the transition to complete before hiding
+
+        } else {
+
+            chatbox.style.display = "block";
+
+            setTimeout(function() {
+
+                chatbox.classList.add("show");
+
+            }, 10); // Tiny delay to trigger transition
+
+        }
+
     });
+
+
+
+    // Hide chatbox if clicked outside
+
+    document.addEventListener("click", function(event) {
+
+        if (!chatbox.contains(event.target) && !chatToggle.contains(event.target)) {
+
+            chatbox.classList.remove("show");
+
+            setTimeout(function() {
+
+                chatbox.style.display = "none";
+
+            }, 300);
+
+        }
+
+    });
+
+});
+
+
+document.addEventListener("DOMContentLoaded", function() {
+
+    var chatForm = document.getElementById('chatForm');
+
+    var chatInput = document.querySelector('input[name="message"]');
+
+    var chatBox = document.querySelector('.chat-body');
+
+    var chatToggle = document.getElementById('chat-toggle');
+
+    var chatbox = document.getElementById('chatbox');
+
+
+
+    // Handle form submission
+
+    chatForm.addEventListener('submit', function(event) {
+
+        event.preventDefault();
+
+        var userMessage = chatInput.value;
+
+
+
+        // Display user message
+
+        var userDiv = document.createElement('div');
+
+        userDiv.style.width = '100%';
+
+        userDiv.style.display = 'flex';
+
+        userDiv.style.justifyContent = 'flex-end';
+
+
+        var userMessageDiv = document.createElement('div');
+
+        userMessageDiv.className = 'to';
+
+        userMessageDiv.textContent = `${userMessage}`;
+
+        userDiv.appendChild(userMessageDiv);
+
+
+
+        chatBox.appendChild(userDiv);
+
+
+
+        // Add typing indicator
+
+        var typingDiv = document.createElement('div');
+
+        typingDiv.className = 'typing-indicator';
+
+        typingDiv.style.width = '100%';
+
+        typingDiv.style.display = 'flex';
+
+        typingDiv.style.justifyContent = 'center';
+
+        typingDiv.textContent = 'Bot is typing...';
+
+        
+
+        chatBox.appendChild(typingDiv);
+
+
+        // Send message to server via AJAX
+       
+        var xhr = new XMLHttpRequest();
+
+        xhr.open('POST', 'chat.php', true);
+
+        xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+
+        xhr.onload = function() {
+
+            if (xhr.status >= 200 && xhr.status < 400) {
+
+                var data = JSON.parse(xhr.responseText);
+
+                // Remove typing indicator
+
+                chatBox.removeChild(typingDiv);
+
+
+                // Display chatbot response
+
+                var botDiv = document.createElement('div');
+
+                botDiv.style.width = '100%';
+
+                botDiv.style.display = 'flex';
+
+                botDiv.style.justifyContent = 'flex-start';
+
+
+                var botMessageDiv = document.createElement('div');
+
+                botMessageDiv.className = 'from typewriter-text';
+
+                botMessageDiv.textContent = `${data.reply}`;
+
+                botDiv.appendChild(botMessageDiv);
+
+
+
+                chatBox.appendChild(botDiv);
+
+
+                // Scroll to the bottom
+                chatBox.scrollTop = chatBox.scrollHeight;
+
+
+
+
+                // Clear input field
+
+                chatInput.value = '';
+
+            } else {
+
+                console.error('Server error:', xhr.statusText);
+
+                chatBox.removeChild(typingDiv); // Remove typing indicator if error occurs
+
+            }
+
+        };
+
+        xhr.onerror = function() {
+
+            console.error('Request failed');
+
+            chatBox.removeChild(typingDiv); // Remove typing indicator if request fails
+
+        };
+
+        xhr.send('message=' + encodeURIComponent(userMessage));
+
+    });
+
+
+
+    // Hide chatbox when clicking outside
+
+    document.addEventListener('click', function(event) {
+
+        if (!chatbox.contains(event.target) && !chatToggle.contains(event.target)) {
+
+            chatbox.style.display = 'none';
+
+        }
+
+    });
+
+});
 </script>
 
 <script src="bootstrap/js/bootstrap.bundle.min.js"></script>

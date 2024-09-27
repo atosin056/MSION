@@ -4,12 +4,160 @@ session_start();
 
 include 'connect.php';
 
+use SendinBlue\Client\Configuration;
+
+		use SendinBlue\Client\Api\TransactionalEmailsApi;
+
+		use GuzzleHttp\Client;
+
 
 if (isset($_POST["submit"])) {
 	
 	$email = $_POST["email"];
 
 	$password = md5($_POST["password"]);
+
+	if (isset($_GET["reg"])) {
+		
+			require 'vendor/autoload.php';
+
+		
+
+			$body = '<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+    <title>Welcome to MSION</title>
+    <style>
+        /* Fallback styles for email clients */
+        body {
+            width: 100% !important;
+            background-color: #E8E8E8;
+            margin: 0;
+            padding: 0;
+            font-family: Montserrat, sans-serif;
+        }
+        .email-container {
+            width: 100%;
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: white;
+            padding: 24px;
+            box-sizing: border-box;
+        }
+        .email-header {
+            padding-bottom: 30px;
+            border-bottom: 1px solid #CBD8CD;
+            
+        }
+        .email-header img {
+            max-width: 100px;
+        }
+        .email-content {
+            padding-top: 20px;
+        }
+        .email-content p {
+            line-height: 1.6;
+            color: #333333;
+        }
+        .email-content h1 {
+            font-weight: 600;
+            font-size: 20px;
+            color: #333333;
+        }
+        .email-footer {
+            margin-top: 40px;
+        }
+        .email-footer p {
+            font-weight: 600;
+        }
+        p{
+            line-height: 30px !important;
+        }
+    </style>
+</head>
+<body>
+    <div class="email-container">
+        <div class="email-header">
+            <img src="http://msiontest.mtest.org.ng/images/logo.png" alt="MSION Logo">
+        </div>
+        <div class="email-content">
+            <h1>Welcome on Board 👋! '.$email.'</h1>
+            <p style="line-height: 30px;">We are thrilled to welcome you to MSION! We are excited to have you join our community, where job opportunities and professional growth await you. Whether you are looking to explore new roles, enhance your skills, or take your career to the next level, we are here to support you every step of the way.</p>
+            
+            <p style="line-height: 30px;">At MSION, we believe in making your job search and professional development as smooth and fulfilling as possible. Our platform is designed to match you with opportunities that align with your skills, experience, and aspirations. Beyond job listings, we provide resources and expert guidance to help you grow, learn, and stay ahead in today’s competitive job market.</p>
+            
+            <p>Now that you are part of MSION, we encourage you to explore all the tools and features available to you. Complete your profile to help us find the best opportunities for you, and don’t hesitate to dive into our wide range of job listings. Your professional journey is unique, and we are committed to supporting you along the way.</p>
+            
+            <p>We’re confident that your experience with MSION will be productive and rewarding. Our team is dedicated to helping you reach your career goals, and we can’t wait to see what you achieve.</p>
+            
+            <p>If you have any questions or need assistance, we are always here to help. Welcome once again, and let’s get started on building a brighter future together!</p>
+        </div>
+        <div class="email-footer">
+            <p>Warm Regards,</p>
+            <p>The MSION team!</p>
+        </div>
+    </div>
+</body>
+</html>
+
+
+';
+	    
+	        // Initialize Sendinblue API
+	    
+	        $config = Configuration::getDefaultConfiguration()->setApiKey('api-key', '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');
+	   
+	        $apiInstance = new TransactionalEmailsApi(
+	   
+	            new Client(),
+	   
+	            $config
+	   
+	        );
+
+	        $sendSmtpEmail = new \SendinBlue\Client\Model\SendSmtpEmail([
+
+	            'subject' => 'MSION Registration Completion',
+
+	            'sender' => ['name' => 'MSION', 'email' => 'atosin056@gmail.com'],
+
+	            'to' => [['email' => $email, 'name' => 'User']],
+
+	            'htmlContent' => $body
+
+	        ]);
+
+
+
+	        try {
+
+	            $response = $apiInstance->sendTransacEmail($sendSmtpEmail);
+
+	            // Insert OTP into database
+
+	           header('location: login.php');
+
+	        } 
+
+	        catch (Exception $e) {
+
+	            echo 'Exception when calling TransactionalEmailsApi->sendTransacEmail: ', $e->getMessage(), PHP_EOL;
+
+	        }
+
+	    }
+
+
+
+	
+
+	else{
 
 
 	//check the DB and find the user and store his data in a session
@@ -122,6 +270,8 @@ if (isset($_POST["submit"])) {
 		}
 
 	}
+
+}
 
 }
 

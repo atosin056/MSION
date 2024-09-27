@@ -69,7 +69,7 @@ if (isset($_POST["submit"])) {
 
 	    // Redirect to dashboard
 
-	    header("Location: login.php");
+	    header("Location: login.php?reg=complete&&email=".$_SESSION["otp_email_send"]);
 
 	    exit();
 	}
