@@ -4,7 +4,7 @@ header('Content-Type: application/json');
 
 // OpenAI API key and endpoint
 
-$apiKey = 'sk-proj-Qc0SnKLc98Rj2nN5L0QhT3BlbkFJtPCQHJr6Sl34QWV2bENO';
+$apiKey = '';
 
 $apiEndpoint = 'https://api.openai.com/v1/chat/completions';
 
