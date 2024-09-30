@@ -796,7 +796,7 @@ include 'navbar.php';
 			<div class="col-lg-6 col-sm-6 col-md-6">
 				
 
-				<img src="images/help.png" style="width: 100% !important;">
+				<img src="images/new/6.jpg" style="width: 100% !important;">
 
 			</div>
 
@@ -1000,7 +1000,7 @@ include 'navbar.php';
 
 					<div class="col-lg-6 col-sm-6 col-md-6" style="background: transparent;flex: 1 1 100px;height: 360px;">
 						
-						<img src="images/dream.png" style="width: 100% !important;height: 100% !important;">
+						<img src="images/new/2.jpg" style="width: 100% !important;height: 100% !important;">
 
 					</div>
  				
