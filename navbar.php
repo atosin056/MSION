@@ -68,7 +68,7 @@
 
 			        	<div class="dashboard-login" id="profile-container" style="cursor: pointer;">
 			         			
-			        		<img src="images/new/icon.png">
+			        		<img src="images/new/icon.png" id="profile-pic">
 
 			        	</div>
 
