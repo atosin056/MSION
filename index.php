@@ -12,7 +12,7 @@ session_start();
 
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-	<title>MSION - Where talents meet opportunities.</title>
+	<title>MSI Nigeria - Where talents meet opportunities.</title>
 
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	
@@ -54,7 +54,7 @@ session_start();
 
                     <div class="from typewriter-text">
                         
-                        Hi there! I am MSINBOT 👋, your friendly AI assistant. I was developed by MSION to help you with your queries and provide information. How can I assist you today?
+                        Hi there! I am MSINBOT 👋, your friendly AI assistant. I was developed by MSI Nigeria to help you with your queries and provide information. How can I assist you today?
 
                     </div>
 
@@ -211,7 +211,7 @@ include 'navbar.php';
 				
 				<div style="background: transparent;width: 100%;">
 					
-					<h4 style="font-size: 28px;text-align: center;font-weight: 400;line-height: 38px;">World's class companies hiring <br>talents on MSION</h4>
+					<h4 style="font-size: 28px;text-align: center;font-weight: 400;line-height: 38px;">World's class companies hiring <br>talents on MSI Nigeria</h4>
 
 				</div>
 
@@ -661,9 +661,9 @@ include 'navbar.php';
 		
 		<div class="col-lg-5 col-md-5 col-sm-5 how" style="text-align: center;">
 			
-			<h4>How MSION Works</h4>
+			<h4>How MSI Nigeria Works</h4>
 
-			<p>Step-by-step guide on how job seekers and recruiters can use MSION</p>
+			<p>Step-by-step guide on how job seekers and recruiters can use MSI Nigeria</p>
 
 		</div>
 
@@ -685,7 +685,7 @@ include 'navbar.php';
 						
 					<font class="manager">Create an account</font>
 
-					<font class="roles" style="line-height: 26px;">Start your journey by signing up with MSION.</font>
+					<font class="roles" style="line-height: 26px;">Start your journey by signing up with MSI Nigeria.</font>
 
 				</div>
 
@@ -703,7 +703,7 @@ include 'navbar.php';
 						
 					<font class="manager">Create an account</font>
 
-					<font class="roles" style="line-height: 26px;">Start your journey by signing up with MSION.</font>
+					<font class="roles" style="line-height: 26px;">Start your journey by signing up with MSI Nigeria.</font>
 
 				</div>
 
@@ -757,7 +757,7 @@ include 'navbar.php';
 						
 					<font class="manager" style="font-size: 16px;line-height: 30px;">Access Courses and Career Resources</font>
 
-					<font class="roles" style="line-height: 22px;font-size: 12px;">Take advantage of MSION's extensive library of courses, webinars, and expert insights.</font>
+					<font class="roles" style="line-height: 22px;font-size: 12px;">Take advantage of MSI Nigeria's extensive library of courses, webinars, and expert insights.</font>
 
 				</div>
 
@@ -781,11 +781,11 @@ include 'navbar.php';
 					
 					<div class="helper">
 
-						<p>How MSION helps with</p>
+						<p>How MSI Nigeria helps with</p>
 						
 						<h4>Resume Buliding</h4>
 
-						<p class="craft">Craft an impressive resume that highlights your skills and experiences with our built-in resume builder. With MSION, you'll have access to easy-to-use templates and tools to create a professional resume that stands out to potential employers.</p>
+						<p class="craft">Craft an impressive resume that highlights your skills and experiences with our built-in resume builder. With MSI Nigeria, you'll have access to easy-to-use templates and tools to create a professional resume that stands out to potential employers.</p>
 
 					</div>
 
@@ -814,7 +814,7 @@ include 'navbar.php';
 			
 			<h4 style="font-size: 40px;font-weight: 700;">Hire talented job seekers</h4>
 
-			<p style="color: #433E3F;font-weight: 400;line-height: 30px;">MSION has a suite of tools to help you hire the best  talent all over the world. Find talent, post jobs, and promote your brand to thousands of motivated job seekers. It only takes a few minutes to create your company profile.</p>
+			<p style="color: #433E3F;font-weight: 400;line-height: 30px;">MSI Nigeria has a suite of tools to help you hire the best  talent all over the world. Find talent, post jobs, and promote your brand to thousands of motivated job seekers. It only takes a few minutes to create your company profile.</p>
 
 		</div>
 
@@ -866,7 +866,7 @@ include 'navbar.php';
 						
 						<p>Create a free company profile</p>
 
-						<font>MSION has a suite of tools to help you hire the best  talent all over the world. Find talent, post jobs, and promote your brand to thousands of motivated job seekers. It only </font>
+						<font>MSI Nigeria has a suite of tools to help you hire the best  talent all over the world. Find talent, post jobs, and promote your brand to thousands of motivated job seekers. It only </font>
 
 					</div>
 
@@ -902,7 +902,7 @@ include 'navbar.php';
 						
 						<p>Job posting</p>
 
-						<font>MSION has a suite of tools to help you hire the best  talent all over the world. Find talent, post jobs, and promote your brand to thousands of motivated job seekers. It only </font>
+						<font>MSI Nigeria has a suite of tools to help you hire the best  talent all over the world. Find talent, post jobs, and promote your brand to thousands of motivated job seekers. It only </font>
 
 					</div>
 
@@ -938,7 +938,7 @@ include 'navbar.php';
 						
 						<p>Finding talents</p>
 
-						<font>MSION has a suite of tools to help you hire the best  talent all over the world. Find talent, post jobs, and promote your brand to thousands of motivated job seekers. It only </font>
+						<font>MSI Nigeria has a suite of tools to help you hire the best  talent all over the world. Find talent, post jobs, and promote your brand to thousands of motivated job seekers. It only </font>
 
 					</div>
 
