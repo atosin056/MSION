@@ -169,7 +169,7 @@ include 'navbar.php';
 									
 									<div class="company-logo">
 										
-										<img src="company/profile/<?php echo $company_logo; ?>" style="width: 100% !important;height: 100% !important;border-radius: inherit;border: inherit;">
+										<img src="images/logo.png" style="width: 100% !important;height: 100% !important;border-radius: inherit;border: inherit;">
 
 									</div>
 
@@ -181,9 +181,9 @@ include 'navbar.php';
 
 												<div style="height: auto;background: transparent;height: 80%;">
 
-													<h4 class="name"><?php echo $company_name; ?></h4>
+													<h4 class="name">>MSI Nigeria</h4>
 
-													<p class="location"><?php echo $company_location; ?></p>
+													<p class="location">Nigeria</p>
 
 												</div>
 
