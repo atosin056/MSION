@@ -123,7 +123,7 @@ include 'navbar.php';
 						
 						<h4 style="font-size: 50px;font-weight: 700;line-height: 70px;">Where talents meet opportunities.</h4>
 
-						<p style="color: #433E3F;line-height: 30px;">Find jobs that suits your interest & skills, find remote jobs you love, research the fastest-growing remote companies Looking for a career change? We got you covetransparent</p>
+						<p style="color: #433E3F;line-height: 30px;">Find jobs that suits your interest & skills</p>
 
 					</div>
 
@@ -145,41 +145,6 @@ include 'navbar.php';
 
 							</a>
 
-							<?php
-
-							if (isset($_SESSION["email"])) {
-								
-							?>
-
-							<a href="company/register.php" style="width: auto;padding: 0;pointer-events: none;cursor: not-allowed !important;">
-								
-								<div class="get-started" style="background: #7474801A !important;color: black !important;">
-									
-									Hire Talents
-
-								</div>
-
-							</a>
-
-							<?php
-
-							}
-
-							else{
-
-							?>
-
-							<a href="company/register.php" style="width: auto;padding: 0;">
-								
-								<div class="get-started" style="background: #7474801A !important;color: black !important;">
-									
-									Hire Talents
-
-								</div>
-
-							</a>
-
-							<?php } ?>
 
 						</div>
 
@@ -201,105 +166,16 @@ include 'navbar.php';
 
 </div>
 
-<div class="partners">
-	
-	<div style="width: 100% !important;">
-		
-		<div style="display: flex;justify-content: center;">
-			
-			<div class="col-lg-7 col-sm-7 col-md-7" style="background: transparent;display: flex;justify-content: center;flex-direction: column;">
-				
-				<div style="background: transparent;width: 100%;">
-					
-					<h4 style="font-size: 28px;text-align: center;font-weight: 400;line-height: 38px;">World's class companies hiring <br>talents on MSI Nigeria</h4>
-
-				</div>
-
-				<div style="background: transparent;width: 100% !important;">
-					
-					<div style="display: flex;justify-content: space-between;" class="row">
-						
-						<div style="width: 108.21px;height: 108.21px;">
-							
-							<a href="http://google.com" target="_blank">
-
-								<img src="images/p1.png" style="width: 100% !important;height: 100% !important;">
-
-							</a>
-
-						</div>
-
-						<div style="width: 108.21px;height: 108.21px;">
-							
-							<a href="http://amazon.com" target="_blank">
-
-								<img src="images/p2.png" style="width: 100% !important;height: 100% !important;">
-
-							</a>
-
-						</div>
-
-						<div style="width: 108.21px;height: 108.21px;">
-							
-							<a href="http://microsoft.com" target="_blank">
-
-								<img src="images/p3.png" style="width: 100% !important;height: 100% !important;">
-
-							</a>
-
-						</div>
-
-						<div style="width: 108.21px;height: 108.21px;">
-							
-							<a href="http://spotify.com" target="_blank">
-
-								<img src="images/p4.png" style="width: 100% !important;height: 100% !important;">
-
-							</a>
-
-						</div>
-
-						<div style="width: 108.21px;height: 108.21px;">
-							
-							<a href="http://meta.com" target="_blank">
-
-								<img src="images/p5.png" style="width: 100% !important;height: 100% !important;">
-
-							</a>
-
-						</div>
-
-						<div style="width: 108.21px;height: 108.21px;">
-							
-							<a href="http://stripe.com" target="_blank">
-
-								<img src="images/p6.png" style="width: 100% !important;height: 100% !important;">
-
-							</a>
-
-						</div>
-
-					</div>
-
-				</div>
-
-			</div>
-
-		</div>
-
-	</div>
-
-</div>
 
 <div style="background: #FAFAFA;width: 100% !important;height: auto !important;" class="section-2">
 	
 	<div style="display: flex;flex-direction: column;">
 		
-		<div class="col-lg-9 col-sm-9 col-md-9">
+		<div class="col-lg-12 col-sm-12 col-md-12">
 			
 			<h4 style="font-size: 40px;font-weight: 700;">Explore thousands of job opportunities</h4>
 
-			<p style="color: #433E3F;font-weight: 400;line-height: 30px;">Filter job listings based on location, industry, job type, and more. With our advanced search filters, you can narrow down your search to exactly what you're looking for.</p>
+			<p style="color: #433E3F;font-weight: 400;line-height: 30px;">Filter job listings based on location, job type and more. With our advanced search filters, you can narrow down your search to the role you're looking for.</p>
 
 		</div>
 
