@@ -18,11 +18,11 @@ $message = $_POST['message'] ?? '';
 
 $predefinedResponses = [
 
-    'what is your name' => 'I am Benjamin, developed by MSION.',
+    'what is your name' => 'I am Benjamin, developed by MSI Nigeria.',
 
-    'who developed you' => 'I was developed by MSION.',
+    'who developed you' => 'I was developed by MSI Nigeria.',
 
-    'contact MSION' => 'Send them an email: atosin056@gmail',
+    'contact MSI Nigeria' => 'Send them an email: atosin056@gmail',
 
 ];
 
@@ -39,9 +39,7 @@ foreach ($predefinedResponses as $keyword => $response) {
         echo json_encode(['reply' => $response]);
 
         exit();
-
     }
-
 }
 
 
@@ -92,18 +90,11 @@ curl_close($ch);
 if ($response === false) {
 
     echo json_encode(['reply' => 'Error communicating with AI']);
-
-}
-
-else {
+} else {
 
     $responseData = json_decode($response, true);
 
     $reply = $responseData['choices'][0]['message']['content'] ?? 'No reply from AI';
 
     echo json_encode(['reply' => $reply]);
-
 }
-
-?>
-

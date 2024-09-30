@@ -2,11 +2,11 @@
 
 $server_name = 'localhost';
 
-$username = 'username';
+$username = 'root';
 
-$password = 'Tosin2010*';
+$password = '';
 
-$db_name = 'MSION';
+$db_name = 'mcg_msion';
 
 
 $conn = mysqli_connect($server_name, $username, $password, $db_name);

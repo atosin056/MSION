@@ -20,11 +20,8 @@ if (!isset($_GET['email']) || !isset($_GET["company_name"]) || !isset($_GET["job
     header('location: dashboard.php?error');
 
     exit;
-
-} 
-
-else {
-    $body = '<font style="width: 18px;line-height: 30px;"><b>Dear '.$_GET["email"].'</b></font><br><br><p style="line-height: 30px;">We interviewed a number of candidates for [job title or position], and we’ve decided to move forward with another candidate.
+} else {
+    $body = '<font style="width: 18px;line-height: 30px;"><b>Dear ' . $_GET["email"] . '</b></font><br><br><p style="line-height: 30px;">We interviewed a number of candidates for [job title or position], and we’ve decided to move forward with another candidate.
 <br><br>
 Although your interview demonstrated your credentials and experience well, [reason for rejection]. However, we’d like to offer the opportunity to interview for a second position as [job position or title]. We’ve enclosed a job description for you to review.
 <br><br>
@@ -38,69 +35,60 @@ Regards,
 <br>
 Firstname and Lastname
 <br>
-HR at MSION</p>';
-       
-       // Initialize Sendinblue API
-       
-        $config = Configuration::getDefaultConfiguration()->setApiKey('api-key', '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');
-       
-        $apiInstance = new TransactionalEmailsApi(
-       
-            new Client(),
-       
-            $config
-       
-        );
+HR at MSI Nigeria</p>';
+
+    // Initialize Sendinblue API
+
+    $config = Configuration::getDefaultConfiguration()->setApiKey('api-key', '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');
+
+    $apiInstance = new TransactionalEmailsApi(
+
+        new Client(),
+
+        $config
+
+    );
 
 
 
-        $sendSmtpEmail = new \SendinBlue\Client\Model\SendSmtpEmail([
+    $sendSmtpEmail = new \SendinBlue\Client\Model\SendSmtpEmail([
 
-            'subject' => 'MSION Job Application: Declined.',
+        'subject' => 'MSI Nigeria Job Application: Declined.',
 
-            'sender' => ['name' => 'MSION', 'email' => 'atosin056@gmail.com'],
+        'sender' => ['name' => 'MSI Nigeria', 'email' => 'atosin056@gmail.com'],
 
-            'to' => [['email' => $_GET["email"], 'name' => 'User']],
+        'to' => [['email' => $_GET["email"], 'name' => 'User']],
 
-            'htmlContent' => $body
+        'htmlContent' => $body
 
-        ]);
+    ]);
 
 
 
-        try {
+    try {
 
-            $response = $apiInstance->sendTransacEmail($sendSmtpEmail);
+        $response = $apiInstance->sendTransacEmail($sendSmtpEmail);
 
-            // Insert OTP into database
+        // Insert OTP into database
 
-            $insert = "INSERT INTO `rejected` (`id`, `email`, `job_id`,`company_name`) VALUES (NULL, '".$_GET["email"]."', '".$_GET["job_id"]."','".$_GET["company_name"]."')";
+        $insert = "INSERT INTO `rejected` (`id`, `email`, `job_id`,`company_name`) VALUES (NULL, '" . $_GET["email"] . "', '" . $_GET["job_id"] . "','" . $_GET["company_name"] . "')";
 
-            $insert_query = mysqli_query($conn, $insert);
+        $insert_query = mysqli_query($conn, $insert);
 
-            if ($insert_query) {
-                
-               header('location: dials.php?rejected='.$email.'&&job_id='.$job_id);
-                
-                exit;
-            
-            }
+        if ($insert_query) {
 
-            else{
+            header('location: dials.php?rejected=' . $email . '&&job_id=' . $job_id);
 
-                echo 'Tosin';
+            exit;
+        } else {
 
-            }
-
+            echo 'Tosin';
         }
+    } catch (Exception $e) {
 
-        catch (Exception $e) {
-        
-            echo 'Exception when calling TransactionalEmailsApi->sendTransacEmail: ', $e->getMessage(), PHP_EOL;
-        
-        }
-    
+        echo 'Exception when calling TransactionalEmailsApi->sendTransacEmail: ', $e->getMessage(), PHP_EOL;
     }
+}
 
 
 

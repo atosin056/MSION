@@ -13,7 +13,7 @@ if (!isset($_SESSION['otp_email_send'])) {
     header('location: register.php');
     exit;
 } else {
-    $otp = random_int(1,9).random_int(1,9).random_int(1,9).random_int(1,9).random_int(1,9);
+    $otp = random_int(1, 9) . random_int(1, 9) . random_int(1, 9) . random_int(1, 9) . random_int(1, 9);
 
     $body = '
     <html>
@@ -52,8 +52,8 @@ if (!isset($_SESSION['otp_email_send'])) {
         );
 
         $sendSmtpEmail = new \SendinBlue\Client\Model\SendSmtpEmail([
-            'subject' => 'MSION Registration OTP Code',
-            'sender' => ['name' => 'MSION', 'email' => 'atosin056@gmail.com'],
+            'subject' => 'MSI Nigeria Registration OTP Code',
+            'sender' => ['name' => 'MSI Nigeria', 'email' => 'atosin056@gmail.com'],
             'to' => [['email' => $_SESSION["otp_email_send"], 'name' => 'User']],
             'htmlContent' => $body
         ]);
@@ -61,18 +61,15 @@ if (!isset($_SESSION['otp_email_send'])) {
         try {
             $response = $apiInstance->sendTransacEmail($sendSmtpEmail);
             // Insert OTP into database
-            $insert = "INSERT INTO `otp` (`id`, `otp`, `email`) VALUES (NULL, '$otp', '".$_SESSION["otp_email_send"]."')";
+            $insert = "INSERT INTO `otp` (`id`, `otp`, `email`) VALUES (NULL, '$otp', '" . $_SESSION["otp_email_send"] . "')";
             $insert_query = mysqli_query($conn, $insert);
 
             if ($insert_query) {
                 header('location: verify_otp.php');
                 exit;
             }
-
         } catch (Exception $e) {
             echo 'Exception when calling TransactionalEmailsApi->sendTransacEmail: ', $e->getMessage(), PHP_EOL;
         }
     }
 }
-
-?>
