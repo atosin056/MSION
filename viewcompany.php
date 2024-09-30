@@ -106,7 +106,7 @@ if (isset($_GET["company"])) {
 
 							<div style="border-radius: 100% !important;width: 140px;height: 120px;">
 
-								<img src="profile/<?php echo $_SESSION['company_logo']; ?>" style="width: 100% !important;height: 100% !important;border-radius: inherit;">
+								<img src="images/logo.png" style="width: 100% !important;height: 100% !important;border-radius: inherit;">
 
 							</div>
 
@@ -114,7 +114,7 @@ if (isset($_GET["company"])) {
 
 								<div style="display: flex;gap: 8px;background: transparent;height: 35px;">
 
-									<p style="width: auto;" class="fname"><?php echo $_SESSION["company_name"]; ?></p>
+									<p style="width: auto;" class="fname">MSI Nigeria</p>
 
 									<img src="images/blue.png" style="width: 24px;height: 24px;">
 
@@ -146,7 +146,7 @@ if (isset($_GET["company"])) {
 
 						<div>
 
-							<p class="bio-text"><?php echo $_SESSION["about"]; ?></p>
+							<p class="bio-text">MSI Nigeria Reproductive Choices is a result-oriented social enterprise, which uses modern management and marketing techniques to provide reproductive health care and allied services. MSI Nigeria’s goal is to meet the needs of underserved Nigerians and dramatically improve access and use of a range of reproductive health services. MSI Nigeria Reproductive Choices is part of Marie Stopes International’s Global Partnership which is in over 37 countries worldwide and it operates in Nigeria through six service delivery channels.</p>
 
 						</div>
 
@@ -186,7 +186,7 @@ if (isset($_GET["company"])) {
 
 						<div class="year">
 
-							<font><?php echo $_SESSION['company_size']; ?></font>
+							<font>2009</font>
 
 						</div>
 
