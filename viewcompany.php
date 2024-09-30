@@ -166,7 +166,7 @@ if (isset($_GET["company"])) {
 
 						<div class="year">
 
-							<font><?php echo $_SESSION['founding_year']; ?></font>
+							<font>2009</font>
 
 						</div>
 
@@ -186,7 +186,7 @@ if (isset($_GET["company"])) {
 
 						<div class="year">
 
-							<font>2009</font>
+							<font><?php echo $_SESSION['company_size']; ?></font>
 
 						</div>
 
