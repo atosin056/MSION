@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `MSION`
+-- Database: `MSI Nigeria`
 --
 
 -- --------------------------------------------------------
@@ -648,7 +648,7 @@ CREATE TABLE `users` (
   `id` int NOT NULL,
   `unique_id` varchar(255) NOT NULL DEFAULT '',
   `email` varchar(255) NOT NULL,
-  `password` varchar(255) NOT NULL DEFAULT 'msiondefaultpassword',
+  `password` varchar(255) NOT NULL DEFAULT 'MSI Nigeriadefaultpassword',
   `fullname` varchar(255) NOT NULL DEFAULT ' ',
   `title` varchar(255) NOT NULL DEFAULT ' ',
   `profile` varchar(255) NOT NULL DEFAULT '',

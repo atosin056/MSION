@@ -12,7 +12,7 @@ session_start();
 
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-	<title>MSION - Where talents meet opportunities.</title>
+	<title>MSI Nigeria - Where talents meet opportunities.</title>
 
 	<link rel="preconnect" href="https://fonts.googleapis.com">
 	
@@ -31,74 +31,73 @@ session_start();
 </head>
 
 <body>
+<!-- ChatBot -->
 
-	<div class="chatbot-icon" id="chat-toggle" style="font-size: 50px;padding-top: 10px;cursor: pointer;">
-		
-		🤖
+    <div class="chaticon" id="chat-toggle" style="cursor: pointer;width: 100%;display: flex;justify-content: flex-end;padding-right: 20px;position: fixed;bottom: 0;padding-bottom: 20px;z-index: 10000000;background: transparent;">
+                    
+        <img src="images/chaticon.png">
 
-	</div>
+    </div>
 
-	<div class="chatbot" style="display: flex;align-items: flex-end;width: 400px !important;z-index: 100000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000;position: fixed;top: 0;height: 100vh;">
-		
-		<div style="width: 400px !important;height:95vh;background: white;box-shadow: 0px 0px 40px #292E78;border-top-left-radius: 20px;border-top-right-radius: 20px;" id="chatbox">
-			
-			<div class="chat-head" style="width: 100% !important;height: auto;padding: 24px;background: #292E78 !important;">
-				
-				<font>MSIN BOT</font>
+    <div class="chatbot" style="width: 400px !important;z-index: 100000000000000000000000000000000000;">
+        
+        <div>
 
-			</div>
-
-			<div class="chat-body" style="padding-top: 30px;padding-left: 30px;padding-right: 30px;">
-				
-				<div style="width: 100%;display: flex;justify-content: flex-start;">
-
-                    <div class="from typewriter-text">
+            <div style="display: flex;width: 100% !important;height: 100% !important;align-items: flex-end;justify-content: flex-end;padding-right: 20px;padding-bottom: 20px;padding-top: 20px;">
+                
+                <div style="background: white;z-index: 100000;width: 400px;height: 90vh;" id="chatbox">
+                    
+                    <div class="chat-head" style="background: #292E78;">
                         
-                        Hi there! I am MSINBOT 👋, your friendly AI assistant. I was developed by MSION to help you with your queries and provide information. How can I assist you today?
+                        <font>MSINBOT 👋</font>
+
+                    </div>
+
+                    <div style="padding-top: 30px;padding-left: 30px;padding-right: 30px;" class="chat-body">
+                        
+                        <div style="width: 100%;display: flex;justify-content: flex-start;">
+
+                            <div class="from typewriter-text">
+                                
+                                Hi there! I am Benjamin 👋, your friendly AI assistant. I was developed by MSIN to help you with your queries and provide information. How can I assist you today?
+
+                            </div>
+
+                        </div>
+                    
+                    </div>
+
+                    <div class="chat-bottom">
+                        
+                        <form method="POST" id="chatForm">
+
+                            <div style="display: flex;width: 100%;">
+                            
+                                <div class="form-group">
+                                    
+                                    <input type="text" name="message" placeholder="Type a Message.." class="form-control wolo" style="height: 60px;flex-grow: 1;border-right: none;border-top-right-radius: 0px;border-bottom-right-radius: 0px;border-bottom: 0px;border-left: 0px;padding-left: 20px;">
+
+                                </div>
+
+                                <div style="display: flex;justify-content: flex-end;flex-grow: 1;padding-right: 20px;border-top: 1px solid #C8CBD9;">
+                                    
+                                    <input type="submit" name="submit" value="→" style="background: transparent;border: none;">
+
+                                </div>
+
+                            </div>
+
+                        </form>
 
                     </div>
 
                 </div>
-<!-- 
-                <div style="width: 100%;display: flex;justify-content: flex-end;">
-
-                    <div class="to typewriter-text">
-                        
-                       Yo whatsupp
-
-                    </div>
-
-                </div> -->
-
-			</div>
-
-			<div class="chat-bottom">
-                        
-	            <form method="POST" id="chatForm">
-
-	                <div style="display: flex;width: 100%;">
-	                
-	                    <div class="form-group">
-	                        
-	                        <input type="text" name="message" placeholder="Type a Message.." class="form-control wolo" style="height: 60px;flex-grow: 1;border-right: none;border-top-right-radius: 0px;border-bottom-right-radius: 0px;border-bottom: 0px;border-left: 0px;padding-left: 20px;">
-
-	                    </div>
-
-	                    <div style="display: flex;justify-content: flex-end;flex-grow: 1;padding-right: 20px;border-top: 1px solid #C8CBD9;">
-	                        
-	                        <input type="submit" name="submit" value="→" style="background: transparent;border: none;">
-
-	                    </div>
-
-	                </div>
-
-	            </form>
 
             </div>
 
-		</div>
+        </div>
 
-	</div>
+    </div>
 
 
 <?php
@@ -181,6 +180,7 @@ include 'navbar.php';
 
 							<?php } ?>
 
+
 						</div>
 
 					</div>
@@ -201,105 +201,16 @@ include 'navbar.php';
 
 </div>
 
-<div class="partners">
-	
-	<div style="width: 100% !important;">
-		
-		<div style="display: flex;justify-content: center;">
-			
-			<div class="col-lg-7 col-sm-7 col-md-7" style="background: transparent;display: flex;justify-content: center;flex-direction: column;">
-				
-				<div style="background: transparent;width: 100%;">
-					
-					<h4 style="font-size: 28px;text-align: center;font-weight: 400;line-height: 38px;">World's class companies hiring <br>talents on MSION</h4>
-
-				</div>
-
-				<div style="background: transparent;width: 100% !important;">
-					
-					<div style="display: flex;justify-content: space-between;" class="row">
-						
-						<div style="width: 108.21px;height: 108.21px;">
-							
-							<a href="http://google.com" target="_blank">
-
-								<img src="images/p1.png" style="width: 100% !important;height: 100% !important;">
-
-							</a>
-
-						</div>
-
-						<div style="width: 108.21px;height: 108.21px;">
-							
-							<a href="http://amazon.com" target="_blank">
-
-								<img src="images/p2.png" style="width: 100% !important;height: 100% !important;">
-
-							</a>
-
-						</div>
-
-						<div style="width: 108.21px;height: 108.21px;">
-							
-							<a href="http://microsoft.com" target="_blank">
-
-								<img src="images/p3.png" style="width: 100% !important;height: 100% !important;">
-
-							</a>
-
-						</div>
-
-						<div style="width: 108.21px;height: 108.21px;">
-							
-							<a href="http://spotify.com" target="_blank">
-
-								<img src="images/p4.png" style="width: 100% !important;height: 100% !important;">
-
-							</a>
-
-						</div>
-
-						<div style="width: 108.21px;height: 108.21px;">
-							
-							<a href="http://meta.com" target="_blank">
-
-								<img src="images/p5.png" style="width: 100% !important;height: 100% !important;">
-
-							</a>
-
-						</div>
-
-						<div style="width: 108.21px;height: 108.21px;">
-							
-							<a href="http://stripe.com" target="_blank">
-
-								<img src="images/p6.png" style="width: 100% !important;height: 100% !important;">
-
-							</a>
-
-						</div>
-
-					</div>
-
-				</div>
-
-			</div>
-
-		</div>
-
-	</div>
-
-</div>
 
 <div style="background: #FAFAFA;width: 100% !important;height: auto !important;" class="section-2">
 	
 	<div style="display: flex;flex-direction: column;">
 		
-		<div class="col-lg-9 col-sm-9 col-md-9">
+		<div class="col-lg-12 col-sm-12 col-md-12">
 			
 			<h4 style="font-size: 40px;font-weight: 700;">Explore thousands of job opportunities</h4>
 
-			<p style="color: #433E3F;font-weight: 400;line-height: 30px;">Filter job listings based on location, industry, job type, and more. With our advanced search filters, you can narrow down your search to exactly what you're looking for.</p>
+			<p style="color: #433E3F;font-weight: 400;line-height: 30px;">Filter job listings based on location, job type and more. With our advanced search filters, you can narrow down your search to the role you're looking for.</p>
 
 		</div>
 
@@ -365,24 +276,6 @@ include 'navbar.php';
 
 						<div>
 							
-							<img src="images/post2.png">
-
-						</div>
-
-						<div>
-							
-							<font style="font-size: 16px;font-weight: 600;">12,907</font>
-
-							<font style="font-size: 14px;color: #433E3F;">Companies</font>
-
-						</div>
-						
-					</div>
-
-					<div class="posts">
-
-						<div>
-							
 							<img src="images/post3.png">
 
 						</div>
@@ -411,12 +304,6 @@ include 'navbar.php';
 					
 					<div>
 						
-						<img src="images/par.png">
-
-					</div>
-
-					<div>
-						
 						<font class="manage">Financial management</font>
 
 						<br>
@@ -429,12 +316,6 @@ include 'navbar.php';
 
 				<div class="first-post">
 					
-					<div>
-						
-						<img src="images/par2.png">
-
-					</div>
-
 					<div>
 						
 						<font class="manage">Management analysis</font>
@@ -451,12 +332,6 @@ include 'navbar.php';
 					
 					<div>
 						
-						<img src="images/par3.png">
-
-					</div>
-
-					<div>
-						
 						<font class="manage">Quality control management</font>
 
 						<br>
@@ -471,12 +346,6 @@ include 'navbar.php';
 					
 					<div>
 						
-						<img src="images/par4.png">
-
-					</div>
-
-					<div>
-						
 						<font class="manage">Product Design Engineering</font>
 
 						<br>
@@ -489,12 +358,6 @@ include 'navbar.php';
 
 				<div class="first-post">
 					
-					<div>
-						
-						<img src="images/par5.png">
-
-					</div>
-
 					<div>
 						
 						<font class="manage">Operation researcher</font>
@@ -511,12 +374,6 @@ include 'navbar.php';
 					
 					<div>
 						
-						<img src="images/par6.png">
-
-					</div>
-
-					<div>
-						
 						<font class="manage">Product Design Engineering</font>
 
 						<br>
@@ -529,12 +386,6 @@ include 'navbar.php';
 
 				<div class="first-post">
 					
-					<div>
-						
-						<img src="images/par7.png">
-
-					</div>
-
 					<div>
 						
 						<font class="manage">Quality control management</font>
@@ -551,12 +402,6 @@ include 'navbar.php';
 					
 					<div>
 						
-						<img src="images/par8.png">
-
-					</div>
-
-					<div>
-						
 						<font class="manage">Software development</font>
 
 						<br>
@@ -571,12 +416,6 @@ include 'navbar.php';
 					
 					<div>
 						
-						<img src="images/par9.png">
-
-					</div>
-
-					<div>
-						
 						<font class="manage">Financial management</font>
 
 						<br>
@@ -589,11 +428,6 @@ include 'navbar.php';
 
 				<div class="first-post">
 					
-					<div>
-						
-						<img src="images/par10.png">
-
-					</div>
 
 					<div>
 						
@@ -609,15 +443,10 @@ include 'navbar.php';
 
 				<div class="first-post">
 					
-					<div>
-						
-						<img src="images/par11.png">
-
-					</div>
 
 					<div>
 						
-						<font class="manage">Tosin Did it!</font>
+						<font class="manage">Operation Researcher</font>
 
 						<br>
 
@@ -629,11 +458,6 @@ include 'navbar.php';
 
 				<div class="first-post">
 					
-					<div>
-						
-						<img src="images/par12.png">
-
-					</div>
 
 					<div>
 						
@@ -661,9 +485,9 @@ include 'navbar.php';
 		
 		<div class="col-lg-5 col-md-5 col-sm-5 how" style="text-align: center;">
 			
-			<h4>How MSION Works</h4>
+			<h4>How MSI Nigeria Works</h4>
 
-			<p>Step-by-step guide on how job seekers and recruiters can use MSION</p>
+			<p>Step-by-step guide on how job seekers and recruiters can use MSI Nigeria</p>
 
 		</div>
 
@@ -683,9 +507,9 @@ include 'navbar.php';
 
 				<div style="display: flex;flex-direction: column;gap: 6px;">
 						
-					<font class="manager">Create an account</font>
+					<font class="manager" style="font-size: 17px;line-height: 23px;">Explore job listings or candidates</font>
 
-					<font class="roles" style="line-height: 26px;">Start your journey by signing up with MSION.</font>
+					<font class="roles" style="line-height: 23px;font-size: 12px;">For job seekers, dive into a vast array of job listings tailored to your preferences.</font>
 
 				</div>
 
@@ -703,7 +527,7 @@ include 'navbar.php';
 						
 					<font class="manager">Create an account</font>
 
-					<font class="roles" style="line-height: 26px;">Start your journey by signing up with MSION.</font>
+					<font class="roles" style="line-height: 26px;">Start your journey by signing up with MSI Nigeria.</font>
 
 				</div>
 
@@ -757,7 +581,7 @@ include 'navbar.php';
 						
 					<font class="manager" style="font-size: 16px;line-height: 30px;">Access Courses and Career Resources</font>
 
-					<font class="roles" style="line-height: 22px;font-size: 12px;">Take advantage of MSION's extensive library of courses, webinars, and expert insights.</font>
+					<font class="roles" style="line-height: 22px;font-size: 12px;">Take advantage of MSI Nigeria's extensive library of courses, webinars, and expert insights.</font>
 
 				</div>
 
@@ -781,11 +605,11 @@ include 'navbar.php';
 					
 					<div class="helper">
 
-						<p>How MSION helps with</p>
+						<p>How MSI Nigeria helps with</p>
 						
-						<h4>Resume Buliding</h4>
+						<h4>Get your Resume Ready</h4>
 
-						<p class="craft">Craft an impressive resume that highlights your skills and experiences with our built-in resume builder. With MSION, you'll have access to easy-to-use templates and tools to create a professional resume that stands out to potential employers.</p>
+						<p class="craft">Craft an impressive resume that highlights your skills and experiences with our built-in resume builder. With MSI Nigeria, you'll have access to easy-to-use templates and tools to create a professional resume that stands out to potential employers.</p>
 
 					</div>
 
@@ -796,7 +620,7 @@ include 'navbar.php';
 			<div class="col-lg-6 col-sm-6 col-md-6">
 				
 
-				<img src="images/help.png" style="width: 100% !important;">
+				<img src="images/new/6.jpg" style="width: 100% !important;">
 
 			</div>
 
@@ -814,7 +638,7 @@ include 'navbar.php';
 			
 			<h4 style="font-size: 40px;font-weight: 700;">Hire talented job seekers</h4>
 
-			<p style="color: #433E3F;font-weight: 400;line-height: 30px;">MSION has a suite of tools to help you hire the best  talent all over the world. Find talent, post jobs, and promote your brand to thousands of motivated job seekers. It only takes a few minutes to create your company profile.</p>
+			<p style="color: #433E3F;font-weight: 400;line-height: 30px;">MSI Nigeria has a suite of tools to help you hire the best  talent all over the world. Find talent, post jobs, and promote your brand to thousands of motivated job seekers. It only takes a few minutes to create your company profile.</p>
 
 		</div>
 
@@ -866,7 +690,7 @@ include 'navbar.php';
 						
 						<p>Create a free company profile</p>
 
-						<font>MSION has a suite of tools to help you hire the best  talent all over the world. Find talent, post jobs, and promote your brand to thousands of motivated job seekers. It only </font>
+						<font>MSI Nigeria has a suite of tools to help you hire the best  talent all over the world. Find talent, post jobs, and promote your brand to thousands of motivated job seekers. It only </font>
 
 					</div>
 
@@ -902,7 +726,7 @@ include 'navbar.php';
 						
 						<p>Job posting</p>
 
-						<font>MSION has a suite of tools to help you hire the best  talent all over the world. Find talent, post jobs, and promote your brand to thousands of motivated job seekers. It only </font>
+						<font>MSI Nigeria has a suite of tools to help you hire the best  talent all over the world. Find talent, post jobs, and promote your brand to thousands of motivated job seekers. It only </font>
 
 					</div>
 
@@ -938,7 +762,7 @@ include 'navbar.php';
 						
 						<p>Finding talents</p>
 
-						<font>MSION has a suite of tools to help you hire the best  talent all over the world. Find talent, post jobs, and promote your brand to thousands of motivated job seekers. It only </font>
+						<font>MSI Nigeria has a suite of tools to help you hire the best  talent all over the world. Find talent, post jobs, and promote your brand to thousands of motivated job seekers. It only </font>
 
 					</div>
 
@@ -1000,7 +824,7 @@ include 'navbar.php';
 
 					<div class="col-lg-6 col-sm-6 col-md-6" style="background: transparent;flex: 1 1 100px;height: 360px;">
 						
-						<img src="images/dream.png" style="width: 100% !important;height: 100% !important;">
+						<img src="images/new/2.jpg" style="width: 100% !important;height: 100% !important;">
 
 					</div>
  				

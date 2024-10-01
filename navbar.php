@@ -68,7 +68,7 @@
 
 			        	<div class="dashboard-login" id="profile-container" style="cursor: pointer;">
 			         			
-			        		<img src="profile/<?php echo $_SESSION['profile-pic']; ?>" style="width: 100% !important;height: 100% !important;border-radius: inherit;" id="profile-pic">
+			        		<img src="images/new/icon.png" id="profile-pic">
 
 			        	</div>
 
