@@ -50,29 +50,45 @@
 
 		<div style="display: flex;gap: 20px;margin-left: 20px;">
 
-			<div>
+			<a href="https://web.facebook.com/msichoicesng/" target="_blank">
 
-				<img src="images/fcbk.png" style="width: 24px;height: 24px;">
+				<div>
 
-			</div>
+					<img src="images/fcbk.png" style="width: 24px;height: 24px;">
 
-			<div>
+				</div>
 
-				<img src="images/insta.png" style="width: 24px;height: 24px;">
+			</a>
 
-			</div>
+			<a href="https://www.instagram.com/msichoicesng/" target="_blank">
 
-			<div>
+				<div>
 
-				<img src="images/tweet.png" style="width: 24px;height: 24px;">
+					<img src="images/insta.png" style="width: 24px;height: 24px;">
 
-			</div>
+				</div>
 
-			<div>
+			</a>
 
-				<img src="images/link.png" style="width: 24px;height: 24px;">
+			<a href="https://twitter.com/msichoicesng" target="_blank">
+					
+				<div>
 
-			</div>
+					<img src="images/tweet.png" style="width: 24px;height: 24px;">
+
+				</div>
+
+			</a>
+
+			<a href="https://www.linkedin.com/company/msichoicesng/" target="_blank">
+
+				<div>
+
+					<img src="images/link.png" style="width: 24px;height: 24px;">
+
+				</div>
+
+			</a>
 
 		</div>
 
